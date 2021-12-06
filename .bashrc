@@ -147,6 +147,8 @@ umask 0002
 # size from 500 to 1000
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 # created aliases
 alias l.='ls -d .* --color=auto'

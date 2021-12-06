@@ -13,6 +13,10 @@ fi
 PATH=$PATH:$HOME/bin
 PYTHONPATH=$HOME
 
+# Make Vim default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 alias ls='ls -F --color=auto'
