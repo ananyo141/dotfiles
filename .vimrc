@@ -193,6 +193,8 @@ autocmd FileType html,css set noexpandtab tabstop=2
 " (despite the mappings later):
 autocmd FileType make set noexpandtab shiftwidth=8
 
+" also don't expand tabs in shell scripts
+autocmd FileType sh set noexpandtab
 
 " * Search & Replace
 
