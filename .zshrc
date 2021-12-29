@@ -17,6 +17,9 @@ PYTHONPATH=$HOME
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+# Make zsh like vi
+set -o vi
+
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 alias ls='ls -F --color=auto'

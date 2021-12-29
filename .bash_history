@@ -543,3 +543,349 @@ lsbkl
 lsblk
 sudo umount /dev/sdb1
 shutdown now
+printenv PATH
+new.sh
+foo="yes"
+echo foo
+echo $foo
+echo $foo1
+echo ${foo}1
+echo "$nice"
+echo nice
+echo $nice
+echo
+foo=foo.txt
+foo1=foo1.txt
+cp $foo $fool
+cp $foo "$fool"
+nameprint "$fool"
+nameprint "$foo"
+echo "$foo"
+vim ~/bin/nameprintpy 
+nameprintpy "$foo"
+vim ~/bin/nameprintpy 
+nameprintpy "$foo"
+nameprintpy "$foo" sajdfk sadfsdfsad asdf
+vim ~/bin/nameprintpy 
+nameprintpy "$foo" sajdfk sadfsdfsad asdf
+vim ~/bin/nameprintpy 
+nameprintpy "$foo" sajdfk sadfsdfsad asdf
+vim ~/bin/nameprintpy 
+nameprintpy "$foo" sajdfk sadfsdfsad asdf
+vim ~/bin/nameprintpy 
+nameprintpy "$foo" sajdfk sadfsdfsad asdf
+mv ~/bin/nameprintpy ~/bin/arganalyze
+arganalyze "$foo"
+systemctl suspend
+foo=yes
+arganalyze $foo
+arganalyze $fool
+arganalyze ${foo}l
+arganalyze "$fool"
+arganalyze $fool
+yay
+yay -R python3.10
+python3.10
+yay -R python3.10
+yay -R python310
+ls
+python
+arganalyze "foo"
+arganalyze "$foo"
+arganalyze $foo
+$HOSTNAME
+echo $HOSTNAME
+declare -r THIS="Don't change"
+THIS
+echo $THIS
+THIS=SD
+this=a string
+echo $this
+arganalyze $this
+this=a string
+arganalyze $this
+this="a string"
+arganalyze $this
+arganalyze "$this"
+a=z
+b="a string"
+c="a string and $b"
+echo $c
+ls
+cd playground/
+ls
+vim reform.sh 
+mv dist* patchfile.txt *.sh ~/ShellScript/LinuxCommandline/
+ls
+foo="foo.txt"
+touch $foo
+touch "$foo"
+echo "$d"
+arganalyze "$c"
+d="$(ls -l $foo)"
+arganalyze "$d"
+arganalyze $d
+d="$(ls -l $no)"
+alias aa=arganalyze
+aa d
+aa $d
+d=$(ls -l $no)
+aa $d
+d="$(cmp $no $foo)"
+aa $d
+aa "$d"
+aa "$(cmp $no $foo)"
+aa "$(cmp \"$no\" \"$foo\")"
+aa "$(cmp "$no" "$foo")"
+aa $d
+d="$(ls -l $foo)"
+aa $d
+aa "$d"
+e=$((5 * 7))
+aa $e
+f="\t\ta string\tOk\n"
+echo f
+printf %s $f
+echo $f
+printf %s "$f"
+a=5 b="a string"
+aa $a
+aa $b
+aa "b"
+aa B
+aa $B
+aa "$B"
+a=this b=that c=ok
+aa $a $b $c
+filename="myfile"
+touch "$filename"
+mv "$filename $filename1"
+aa "$filename $filename1"
+aa "$filename" "$filename1"
+aa "$filename ${saf}"
+aa "$filename \"${saf}\""
+aa "$filename" "$filename1"
+aa ""$filename" "$filename1""
+aa ""$filename" "${filename}1""
+date +"%x %r %Z"
+cal
+$CURRENT_TIME
+$USER
+aa $USER
+git -C ~/ShellScript/ status
+cat << _EOF_
+$foo
+"$foo"
+'$foo'
+\$foo
+_EOF_
+
+cd ~/ShellScript/LinuxCommandline/
+chmod +x ftpheredoc.sh 
+./ftpheredoc.sh 
+ls
+tar xztf debian-cd_info.tar.gz 
+tar xtf debian-cd_info.tar.gz 
+tar ztf debian-cd_info.tar.gz 
+ls
+rm debian-cd_info.tar.gz 
+ls
+c
+cd
+x=5
+if [ "$x" -eq 5 ]; then echo "x equals 5"; else echo "x not equals 5"; fi
+if [ "$x
+if [ "$x" -ne 5 ]; then echo "not equal 5"; else echo "not not equal 5"; fi
+[
+[ "$x" -e 5]
+[ "$x" -e 5 ]
+[ "$x" -e 5 ];
+[ "$x" -eq 5 ]
+echo $status
+vim ~/.bashrc
+aa $status
+source ~/.bashrc
+aa $status
+aa "$status"
+x=6
+if [ "$x" -eq 6 ]; then echo "equals 5"; else echo "not equal"; fi
+echo $?
+[ "$x" -eq 5 ]
+echo $?
+zsh
+ls -d /bin/usr
+aa $?
+git -C ~ status
+true
+aa $?
+false
+echo $?
+which aa
+where aa
+whereis aa
+which aa
+type aa
+if true; then echo "It's true."; fi
+if true; then echo "Thi sis nice"; fi
+if false; then echo "This is nice"; else echo "this is else"; fi
+true; false
+echo $?
+false; true
+echo $?
+test false
+echo $?
+test true
+echo $?
+if test true; then echo "nice"; fi
+if test false; then echo ok; else echo "not ok"; fi
+if [ false ]; then echo ok; else echo not; fi
+if [ true ]; then echo ok; else echo not; fi
+ls
+aa $(test false)
+aa $(test true)
+aa $?
+test false
+echo $?
+aa "this"
+aa $((3 % 2))
+aa ((3 % 2))
+echo ((3 % 2))
+echo $((3 % 2))
+./int3.sh 
+vim int2.sh 
+read
+echo $READ
+echo $REPLY
+del
+REPLY='NOT'
+echo $REPLY
+read
+echo $REPLY
+ls
+./range.sh 
+man ((
+man (
+man "("
+man "(("
+./range.sh 
+exit 1
+zsh
+echo $?
+cd ShellScript/LinuxCommandline/
+ls
+vim int3_test.sh; chmod +x int3_test.sh
+ll int3_test.sh 
+vim int3_test.sh 
+id -u
+sudo id -u
+read this
+echo $this
+aa "this is "$this""
+aa "this "" that "
+aa "htat" and "this"
+aa "tath "$this" is"
+aa "that \"$this\" is "
+aa
+aa $thidfd
+./int2.sh 
+./int2.sh 2>/dev/null
+./int2.sh >/dev/null
+FILE=foo.*
+echo $FILE
+FILE=foo.bar
+if [[ $FILE == foo.* ]]; then echo "$FILE matches pattern"; else echo "$FILE doesn't match pattern"; fi
+echo 3 | watch ./int2.sh 
+echo 3 > inp
+cat inp
+vim inp
+watch ./int2.sh <inp
+man watch
+watch ./int2.sh -x <inp
+if ((1)); then echo "true"; else echo "false"; fi
+history | less
+if ((0)); then echo "true"; else echo "false"; fi
+vim int3.sh; chmod +x int3.sh
+ll int3.sh 
+vim int3.sh 
+vim range.sh; chmod +x range.sh
+vim range.sh 
+vim range.sh
+ll
+rm inp
+ll
+find -not *.sh
+find -not -name *.sh
+find -not -name "*.sh"
+find -type f -not -name "*.sh"
+find -type f -not -name "*.sh" -exec chmod -x '{}' '+'
+ll
+git status
+git log
+git add -A
+git log
+git status
+[[
+which [[
+type [[
+vim int3.sh
+vim sys_info_page.sh 
+echo -e 'this'
+echo 'this'
+man echo -e
+echo 'this\n'
+echo -e 'this\n'
+echo "foo" | read
+echo "$REPLY"
+echo "nom" | read var
+echo "$var"
+echo $var
+echo "$var"
+# find characters
+aa (( $(( "this is" > 1 )) ))
+aa (( "this is" > 1 ))
+if (( "this is" > 1 )); then echo "this"; fi
+if (( "2" > 1 )); then echo "this"; fi
+if (( "-9" > 1 )); then echo "this"; fi
+if (( "-9" > 1 )); then echo "this"; else echo "that"; fi
+htop
+[[ !=~
+man [[
+if [[ "this" !=~ "this" ]]; then echo 'nice'; fi
+if [[ "this" =~ "this" ]]; then echo 'nice'; fi
+ls
+touch /tmp/-
+ls /tmp
+vim /tmp/-
+rm /tmp/-
+ls
+ls -clt
+vim user-details.sh 
+./user-details.sh 
+sfkj
+./user-details.sh 
+echo $?
+touch /tmp/-34.34
+ls /tmp
+file /tmp/*
+vim /tmp/-34.34 
+file /tmp/*
+function example { args: string furstname } {; echo 'this'; }
+example
+example 34
+vim betaCode/shellparam.sh
+cd betaCode/
+ls
+chmod +x shellparam.sh 
+./shellparam.sh 
+vim shellparam.sh 
+vim /tmp/param.sh; chmod +x /tmp/param.sh
+/tmp/param.sh 
+vim /tmp/param.sh 
+/tmp/param.sh 
+# I was applying pointer subscript (ptr[0]) for a null ptr, that threw seg fault
+wc -w <<< $not
+wc -w <<<
+set -o vim
+set -o vi
+this is niceas
+:q
