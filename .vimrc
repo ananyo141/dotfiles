@@ -119,6 +119,10 @@ set smartindent
 set splitright
 set splitbelow
 set hls
+
+" set colorscheme
+colorscheme delek
+
 " set and customize line number
 set nu
 highlight LineNr term=bold cterm=NONE ctermfg=grey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
@@ -139,7 +143,7 @@ set textwidth=79
 " for bullet lists being treated like C comments; then define a bullet list
 " style for single stars (like already is for hyphens):
 set comments-=s1:/*,mb:*,ex:*/
-set comments+=s:/*,mb:**,ex:*/
+"set comments+=s:/*,mb:**,ex:*/
 set comments+=fb:*
 
 " treat lines starting with a quote mark as comments (for `Vim' files, such as
