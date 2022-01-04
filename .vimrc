@@ -121,7 +121,8 @@ set splitbelow
 set hls
 
 " set colorscheme
-colorscheme delek
+colorscheme elflord
+color delek
 
 " set and customize line number
 set nu
@@ -321,6 +322,9 @@ inoremap # X#
 
 " YouCompleteMe ends preview tabs
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" make control-W easier to type
+nnoremap <F3> <C-W>
 
 syntax on
 
