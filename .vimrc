@@ -315,5 +315,8 @@ inoremap <expr> <CR> pumvisible() ? "\<C-E>\<CR>" : "\<CR>"
 inoremap # X#
 " [<Ctrl>+V <Tab> still inserts an actual tab character.]
 
+" YouCompleteMe ends preview tabs
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
 syntax on
 
