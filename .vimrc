@@ -320,6 +320,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-E>\<CR>" : "\<CR>"
 inoremap # X#
 " [<Ctrl>+V <Tab> still inserts an actual tab character.]
 
+" Shortcut to maximize 
+nmap - :res<CR>:vertical res<CR>
+
 " YouCompleteMe ends preview tabs
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
