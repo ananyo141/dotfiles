@@ -329,5 +329,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " make control-W easier to type
 nnoremap <F3> <C-W>
 
+" open and close terminal
+nnoremap <C-\> :vert ter<CR>
+tnoremap <C-\><C-\> <C-w>:q!<CR>
+tnoremap <Esc> <C-w>N
+
 syntax on
 
