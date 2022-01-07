@@ -332,7 +332,7 @@ nnoremap <F3> <C-W>
 " open and close terminal
 nnoremap <C-\> :vert ter<CR>
 tnoremap <C-\><C-\> <C-w>:q!<CR>
-tnoremap <Esc> <C-w>N
+tnoremap <F3> <C-w>N<C-w>
 
 syntax on
 
