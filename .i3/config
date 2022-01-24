@@ -420,5 +420,5 @@ mode "$mode_gaps_outer" {
 }
 
 # Customizations
-# exec feh --no-fehbg --bg-fill ~/Downloads/Wallpapers
-exec --no-startup-id /home/ananyobrata/.fehbg
+bindsym $mod+Escape exec ~/.fehbg
+
