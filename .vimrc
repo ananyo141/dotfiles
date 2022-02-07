@@ -125,7 +125,7 @@ colorscheme elflord
 color delek
 
 " set and customize line number
-set nu
+set nu rnu
 highlight LineNr term=bold cterm=NONE ctermfg=grey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " Automatically closing braces
@@ -328,6 +328,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " make control-W easier to type
 nnoremap <F3> <C-W>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> <C-W><C-L>
 
 " open and close terminal
 nnoremap <C-\> :vert ter<CR>
