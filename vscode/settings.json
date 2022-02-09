@@ -1,9 +1,9 @@
 {
-    "files.autoSave": "afterDelay",
     "editor.acceptSuggestionOnEnter": "off",
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
+    "clangd.path": "c:\\Users\\ASUS\\AppData\\Roaming\\VSCodium\\User\\globalStorage\\llvm-vs-code-extensions.vscode-clangd\\install\\13.0.0\\clangd_13.0.0\\bin\\clangd.exe",
     "html.autoClosingTags": false,
     "python.pythonPath": "/usr/bin/python3",
     "C_Cpp.updateChannel": "Insiders",
@@ -14,7 +14,7 @@
     "workbench.colorTheme": "Visual Studio Dark",
     "workbench.startupEditor": "newUntitledFile",
     "workbench.editor.untitled.hint": "hidden",
-    "python.languageServer": "Pylance",
+    "python.languageServer": "Jedi",
     "liveServer.settings.donotShowInfoMsg": true,
     "editor.cursorBlinking": "phase",
     "notebook.cellToolbarLocation": {
