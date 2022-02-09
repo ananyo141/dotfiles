@@ -1,0 +1,42 @@
+{
+    "files.autoSave": "afterDelay",
+    "editor.acceptSuggestionOnEnter": "off",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "html.autoClosingTags": false,
+    "python.pythonPath": "/usr/bin/python3",
+    "C_Cpp.updateChannel": "Insiders",
+    "kite.showWelcomeNotificationOnStartup": false,
+    "editor.formatOnPaste": true,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.snippetSuggestions": "top",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.editor.untitled.hint": "hidden",
+    "python.languageServer": "Pylance",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.cursorBlinking": "phase",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "python.defaultInterpreterPath": "C:\\Python310\\python.exe",
+    "explorer.sortOrder": "modified",
+    "git.autofetch": true,
+    "editor.autoClosingDelete": "always",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.insertFinalNewline": true,
+    "window.zoomLevel": 1,
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false
+    },
+    "editor.lineNumbers": "relative"
+}
