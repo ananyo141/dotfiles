@@ -325,6 +325,8 @@ nmap - :res<CR>:vertical res<CR>
 
 " YouCompleteMe ends preview tabs
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" Toggle NERDTree
+nmap <F6> :NERDTreeToggle<CR>
 
 " make control-W easier to type
 nnoremap <F3> <C-W>
