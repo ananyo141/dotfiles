@@ -324,6 +324,8 @@ nmap - :res<CR>:vertical res<CR>
 
 " YouCompleteMe ends preview tabs
 let g:ycm_autoclose_preview_window_after_insertion = 1
+" Toggle NERDTree
+nmap <F6> :NERDTreeToggle<CR>
 
 set ruler " Show ruler
 set vb t_vb= " stop beeping or flashing the screen
