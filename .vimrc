@@ -121,7 +121,8 @@ set splitbelow
 set hls
 
 " set colorscheme
-colorscheme desert
+colorscheme elflord
+color delek
 
 " set and customize line number
 set nu rnu
