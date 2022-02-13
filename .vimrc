@@ -119,6 +119,8 @@ set smartindent
 set splitright
 set splitbelow
 set hls
+set foldmethod=indent
+set foldlevel=99
 
 " set colorscheme
 colorscheme elflord
