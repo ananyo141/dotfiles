@@ -121,8 +121,7 @@ set splitbelow
 set hls
 
 " set colorscheme
-colorscheme elflord
-color delek
+colorscheme desert
 
 " set and customize line number
 set nu rnu
@@ -325,6 +324,9 @@ nmap - :res<CR>:vertical res<CR>
 
 " YouCompleteMe ends preview tabs
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+set ruler " Show ruler
+set vb t_vb= " stop beeping or flashing the screen
 
 " make control-W easier to type
 nnoremap <F3> <C-W>
