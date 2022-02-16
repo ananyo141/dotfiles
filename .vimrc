@@ -123,8 +123,8 @@ set foldmethod=indent
 set foldlevel=99
 
 " set colorscheme
-colorscheme elflord
 color delek
+colorscheme desert
 
 " set and customize line number
 set nu rnu
@@ -327,6 +327,11 @@ nmap - :res<CR>:vertical res<CR>
 
 " YouCompleteMe ends preview tabs
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" enable plugins
+set nocompatible
+filetype plugin on
+runtime macros/matchit.vim
 
 " Powerline
 set laststatus=2
