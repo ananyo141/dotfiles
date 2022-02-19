@@ -121,6 +121,14 @@ set splitbelow
 set hls
 set foldmethod=indent
 set foldlevel=99
+set autoread
+set autowriteall
+set completeopt
+
+" Show differences in the buffer
+command DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe "norm! ".g:diffline."G" | wincmd p | diffthis | wincmd p
+nnoremap <Leader>do :DiffOrig<cr>
+nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 
 " set colorscheme
 color delek
