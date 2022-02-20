@@ -130,6 +130,9 @@ command DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0
 nnoremap <Leader>do :DiffOrig<cr>
 nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 
+" Execute a python script
+nnoremap <F12> :!python3 %<CR>
+
 " set colorscheme
 color delek
 colorscheme desert
@@ -338,7 +341,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " enable plugins
 set nocompatible
-filetype plugin on
+filetype plugin indent on
 runtime macros/matchit.vim
 
 " Powerline
