@@ -85,6 +85,7 @@ alias gita='git add .'
 alias gitA='git add -A'
 alias gitc='git commit'
 alias gitcp='git commit && git push'
+alias gitl='git log'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
