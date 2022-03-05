@@ -75,6 +75,7 @@ alias ll='ls -AFhl --color=auto'
 alias clear='echo Use "^L" man!'
 alias f='~/.fehbg'
 alias py='python3'
+alias v='vim .'
 # Git Aliases
 alias gits='git status'
 alias gitf='git fetch'
@@ -85,6 +86,7 @@ alias gita='git add .'
 alias gitA='git add -A'
 alias gitc='git commit'
 alias gitcp='git commit && git push'
+alias gitP='git push'
 alias gitl='git log'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

@@ -122,7 +122,7 @@ set hls
 set foldmethod=indent
 set foldlevel=99
 set autoread
-set autowriteall
+set hidden
 set completeopt=menuone,longest
 
 " Show differences in the buffer
@@ -135,7 +135,7 @@ nnoremap <F12> :!python3 %<CR>
 
 " set colorscheme
 color delek
-colorscheme desert
+colorscheme koehler
 
 " set and customize line number
 set nu rnu
@@ -191,6 +191,14 @@ autocmd FileType c,cpp,slang set cindent
 " characters, if starting a new line in the middle of a comment automatically
 " insert the comment leader characters:
 autocmd FileType c set formatoptions+=ro
+
+" create make compiler settings for c, cpp
+autocmd FileType c set makeprg=gcc\ %
+autocmd FileType cpp set makeprg=g++\ %
+
+" create make for python
+autocmd FileType python compiler pyunit
+autocmd FileType python set makeprg=python3\ %
 
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent
@@ -311,12 +319,8 @@ set pastetoggle=<F4>
 nnoremap \tl :set invlist list?<CR>
 nmap <F2> \tl
 
-" have \th ("toggle highlight") toggle highlighting of search matches, and
-" report the change:
-nnoremap \th :set invhls hls?<CR>
-" clear the current search highlight with Ctrl+/
-noremap <silent> <c-_> :let @/ = ""<CR>
-
+" toggle search pattern highlighting using Ctrl+/
+nnoremap <silent> <c-_> :set invhls hls?<CR>
 
 " * Keystrokes -- Insert Mode
 
@@ -347,7 +351,7 @@ runtime macros/matchit.vim
 " Powerline
 set laststatus=2
 
-set ruler " Show ruler
+set ruler    " Show ruler
 set vb t_vb= " stop beeping or flashing the screen
 
 " make control-W easier to type
