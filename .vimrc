@@ -134,8 +134,7 @@ nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 nnoremap <F12> :!python3 %<CR>
 
 " set colorscheme
-color delek
-colorscheme koehler
+colorscheme delek
 
 " set and customize line number
 set nu rnu
@@ -225,8 +224,8 @@ autocmd FileType sh set noexpandtab
 " * Search & Replace
 
 " make searches case-insensitive, unless they contain upper-case letters:
-" set ignorecase
-set smartcase
+" set smartcase
+set ignorecase
 
 " show the `best match so far' as search strings are typed:
 set incsearch
@@ -332,7 +331,8 @@ set backspace=eol,start,indent
 " indentation:
 " inoremap <Tab> <C-T>
 inoremap <S-Tab> <C-D>
-inoremap <expr> <TAB> pumvisible() ? "<C-y>" : "<TAB>"
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <CR> pumvisible() ? "\<C-E>\<CR>" : "\<CR>"
 inoremap # X#
 " [<Ctrl>+V <Tab> still inserts an actual tab character.]
@@ -340,13 +340,15 @@ inoremap # X#
 " Shortcut to maximize 
 nmap - :res<CR>:vertical res<CR>
 
-" YouCompleteMe ends preview tabs
-let g:ycm_autoclose_preview_window_after_insertion = 1
-
 " enable plugins
 set nocompatible
 filetype plugin indent on
 runtime macros/matchit.vim
+
+set signcolumn=no
+
+nmap <silent> <leader>g :CocDiagnostic-next<CR>
+nmap <silent> <leader>] :lclose<CR>
 
 " Powerline
 set laststatus=2
