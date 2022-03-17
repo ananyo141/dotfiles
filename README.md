@@ -11,4 +11,4 @@ git clone git@github.com:ananyo141/ConfigFiles.git
 ```
 
 ## License
-Closed for now.
+Public
