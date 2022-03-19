@@ -345,6 +345,13 @@ set nocompatible
 filetype plugin indent on
 runtime macros/matchit.vim
 
+" set persistent undo
+if !isdirectory('/tmp/.vim-undo/')
+    call mkdir('/tmp/.vim-undo/', "", 0700)
+endif
+set undodir=/tmp/.vim-undo/
+set undofile
+
 nmap <silent> <leader>g :CocDiagnostic-next<CR>
 nmap <silent> <leader>] :lclose<CR>
 
@@ -354,12 +361,18 @@ set laststatus=2
 set ruler    " Show ruler
 set vb t_vb= " stop beeping or flashing the screen
 
-" make control-W easier to type
+" make changing windows easier
+" For normal mode
 nnoremap <F3> <C-W>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
+" for terminal
+tnoremap <C-J> <C-W>N<C-W><C-J>
+tnoremap <C-K> <C-W>N<C-W><C-K>
+tnoremap <C-H> <C-W>N<C-W><C-H>
+tnoremap <C-L> <C-W>N<C-W><C-L>
 
 " open and close terminal
 nnoremap <C-\> :vert ter<CR>
