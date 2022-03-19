@@ -192,7 +192,7 @@ autocmd FileType cpp set makeprg=g++\ % path+=/usr/include/c++/**
 
 " create make for python
 autocmd FileType python compiler pyunit
-autocmd FileType python set makeprg=python3\ % path+=/usr/lib/python3.10/**,~/.local/lib/python3.10/** signcolumn=no
+autocmd FileType python set makeprg=python3\ % path+=/usr/lib/python3.10/**,~/.local/lib/python3.10/**
 
 " for Perl programming, have things in braces indenting themselves:
 autocmd FileType perl set smartindent
@@ -343,6 +343,9 @@ if !isdirectory('/tmp/.vim-undo/')
 endif
 set undodir=/tmp/.vim-undo/
 set undofile
+
+set updatetime=300
+set signcolumn=number
 
 nmap <silent> <leader>g :CocDiagnostic-next<CR>
 nmap <silent> <leader>] :lclose<CR>
