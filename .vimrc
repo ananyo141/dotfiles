@@ -29,10 +29,8 @@
 " bit of luck, this should make it resilient to being uploaded, downloaded,
 " e-mailed, posted, encoded, decoded, transmitted by morse code, or whatever.
 
-
 " first clear any existing autocommands:
 autocmd!
-
 
 "---" * Terminal Settings
 "---
@@ -63,7 +61,6 @@ autocmd!
 "---
 "---  endif
 "---endif
-
 
 " * User Interface
 
@@ -102,7 +99,6 @@ execute 'set listchars+=tab:' . nr2char(187) . nr2char(183)
 
 " don't have files trying to override this .vimrc:
 set nomodeline
-
 
 " * Text Formatting -- General
 
@@ -164,7 +160,6 @@ set comments+=fb:*
 " `Tin' users works OK:
 set comments+=b:\"
 set comments+=n::
-
 
 " * Text Formatting -- Specific File Formats
 
@@ -234,7 +229,6 @@ set incsearch
 " this turned out to do the opposite of what it was supposed to
 " set gdefault
 
-
 " * Keystrokes -- Moving Around
 
 " have the h and l cursor keys wrap between lines (like <Space> and <BkSpc> do
@@ -276,7 +270,6 @@ vmap <F1> <C-C><F1>
 omap <F1> <C-C><F1>
 map! <F1> <C-C><F1>
 
-
 " * Keystrokes -- Formatting
 
 " have Q reformat the current paragraph (or selected text if there is any):
@@ -292,7 +285,6 @@ vmap <S-Tab> <C-D>
 " have Y behave analogously to D and C rather than to dd and cc (which is
 " already done by yy):
 noremap Y y$
-
 
 " * Keystrokes -- Toggles
 
@@ -338,7 +330,7 @@ inoremap # X#
 " [<Ctrl>+V <Tab> still inserts an actual tab character.]
 
 " Shortcut to maximize 
-nmap - :res<CR>:vertical res<CR>
+nmap <silent> - :res<CR>:vertical res<CR>
 
 " enable plugins
 set nocompatible
