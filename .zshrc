@@ -72,7 +72,6 @@ export HISTSIZE=1000
 alias ls='ls -F --color=auto'
 alias la='ls -AFh --color=auto'
 alias ll='ls -AFhl --color=auto'
-alias clear='echo Use "^L" man!'
 alias f='~/.fehbg'
 alias py='python3'
 alias v='vim .'

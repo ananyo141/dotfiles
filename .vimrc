@@ -127,7 +127,7 @@ nnoremap <Leader>do :DiffOrig<cr>
 nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 
 " Execute a python script
-nnoremap <F12> :!python3 %<CR>
+nnoremap <F12> :ter python3 %<CR>
 
 " set colorscheme
 colorscheme delek
@@ -338,10 +338,11 @@ filetype plugin indent on
 runtime macros/matchit.vim
 
 " set persistent undo
-if !isdirectory('/tmp/.vim-undo/')
-    call mkdir('/tmp/.vim-undo/', "", 0700)
+let undoDir='/tmp/.vim-undo/'
+if !isdirectory(undoDir)
+    call mkdir(undoDir, "", 0700)
 endif
-set undodir=/tmp/.vim-undo/
+let &undodir=undoDir
 set undofile
 
 set updatetime=300
@@ -370,9 +371,20 @@ tnoremap <C-H> <C-W>N<C-W><C-H>
 tnoremap <C-L> <C-W>N<C-W><C-L>
 
 " open and close terminal
-nnoremap <C-\> :vert ter<CR>
-tnoremap <C-\><C-\> <C-w>:q!<CR>
+nnoremap <silent><C-\> :vert ter<CR>
+tnoremap <silent><C-\><C-\> <C-w>:bd!<CR>
 tnoremap <F3> <C-w>N<C-w>
+
+" use * to search for visually selected text
+xnoremap * : <C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+xnoremap # : <C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+function! s:VSetSearch(cmdtype)
+    let temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+    let @s = temp
+endfunction
 
 syntax on
 
