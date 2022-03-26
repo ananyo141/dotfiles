@@ -68,13 +68,15 @@ set -o vi
 
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
+
 # Aliases
 alias ls='ls -F --color=auto'
 alias la='ls -AFh --color=auto'
 alias ll='ls -AFhl --color=auto'
-alias f='~/.fehbg'
 alias py='python3'
-alias v='vim .'
+alias v='vim'
+alias vs='vim -S'
+
 # Git Aliases
 alias gits='git status'
 alias gitf='git fetch'

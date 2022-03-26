@@ -7,8 +7,15 @@
 " http://www.stripey.com/vim/
 " 
 " 2000 Jun  1: for `Vim' 5.6
+"
+" This .vimrc is an amalgamation of previous settings and configs
+" by the original author with added extensive feature and funtionality
+" for modern Vim by Ananyobrata Pal <ananyo141@gmail.com>
+"
+" 2021-present: For `Vim' 8.2+
 " 
 " This vimrc is divided into these sections:
+" (Some of the sections are violated by some stray configs here and there)
 " 
 " * Terminal Settings
 " * User Interface
@@ -63,11 +70,6 @@ autocmd!
 "---endif
 
 " * User Interface
-
-" have syntax highlighting in terminals which can display colours:
-"if has('syntax') && (&t_Co > 2)
-"  syntax on
-"endif
 
 " have fifty lines of command-line (etc) history:
 set history=50
@@ -133,7 +135,7 @@ nnoremap <F12> :ter python3 %<CR>
 colorscheme delek
 
 " set and customize line number
-set nu rnu
+set number relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=grey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " Automatically closing braces
@@ -164,14 +166,15 @@ set comments+=n::
 " * Text Formatting -- Specific File Formats
 
 " enable filetype detection:
-filetype on
+set nocompatible
+filetype plugin indent on
+runtime macros/matchit.vim
 
-" recognize anything in my .Postponed directory as a news article, and anything
-" at all with a .txt extension as being human-language text [this clobbers the
+
+" Detect anything at all with a .txt extension as being human-language text [this clobbers the
 " `help' filetype, but that doesn't seem to prevent help from working
 " properly]:
 augroup filetype
-  autocmd BufNewFile,BufRead */.Postponed/* set filetype=mail
   autocmd BufNewFile,BufRead *.txt set filetype=human
 augroup END
 
@@ -189,6 +192,9 @@ autocmd FileType c set formatoptions+=ro
 " create make compiler settings for c, cpp
 autocmd FileType c set makeprg=gcc\ %
 autocmd FileType cpp set makeprg=g++\ % path+=/usr/include/c++/**
+
+" use // commentstring for vim-commentary
+autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 " create make for python
 autocmd FileType python compiler pyunit
@@ -241,7 +247,6 @@ set whichwrap=h,l,~,[,]
 " or <BkSpc> (like in `Netscape Navigator'):
 noremap <Space> <PageDown>
 noremap <BS> <PageUp>
-noremap - <PageUp>
 " [<Space> by default is like l, <BkSpc> like h, and - like k.]
 
 " scroll the window (but leaving the cursor in the same place) by a couple of
@@ -326,16 +331,14 @@ inoremap <S-Tab> <C-D>
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <CR> pumvisible() ? "\<C-E>\<CR>" : "\<CR>"
+
+" make commenting in python start from arbitrary position and not
+" just the exact beginning by faking entering X then backspace and finallly #
 inoremap # X#
 " [<Ctrl>+V <Tab> still inserts an actual tab character.]
 
 " Shortcut to maximize 
 nmap <silent> - :res<CR>:vertical res<CR>
-
-" enable plugins
-set nocompatible
-filetype plugin indent on
-runtime macros/matchit.vim
 
 " set persistent undo
 let undoDir='/tmp/.vim-undo/'
@@ -374,6 +377,8 @@ tnoremap <C-L> <C-W>N<C-W><C-L>
 nnoremap <silent><C-\> :vert ter<CR>
 tnoremap <silent><C-\><C-\> <C-w>:bd!<CR>
 tnoremap <F3> <C-w>N<C-w>
+
+nnoremap <F11> :mksession!<CR>
 
 " use * to search for visually selected text
 xnoremap * : <C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
