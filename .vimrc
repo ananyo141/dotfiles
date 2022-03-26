@@ -265,6 +265,13 @@ nnoremap <C-N> :next<CR>
 nnoremap <C-P> :prev<CR>
 " [<Ctrl>+N by default is like j, and <Ctrl>+P like k.]
 
+" Use bash like terminal mappings in commandline
+cnoremap <C-A> <HOME>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
+
 " have % bounce between angled brackets, as well as t'other kinds:
 set matchpairs+=<:>
 
@@ -331,6 +338,13 @@ inoremap <S-Tab> <C-D>
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <CR> pumvisible() ? "\<C-E>\<CR>" : "\<CR>"
+
+" use jj to escape from insert mode
+inoremap jj <esc>
+
+" use leader + {O or o} to create newlines
+nnoremap <leader>O O<esc>
+nnoremap <leader>o o<esc>
 
 " make commenting in python start from arbitrary position and not
 " just the exact beginning by faking entering X then backspace and finallly #
