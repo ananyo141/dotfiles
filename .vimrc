@@ -39,6 +39,9 @@
 " first clear any existing autocommands:
 autocmd!
 
+" Source vimrc when editing it
+autocmd! bufwritepost .vimrc source ~/.vimrc
+
 "---" * Terminal Settings
 "---
 "---" `XTerm', `RXVT', `Gnome Terminal', and `Konsole' all claim to be "xterm";
@@ -68,6 +71,13 @@ autocmd!
 "---
 "---  endif
 "---endif
+
+" :cd. change working directory to that of current file
+cmap cd. lcd %:p:h
+
+" restore cursor to the previous editing session
+set viminfo='10,\"100,:20,%,n~/.viminfo
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 " * User Interface
 
@@ -122,6 +132,7 @@ set foldlevel=99
 set autoread
 set hidden
 set completeopt=menuone,longest
+set clipboard=unnamedplus
 
 " Show differences in the buffer
 command DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe "norm! ".g:diffline."G" | wincmd p | diffthis | wincmd p
@@ -195,6 +206,16 @@ autocmd FileType cpp set makeprg=g++\ % path+=/usr/include/c++/**
 
 " use // commentstring for vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
+
+" generate include guard with ,g
+map ,g :call IncludeGuard()<CR>
+fun! IncludeGuard()
+    let basename = substitute(bufname(""), '.*/', '', '')
+    let guard = '' . substitute(toupper(basename), '\.', '_', "H") . '_'
+    call append(0, "#ifndef " . guard)
+    call append(1, "#define " . guard)
+    call append( line("$"), "#endif // for #ifndef " . guard)
+endfun
 
 " create make for python
 autocmd FileType python compiler pyunit
@@ -288,6 +309,10 @@ map! <F1> <C-C><F1>
 nnoremap Q gqap
 vnoremap Q gq
 
+" have multiple indentation/deindentation in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
 " have the usual indentation keystrokes still work in visual mode:
 vnoremap <C-T> >
 vnoremap <C-D> <LT>
@@ -372,7 +397,16 @@ nmap <silent> <leader>] :lclose<CR>
 set laststatus=2
 
 set ruler    " Show ruler
-set vb t_vb= " stop beeping or flashing the screen
+
+set noerrorbells
+set novisualbell
+set t_vb=    " stop beeping or flashing the screen
+set tm=500
+
+" Set minimum width and height of windows to minimum
+" for maximum expansion
+set wmw=0
+set wmh=0
 
 " make changing windows easier
 " For normal mode
