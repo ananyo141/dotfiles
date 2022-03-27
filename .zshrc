@@ -76,6 +76,7 @@ alias ll='ls -AFhl --color=auto'
 alias py='python3'
 alias v='vim'
 alias vs='vim -S'
+alias vrc='vim ~/.vimrc'
 
 # Git Aliases
 alias gits='git status'

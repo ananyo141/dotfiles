@@ -36,11 +36,15 @@
 " bit of luck, this should make it resilient to being uploaded, downloaded,
 " e-mailed, posted, encoded, decoded, transmitted by morse code, or whatever.
 
+
 " first clear any existing autocommands:
 autocmd!
 
 " Source vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
+
+" Set syntax recognition on
+syntax on
 
 "---" * Terminal Settings
 "---
@@ -148,6 +152,10 @@ colorscheme delek
 " set and customize line number
 set number relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=grey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+
+" Set the split partitions as slim vertical lines
+set fillchars+=vert:\▏
+highlight VertSplit cterm=NONE
 
 " Automatically closing braces
 inoremap {<CR> {<CR>}<C-o>O
@@ -438,6 +446,4 @@ function! s:VSetSearch(cmdtype)
     let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
     let @s = temp
 endfunction
-
-syntax on
 
