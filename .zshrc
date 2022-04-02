@@ -70,7 +70,10 @@ export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
 # Aliases
-alias ls='ls -F --color=auto'
+# Use exa as ls
+alias ls='exa --icons'
+# alias ls='ls -F --color=auto'
+
 alias la='ls -AFh --color=auto'
 alias ll='ls -AFhl --color=auto'
 alias py='python3'

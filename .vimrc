@@ -5,14 +5,16 @@
 "
 " Smylers's .vimrc
 " http://www.stripey.com/vim/
-" 
 " 2000 Jun  1: for `Vim' 5.6
 "
+" Ananyo's .vimrc
+" https://github.com/ananyo141
+" 2021-present: For `Vim' 8.2+
+
 " This .vimrc is an amalgamation of previous settings and configs
 " by the original author with added extensive feature and funtionality
 " for modern Vim by Ananyobrata Pal <ananyo141@gmail.com>
 "
-" 2021-present: For `Vim' 8.2+
 " 
 " This vimrc is divided into these sections:
 " (Some of the sections are violated by some stray configs here and there)
@@ -76,8 +78,12 @@ syntax on
 "---  endif
 "---endif
 
-" :cd. change working directory to that of current file
-cmap cd. lcd %:p:h
+" :lcd. change working directory to that of current file
+cmap lcd. lcd %:p:h
+" edit this vimrc
+cmap vrc tabedit $MYVIMRC
+" open a new temporary file
+cnoremap tmp tabedit /tmp/test.
 
 " restore cursor to the previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo
@@ -130,7 +136,6 @@ set autoindent
 set smartindent
 set splitright
 set splitbelow
-set hls
 set foldmethod=indent
 set foldlevel=99
 set autoread
@@ -142,6 +147,9 @@ set clipboard=unnamedplus
 command DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe "norm! ".g:diffline."G" | wincmd p | diffthis | wincmd p
 nnoremap <Leader>do :DiffOrig<cr>
 nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
+
+" Save with Enter
+nnoremap <Enter> :w<CR>
 
 " Execute a python script
 nnoremap <F12> :ter python3 %<CR>
@@ -215,8 +223,14 @@ autocmd FileType cpp set makeprg=g++\ % path+=/usr/include/c++/**
 " use // commentstring for vim-commentary
 autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
-" generate include guard with ,g
-map ,g :call IncludeGuard()<CR>
+" Include files
+nmap _i o#include ""<Esc>$i
+imap <C-z>i <Esc>_i
+nmap _I o#include <><Esc>$i
+imap <C-z><C-i> <Esc>_I
+
+" generate include guard with \i
+map <leader>i :call IncludeGuard()<CR>
 fun! IncludeGuard()
     let basename = substitute(bufname(""), '.*/', '', '')
     let guard = '' . substitute(toupper(basename), '\.', '_', "H") . '_'
@@ -263,6 +277,18 @@ set incsearch
 " assume the /g flag on :s substitutions to replace all matches in a line:
 " this turned out to do the opposite of what it was supposed to
 " set gdefault
+
+" Spelling
+" Use abbreviations to correct silly typings
+abbr fo of
+abbr htis this
+abbr nrom norm
+abbr lsit list
+abbr paht path
+abbr fiel file
+
+" Abbreviations for Python
+abbr ifname if __name__ == '__main__':
 
 " * Keystrokes -- Moving Around
 
