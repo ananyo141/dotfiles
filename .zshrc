@@ -70,16 +70,15 @@ export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
 # Aliases
-# Use exa as ls
-alias ls='exa --icons'
+alias ls='echo Use x for exa'
 # alias ls='ls -F --color=auto'
-
 alias la='ls -AFh --color=auto'
 alias ll='ls -AFhl --color=auto'
 alias py='python3'
 alias v='vim'
 alias vs='vim -S'
 alias vrc='vim ~/.vimrc'
+alias x='exa --icons'
 
 # Git Aliases
 alias gits='git status'

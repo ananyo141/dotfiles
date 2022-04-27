@@ -225,9 +225,9 @@ autocmd FileType c,cpp,cs,java setlocal commentstring=//\ %s
 
 " Include files
 nmap _i o#include ""<Esc>$i
-imap <C-z>i <Esc>_i
+imap <C-z><C-i> <Esc>_i
 nmap _I o#include <><Esc>$i
-imap <C-z><C-i> <Esc>_I
+imap <C-z>i <Esc>_I
 
 " generate include guard with \i
 map <leader>i :call IncludeGuard()<CR>
@@ -286,6 +286,7 @@ abbr nrom norm
 abbr lsit list
 abbr paht path
 abbr fiel file
+abbr fro for
 
 " Abbreviations for Python
 abbr ifname if __name__ == '__main__':
@@ -401,9 +402,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-E>\<CR>" : "\<CR>"
 " use jj to escape from insert mode
 inoremap jj <esc>
 
-" use leader + {O or o} to create newlines
-nnoremap <leader>O O<esc>
-nnoremap <leader>o o<esc>
+" use leader + {O or o} to create newlines above or below
+nnoremap <leader>O O<esc>j
+nnoremap <leader>o o<esc>k
 
 " make commenting in python start from arbitrary position and not
 " just the exact beginning by faking entering X then backspace and finallly #
@@ -423,9 +424,6 @@ set undofile
 
 set updatetime=300
 set signcolumn=number
-
-nmap <silent> <leader>g :CocDiagnostic-next<CR>
-nmap <silent> <leader>] :lclose<CR>
 
 " Powerline
 set laststatus=2
@@ -472,4 +470,9 @@ function! s:VSetSearch(cmdtype)
     let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
     let @s = temp
 endfunction
+
+" Plugin Configs
+let g:instant_markdown_autostart = 0
+nmap <silent> <leader>g :CocDiagnostic-next<CR>
+nmap <silent> <leader>] :lclose<CR>
 
