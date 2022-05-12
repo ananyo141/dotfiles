@@ -1,7 +1,6 @@
-set noswapfile
-set guifont=Consolas:h14    " font and font size
-colorscheme slate
-win 260 92 " The window height
-set go-=T 
+colorscheme everforest
+" win 260 92 " The window height
+set guifont=DejaVu\ Sans\ Mono\ 12 
+set guicursor=a:blinkoff0
+set guioptions="aegitP"
 set vb t_vb= " stop beeping or flashing the screen
-

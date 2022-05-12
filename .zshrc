@@ -56,8 +56,8 @@ to appropritate file extensions
 }
 
 # Path Settings
-PATH=$PATH:$HOME/bin
-PYTHONPATH=$HOME
+export PATH=$PATH:$HOME/bin
+export PYTHONPATH=$HOME
 
 # Make Vim default editor
 export VISUAL=vim

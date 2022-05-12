@@ -42,8 +42,7 @@
 " first clear any existing autocommands:
 autocmd!
 
-" Source vimrc when editing it
-autocmd! bufwritepost .vimrc source ~/.vimrc
+nnoremap <silent> <F7> :source $MYVIMRC<CR>
 
 " Set syntax recognition on
 syntax on
@@ -155,7 +154,7 @@ nnoremap <Enter> :w<CR>
 nnoremap <F12> :ter python3 %<CR>
 
 " set colorscheme
-colorscheme delek
+" colorscheme delek
 
 " set and customize line number
 set number relativenumber
@@ -386,6 +385,8 @@ nmap <F2> \tl
 nnoremap <silent> <c-_> :set invhls hls?<CR>
 
 " * Keystrokes -- Insert Mode
+autocmd InsertEnter * set cursorline
+autocmd InsertLeave * set nocursorline
 
 " allow <BkSpc> to delete line breaks, beyond the start of the current
 " insertion, and over indentations:
@@ -476,3 +477,19 @@ let g:instant_markdown_autostart = 0
 nmap <silent> <leader>g :CocDiagnostic-next<CR>
 nmap <silent> <leader>] :lclose<CR>
 
+if has('termguicolors')
+    set termguicolors
+endif
+let g:everforest_enable_italic = 1
+let g:everforest_background = 'hard'
+set background=dark
+" let g:everforest_better_performance = 1
+" For alacritty
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+colorscheme everforest
+" Alacritty can't show error highlighting in coc
+highlight ErrorText cterm=underline
+
+" Map for copying
+nnoremap <silent> <F5> :set nu! rnu!<CR>
