@@ -148,7 +148,7 @@ nnoremap <Leader>do :DiffOrig<cr>
 nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 
 " Save with Enter
-nnoremap <Enter> :w<CR>
+nnoremap <silent><Enter> :w<CR>
 
 " Execute a python script
 nnoremap <F12> :ter python3 %<CR>
@@ -288,7 +288,10 @@ abbr fiel file
 abbr fro for
 
 " Abbreviations for Python
-abbr ifname if __name__ == '__main__':
+abbr ifname     if __name__ == '__main__':
+abbr defini     def __init__(self):
+abbr definis    def __init__(self,
+abbr inis       __init__(self,
 
 " * Keystrokes -- Moving Around
 
