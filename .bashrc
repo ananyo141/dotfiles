@@ -137,8 +137,8 @@ ex ()
 }
 
 # My custom additions
-PATH=$PATH:$HOME/bin
-PYTHONPATH=$HOME
+export PATH=$PATH:$HOME/bin
+export PYTHONPATH=$HOME
 
 # give default permissions of directories to owner group
 umask 0002

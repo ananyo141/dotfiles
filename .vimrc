@@ -77,12 +77,12 @@ syntax on
 "---  endif
 "---endif
 
-" :lcd. change working directory to that of current file
+" change working directory to that of current file
 command Lcd :lcd %:p:h
 " edit this vimrc
 command Vrc :tabedit $MYVIMRC
 " write in sudo mode
-command -bar Suw :w !sudo tee % >/dev/null
+command Suw :w !sudo tee % >/dev/null
 " open a new temporary file
 cnoremap tmp tabedit /tmp/test.
 
