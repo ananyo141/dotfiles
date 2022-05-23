@@ -25,6 +25,7 @@ alias gitc='git commit'
 alias gitcp='git commit && git push'
 alias gitP='git push'
 alias gitl='git log'
+alias gitu='git add . && git commit && git push'
 
 # =============================================================================
 #

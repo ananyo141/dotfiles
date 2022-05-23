@@ -5,6 +5,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 xsetroot -cursor_name 'breeze snow' &
 $HOME/.fehbg &
 picom &
+conky &
 polybar &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
