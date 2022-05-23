@@ -2,7 +2,7 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-xsetroot -cursor_name 'breeze snow' &
+xsetroot -cursor_name left_ptr &
 $HOME/.fehbg &
 picom &
 conky &
