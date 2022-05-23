@@ -134,6 +134,16 @@ alt + alt + shift + {h,j,k,l}
 alt + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# configs
+super + s
+    systemctl suspend
+
+super + shift + s
+    dunstify 'Shutting Down' && shutdown now
+
+super + shift + r
+    dunstify 'Rebooting...' && reboot
+
 XF86AudioLowerVolume
     amixer set Master 5%-
 XF86AudioRaiseVolume

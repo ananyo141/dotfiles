@@ -83,6 +83,8 @@ command Lcd :lcd %:p:h
 command Vrc :tabedit $MYVIMRC
 " write in sudo mode
 command Suw :w !sudo tee % >/dev/null
+" get git diff in vertical buffer with vim-fugitive
+command Gds :vert Git diff --staged
 " open a new temporary file
 cnoremap tmp tabedit /tmp/test.
 

@@ -4,11 +4,12 @@ This repository contains the configuration text files for various app customizat
 
 ## Installation
 
-Use Git Clone to download the files and use them in place of default ones provided by the OS.
+Clone the repository and use symbolic links for the dots you want to use in
+your system.
 
 ```bash
-git clone git@github.com:ananyo141/ConfigFiles.git
+git clone https://github.com/ananyo141/DotFiles.git
 ```
 
 ## License
-Public
+[GPL3](LICENSE)
