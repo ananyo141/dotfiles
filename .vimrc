@@ -78,9 +78,11 @@ syntax on
 "---endif
 
 " :lcd. change working directory to that of current file
-cmap lcd. lcd %:p:h
+command Lcd :lcd %:p:h
 " edit this vimrc
-cmap vrc tabedit $MYVIMRC
+command Vrc :tabedit $MYVIMRC
+" write in sudo mode
+command -bar Suw :w !sudo tee % >/dev/null
 " open a new temporary file
 cnoremap tmp tabedit /tmp/test.
 
@@ -475,6 +477,25 @@ function! s:VSetSearch(cmdtype)
     let @s = temp
 endfunction
 
+" Plugins
+packadd minpac
+
+call minpac#init()
+
+" aliases
+command! PackUpdate call minpac#update()
+command! PackClean  call minpac#clean()
+
+" packages
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('sainnhe/everforest')
+call minpac#add('mhinz/vim-startify')
+call minpac#add('vim-airline/vim-airline')
+
 " Plugin Configs
 let g:instant_markdown_autostart = 0
 nmap <silent> <leader>g :CocDiagnostic-next<CR>
@@ -487,12 +508,16 @@ let g:everforest_enable_italic = 1
 let g:everforest_background = 'hard'
 set background=dark
 " let g:everforest_better_performance = 1
+
 " For alacritty
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 colorscheme everforest
-" Alacritty can't show error highlighting in coc
+
+" Few terminals can't show error highlighting in coc
 highlight ErrorText cterm=underline
 
-" Map for copying
+" Map for copying from terminal
 nnoremap <silent> <F5> :set nu! rnu!<CR>
+

@@ -151,7 +151,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Make bash like vi
-set -o vi
+# set -o vi
 
 # created aliases
 alias l.='ls -d .* --color=auto'
@@ -163,7 +163,7 @@ alias ll='ls -AFhl --color=auto'
 alias aa='arganalyze'
 
 # custom shell prompt
-PS1="\[\033[1;44m\]<\u \[\033[0;33m\] \w>\[\033[1;33m\]\$\[\033[0;37m\] "
+# PS1="\[\033[1;44m\]<\u \[\033[0;33m\] \w>\[\033[1;33m\]\$\[\033[0;37m\] "
 
 export PS1
 
