@@ -497,6 +497,7 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('sainnhe/everforest')
 call minpac#add('mhinz/vim-startify')
 call minpac#add('vim-airline/vim-airline')
+call minpac#add('preservim/nerdtree')
 
 " Plugin Configs
 let g:instant_markdown_autostart = 0
@@ -510,6 +511,14 @@ let g:everforest_enable_italic = 1
 let g:everforest_background = 'hard'
 set background=dark
 " let g:everforest_better_performance = 1
+
+let NERDTreeShowHidden=1
+" Toggle nerdtree with Ctrl+B
+nnoremap <silent> <C-B> :NERDTreeToggle<CR>
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " For alacritty
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
