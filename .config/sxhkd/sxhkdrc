@@ -50,7 +50,7 @@ alt + g
 	bspc node -s biggest.window
 
 super + p
-    scrot && dunstify 'Screenshot saved'
+    scrot $HOME/Pictures/Screenshots/'%d-%m-%Y-$wx$h.jpg' && dunstify 'Screenshot saved'
 
 #
 # state/flags
@@ -159,6 +159,6 @@ XF86AudioRaiseVolume
 
 # Brightness Buttons
 XF86MonBrightnessDown
-    xbacklight -dec 10
+    xbacklight -dec 5
 XF86MonBrightnessUp
-    xbacklight -inc 10
+    xbacklight -inc 5

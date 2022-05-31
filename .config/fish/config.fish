@@ -12,6 +12,7 @@ alias v='vim'
 alias vs='vim -S'
 alias vrc='vim ~/.vimrc'
 alias x='exa --icons'
+alias g++='g++ -Wall -fsanitize=address -fno-omit-frame-pointer'
 
 # Git Aliases
 alias gits='git status'
