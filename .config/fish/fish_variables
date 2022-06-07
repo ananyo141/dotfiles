@@ -1,8 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR EDITOR:/usr/bin/vim
-SETUVAR PYTHONPATH:\x24HOME
-SETUVAR VISUAL:\x24EDITOR
+SETUVAR --export EDITOR:vim
+SETUVAR --export --path PYTHONPATH:/home/ananyo
 SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
@@ -32,4 +31,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:cyan\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/ananyo/Applications
+SETUVAR fish_user_paths:/home/ananyo/\x2elocal/bin\x1e/home/ananyo/Applications

@@ -403,6 +403,8 @@ set backspace=eol,start,indent
 " indentation:
 " inoremap <Tab> <C-T>
 inoremap <S-Tab> <C-D>
+
+inoremap <expr><nowait> yy pumvisible() ? "\<C-Y>" : "yy"
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <expr> <CR> pumvisible() ? "\<C-E>\<CR>" : "\<CR>"
@@ -500,6 +502,7 @@ call minpac#add('mhinz/vim-startify')
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('preservim/nerdtree')
 call minpac#add('bling/vim-bufferline') 
+call minpac#add('turbio/bracey.vim') 
 
 " Plugin Configs
 let g:instant_markdown_autostart = 0

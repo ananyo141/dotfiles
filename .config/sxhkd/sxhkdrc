@@ -17,8 +17,9 @@ alt + d
 alt + Escape
     $HOME/.fehbg
 
-alt + x
-    betterlockscreen -l dimblur
+super + l
+    dunstify 'Locking Screen' && sleep 1 && xset dpms force off && betterlockscreen -l dimblur
+
 #
 # bspwm hotkeys
 #
