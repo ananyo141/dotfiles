@@ -1,8 +1,9 @@
 # Basic Settings
 set drawbox
 set ignorecase true
+set incsearch
 #set icons true
-set previewer /usr/bin/bat
+# set previewer /usr/bin/bat
 #set cleaner stpvimgclr
 # &stpvimg --listen $id
 # cmd on-quit $stpvimg --end $id
@@ -75,6 +76,7 @@ map C clear
 # Movement
 map gd cd ~/Downloads
 map gq cd ~/Downloads/qbittorrent
+map gp cd ~/Downloads/Programming\ Materials
 map gc cd ~/.config
 map gr cd ~/Repository
 map gv cd ~/Videos

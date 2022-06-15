@@ -50,5 +50,7 @@
   },
   "explorer.confirmDragAndDrop": false,
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "html.autoClosingTags": false,
+  "html.format.endWithNewline": true
 }
