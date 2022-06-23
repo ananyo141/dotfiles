@@ -1,0 +1,79 @@
+# General Commands
+| Command     | Action                                                               |
+| ----------- | -------------------------------------------------------------------- |
+| `Spc`       | Open general menu                                                    |
+| `M-x`       | Search for commands                                                  |
+| `Spc-p-p`   | Open project browser                                                 |
+| `Spc-Spc`   | Search for file                                                      |
+| `Spc-.`     | Find file in current directory                                       |
+| `Spc-!`     | Run terminal command from root project directory                     |
+| `Spc-f-R`   | Move file                                                            |
+| `Spc-f-C`   | Copy file                                                            |
+| `C-d`       | Open Dired (File Browser)                                            |
+| `Spc-p-i`   | Refresh Cache (refresh to see new/deleted/updated files and folders) |
+| `Spc-b-m`   | Bookmark current buffer window                                       |
+| `Spc-ENTER` | Open bookmark browser                                                |
+
+
+
+# Dired Commands
+| Command   | Action                                 |
+| --------- | -------------------------------------- |
+| `C-x d`   | Open Dired                             |
+| +         | Create Folder                          |
+| `C-x C-f` | Create File                            |
+| `d`       | Mark file for deletion *               |
+| `u`       | Un-mark file for deletion *            |
+| `x`       | Delete all files marked for deletion * |
+| `c`       | Compress file                          |
+| `r`       | Re-display (refresh folder) *          |
+
+*Command only available when viewing a directory in Dired
+
+
+# Buffers
+| Command   | Action                                              |
+| --------- | --------------------------------------------------- |
+| `Spc-b`   | Open buffer command menu                            |
+| `Spc-b-b` | Switch Buffer (Choose from current project)         |
+| `Spc-b-B` | Switch Buffer (Choose from all project)             |
+| `Spc-b-[` | Move to last buffer (go back a screen)              |
+| `Spc-b-]` | Move to next buffer (move forward a screen)         |
+| `Spc-b-N` | Open a new empty buffer (blank screen)              |
+| `Spc-b-k` | Kill buffer (close current window)                  |
+| `Spc-b-m` | Set bookmark                                        |
+| `SPC-b-M` | Delete bookmark (opens a mini-buffer for selection) |
+| `Spc-b-c` | Clone buffer (split current screen into 2 panels)   |
+| `Spc-b-s` | Save buffer                                         |
+| `Spc-b-S` | Save all buffers                                    |
+| `Spc-b-z` | Bury buffer                                         |
+| `Spc-b-Z` | Kill buried buffers                                 |
+
+## Windows
+| Command                        | Action                                                                           |
+| ------------------------------ | -------------------------------------------------------------------------------- |
+| `SPC-w-k`                      | Move to upwards window                                                           |
+| `SPC-w-j`                      | Move to downwards window                                                         |
+| `SPC-w-h`                      | Move to left window                                                              |
+| `SPC-w-l`                      | Move to right window                                                             |
+| `SPC-w-r`                      | Rotate windows                                                                   |
+| `SPC-w-n`                      | Create new window                                                                |
+| `SPC-w-d` or `SPC-w-c`         | Delete window                                                                    |
+| `SPC-w-s`                      | Split window                                                                     |
+| `SPC-w-=`                      | Balance Windows                                                                  |
+| `SPC-w-Cw`                     | Go to Other Window                                                               |
+| `SPC-w-Co`                     | Delete Other Windows                                                             |
+| `SPC-w-m`                      | Maximize window                                                                  |
+| `SPC-w-_`                      | Set window height<br><br>Example: `22 SPC-w-_` set window height to 22 lines     |
+| `SPC-w--` (“Space, W, hyphen”) | Reduce window height<br><br>Example: `5 SPC-w--` reduce window height by 5 lines |
+| `SPC-w-+`                      | Add window height<br><br>Example: `5 SPC-w-+` add 5 lines to window height       |
+
+## Calendar/Agenda Mode
+| Command              | Action            |
+| -------------------- | ----------------- |
+| `SPC-z-M`            | Fold all          |
+| `SPC-z-R`            | Unfold all        |
+| `SPC-o-A`            | Open Agenda Mode  |
+| `. (in Agenda Mode)` | Go to current day |
+
+
