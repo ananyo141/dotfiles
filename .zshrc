@@ -56,7 +56,7 @@ to appropritate file extensions
 }
 
 # Path Settings
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/.emacs.d/bin
 export PYTHONPATH=$HOME
 
 # Make Vim default editor
@@ -64,14 +64,14 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Make zsh like vi
-set -o vi
+# set -o vi
 
 export HISTCONTROL=ignoredups
 export HISTSIZE=1000
 
 # Aliases
-alias ls='echo Use x for exa'
-# alias ls='ls -F --color=auto'
+# alias ls='echo Use x for exa'
+alias ls='ls -F --color=auto'
 alias la='ls -AFh --color=auto'
 alias ll='ls -AFhl --color=auto'
 alias py='python3'
@@ -79,6 +79,7 @@ alias v='vim'
 alias vs='vim -S'
 alias vrc='vim ~/.vimrc'
 alias x='exa --icons'
+alias emacs='emacsclient -c -a gvim'
 
 # Git Aliases
 alias gits='git status'

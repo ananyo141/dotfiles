@@ -80,7 +80,6 @@ keys = [
         lazy.window.toggle_fullscreen(),
         desc="Toggle Fullscreen",
     ),
-    Key([mod], "Return", lazy.spawn('xfce4-terminal'), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
@@ -91,7 +90,10 @@ keys = [
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute")),
-	Key([mod], "b", lazy.hide_show_bar(position="bottom"))
+	Key([mod], "b", lazy.hide_show_bar(position="bottom")),
+    # Custom bindings
+    Key([mod], "Return", lazy.spawn('xfce4-terminal'), desc="Launch terminal"),
+	Key([mod], "p", lazy.spawn("scrot"), desc="Take a screenshot"),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -127,7 +129,7 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(),
+    # layout.MonadTall(),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
