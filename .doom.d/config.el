@@ -75,8 +75,4 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Custom Config
-;; Disable evil-snipe to restore S/s keys
-(after! evil-snipe
-  (evil-snipe-mode -1))
-(use-package! lsp-tailwindcss)
+(remove-hook 'doom-first-input-hook #'evil-snipe-mode)

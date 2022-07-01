@@ -7,6 +7,7 @@ $HOME/.fehbg &
 $HOME/.config/checkbat.sh &
 polybar &
 picom &
+emacs --daemon &
 nm-applet &
 conky &
 
@@ -19,7 +20,8 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-bspc rule -a Gvim desktop='^2' state=fullscreen follow=on
+bspc rule -a Gvim desktop='^2' follow=on
+bspc rule -a Emacs state=fullscreen
 bspc rule -a librewolf desktop='^3' follow=on
 bspc rule -a Chromium desktop='^3'
 bspc rule -a vlc desktop='^5' follow=on state=fullscreen
