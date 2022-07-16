@@ -32,6 +32,16 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+(setq doom-font (font-spec :family "JetBrains Mono" :size 15)
+      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 24))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+
 (setq doom-theme 'doom-one)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -76,3 +86,8 @@
 ;; they are implemented.
 
 (remove-hook 'doom-first-input-hook #'evil-snipe-mode)
+;; (setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+
+(setq x-meta-keysym 'super
+      x-super-keysym 'meta)
