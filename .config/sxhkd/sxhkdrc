@@ -15,7 +15,7 @@ alt + d
 # 	pkill -USR1 -x sxhkd
 
 alt + Escape
-    $HOME/.fehbg
+    variety --fast-forward
 
 super + l
     dunstify 'Locking Screen' && sleep 1 && xset dpms force off && betterlockscreen -l dimblur
