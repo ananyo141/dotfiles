@@ -15,6 +15,11 @@ alias x='exa --icons'
 alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
 alias tf='terraform'
 
+#tmux Aliases
+alias tmas='tmux attach-session -t'
+alias tmks='tmux kill-session -t'
+alias tmns='tmux new-session -t'
+
 # Git Aliases
 alias gits='git status'
 alias gitf='git fetch'
