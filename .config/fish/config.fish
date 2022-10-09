@@ -19,6 +19,7 @@ alias tf='terraform'
 alias tmas='tmux attach-session -t'
 alias tmks='tmux kill-session -t'
 alias tmns='tmux new-session -t'
+alias tmls='tmux ls'
 
 # Git Aliases
 alias gits='git status'

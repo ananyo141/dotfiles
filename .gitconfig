@@ -3,3 +3,5 @@
 	email = ananyo141@gmail.com
 [core]
 	editor = vim
+[init]
+	defaultBranch = master
