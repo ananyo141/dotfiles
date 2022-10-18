@@ -36,7 +36,7 @@
     "markdown": false
   },
   "editor.lineNumbers": "relative",
-  "workbench.colorTheme": "Atom One Dark",
+  "workbench.colorTheme": "Dracula",
   "files.autoSave": "afterDelay",
   "html.format.templating": true,
   "[html]": {
@@ -50,7 +50,19 @@
   },
   "explorer.confirmDragAndDrop": false,
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
-  "editor.minimap.enabled": false,
   "html.autoClosingTags": false,
-  "html.format.endWithNewline": true
+  "html.format.endWithNewline": true,
+  "editor.minimap.enabled": false,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "terminal.integrated.defaultProfile.linux": "tmux"
 }
