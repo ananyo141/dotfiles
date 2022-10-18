@@ -1,0 +1,63 @@
+# Return if not interactive
+[[ $- != *i* ]] && return
+
+# Shell Functions
+debugpg() {
+	local usageMessage="
+$0 SOURCE_FILE[S...]
+A basic shell function that automates the 
+debugging task with gcc/g++ and gdb according
+to appropritate file extensions
+	"
+	# perform input validation
+	# Select compiler from extension of first arg
+	local compiler
+	local stem=${1%%.*}
+    stem=${stem##*/}
+	local extension=${1##*.}
+	case "$extension" in
+		'cpp') compiler=g++ ;;
+		'c'  ) compiler=gcc ;;
+		 *   ) echo -e 'Invalid Usage\n' "$usageMessage" >&2
+		       return 1     ;;
+	esac
+
+	# make sure required programs are installed
+	# else return with appropriate error message
+ 	which $compiler >/dev/null || {echo "$compiler not installed"       >&2; return 1}
+ 	which gdb       >/dev/null || {echo "gdb debugger is not installed" >&2; return 1}
+
+	# Compile given program by supplying all the args
+	# to compiler with the -g flag
+	local dirname=/tmp/${0}
+	local binaryname=${dirname}/${stem}_debug.out
+	mkdir -p "$dirname" || {echo "Unable to create "$dirname" directory" >&2; return 1}
+    echo -e "Compiling... Saving build file as '$binaryname'"
+	$compiler -g -o "$binaryname" "$@" || return 1
+
+	# startup gdb with the executable
+	gdb --silent "$binaryname"
+}
+
+# Source aliases for zshrc
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# Make Vim default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+# Make zsh like vi
+set -o vi
+
+export HISTCONTROL=ignoredups
+export HISTSIZE=1000
+
+# Path Settings
+export PATH=$PATH:$HOME/bin:$HOME/.emacs.d/bin
+export PYTHONPATH=$HOME
+
+# Load startup configuration of zoxide
+eval "$(zoxide init zsh)"
+# Attach to a tmux session or create new
+tmux attach 2>/dev/null || tmux new-session 2>/dev/null
+

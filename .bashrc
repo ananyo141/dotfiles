@@ -90,12 +90,6 @@ fi
 
 unset use_color safe_term match_lhs sh
 
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
-alias free='free -m'                      # show sizes in MB
-alias np='nano -w PKGBUILD'
-alias more=less
-
 xhost +local:root > /dev/null 2>&1
 
 # Bash won't get SIGWINCH if another process is in the foreground.
@@ -137,7 +131,7 @@ ex ()
 }
 
 # My custom additions
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/.local/bin
 export PYTHONPATH=$HOME
 
 # give default permissions of directories to owner group
@@ -151,16 +145,10 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # Make bash like vi
-# set -o vi
+set -o vi
 
-# created aliases
-alias l.='ls -d .* --color=auto'
-alias lh='ls -hAF --color=auto'
-alias clear='echo Use ^L man!'
-alias ls='ls -F --color=auto'
-alias la='ls -AFh --color=auto'
-alias ll='ls -AFhl --color=auto'
-alias aa='arganalyze'
+# Source aliases for from file
+[[ -f ~/.aliases ]] && source ~/.aliases
 
 # custom shell prompt
 # PS1="\[\033[1;44m\]<\u \[\033[0;33m\] \w>\[\033[1;33m\]\$\[\033[0;37m\] "

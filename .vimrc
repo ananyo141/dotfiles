@@ -146,6 +146,7 @@ set autoread
 set hidden
 set completeopt=menuone,longest
 set clipboard=unnamedplus
+set nohlsearch
 
 " Show differences in the buffer
 command DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe "norm! ".g:diffline."G" | wincmd p | diffthis | wincmd p
@@ -426,7 +427,12 @@ inoremap # X#
 nmap <silent> - :res<CR>:vertical res<CR>
 
 " set persistent undo
-let undoDir='/tmp/.vim-undo/'
+if has('nvim')
+    let undoDir='/tmp/.nvim-undo/'
+else
+    let undoDir='/tmp/.vim-undo/'
+endif
+
 if !isdirectory(undoDir)
     call mkdir(undoDir, "", 0700)
 endif
@@ -488,3 +494,4 @@ let vimplug_file = '~/.vimplugs'
 if filereadable(expand(vimplug_file)) && !has('nvim')
     exe 'source' vimplug_file
 endif
+
