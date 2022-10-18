@@ -77,6 +77,9 @@ syntax on
 "---  endif
 "---endif
 
+" show colors properly
+set termguicolors
+
 " change working directory to that of current file
 command Lcd :lcd %:p:h
 " edit this vimrc
