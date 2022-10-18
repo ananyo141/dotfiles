@@ -1,2 +1,3 @@
 source ~/.vimrc
+colorscheme zellner
 

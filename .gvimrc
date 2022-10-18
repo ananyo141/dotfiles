@@ -1,4 +1,3 @@
-source ~/.vimplugs
 colorscheme everforest
 " win 260 92 " The window height
 set guifont=Source\ Code\ Pro\ Semibold\ 13 
