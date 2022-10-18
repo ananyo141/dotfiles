@@ -15,6 +15,7 @@ alias vrc='vim ~/.vimrc'
 alias x='exa --icons'
 alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
 alias tf='terraform'
+alias trees='tree -ah --du --filesfirst -C | less -R'
 
 #tmux Aliases
 alias tmas='tmux attach-session -t'
@@ -35,6 +36,8 @@ alias gitcp='git commit && git push'
 alias gitP='git push'
 alias gitl='git log'
 alias gitu='git add . && git commit && git push'
+alias gitch='git checkout'
+alias gitsw='git switch'
 
 # =============================================================================
 #
