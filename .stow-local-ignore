@@ -1,0 +1,11 @@
+install.sh
+
+# GIT
+\.git
+\.gitignore
+
+\.doomcheats
+
+^/README.*
+^/LICENSE.*
+^/COPYING
