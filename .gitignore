@@ -1,2 +1,7 @@
+# ignore .bak extension files
 *.bak
+
+# ignore tmux plugins folder created by tmux
+# when directly symlinked
+.config/tmux/plugins/
 
