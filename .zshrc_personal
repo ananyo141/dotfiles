@@ -45,6 +45,7 @@ to appropritate file extensions
 # Make Vim default editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
+export PAGER='/usr/bin/vimpager'
 
 # Make zsh like vi
 set -o vi
