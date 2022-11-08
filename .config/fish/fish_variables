@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:vim
+SETUVAR --export PAGER:/usr/bin/vimpager
 SETUVAR --export --path PYTHONPATH:/home/ananyo
 SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
