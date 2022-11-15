@@ -7,8 +7,10 @@
 cd $(dirname $0)
 
 # symlink everything in root directory, skip .config/
-stow . --ignore=.config -t $HOME -v 2
+stow . -t $HOME -v 2 --ignore=.config --ignore=.local
 
 # symlink everything in .config/ separately to ~/.config
-stow .config -t $HOME/.config -v 2
+stow -v 2 .config -t $HOME/.config 
 
+# symlink everything in .config/ separately to ~/.config
+stow -v 2 .local -t $HOME/.local 
