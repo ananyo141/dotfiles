@@ -4,7 +4,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 
 xsetroot -cursor_name left_ptr &
 variety &
-$HOME/.config/checkbat.sh &
+$HOME/.local/bin/checkbat.sh &
 polybar &
 picom &
 emacs --daemon &
