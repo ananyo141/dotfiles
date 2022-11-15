@@ -177,6 +177,9 @@ lvim.plugins = {
             })
         end
     },
+    {
+        "christoomey/vim-tmux-navigator",
+    },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
