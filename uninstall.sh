@@ -6,4 +6,5 @@
 
 cd $(dirname $0)
 
-stow -D .
+# remove stow links from user directory
+stow -D . -t $HOME -v 2
