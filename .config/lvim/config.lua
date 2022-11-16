@@ -161,14 +161,6 @@ formatters.setup {
     },
 }
 
--- increase timeout for formatting
-lvim.builtin.which_key.mappings["l"]["f"] = {
-  function()
-    require("lvim.lsp.utils").format { timeout_ms = 2000 }
-  end,
-  "Format",
-}
-
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
@@ -186,6 +178,19 @@ lvim.builtin.which_key.mappings["l"]["f"] = {
 --     filetypes = { "javascript", "python" },
 --   },
 -- }
+
+-- Builtin Plugins Configs
+
+-- increase timeout for formatting
+lvim.builtin.which_key.mappings["l"]["f"] = {
+  function()
+    require("lvim.lsp.utils").format { timeout_ms = 2000 }
+  end,
+  "Format",
+}
+
+-- add current line blame like gitlens in vscodium
+lvim.builtin.gitsigns.opts["current_line_blame"] = true
 
 -- Additional Plugins
 lvim.plugins = {
