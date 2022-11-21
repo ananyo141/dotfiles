@@ -6,6 +6,7 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
+
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
@@ -34,9 +35,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 --   i = {
 --     ["<C-j>"] = actions.move_selection_next,
 --     ["<C-k>"] = actions.move_selection_previous,
---     ["<C-n>"] = actions.cycle_history_next,
---     ["<C-p>"] = actions.cycle_history_prev,
---   },
+--     ["<C-n>"] = actions.cycle_history_next, ["<C-p>"] = actions.cycle_history_prev, },
 --   -- for normal mode
 --   n = {
 --     ["<C-j>"] = actions.move_selection_next,
@@ -88,9 +87,7 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
 
 -- neovim config
-vim.cmd("source ~/.vimrc")
-vim.cmd("unmap <Space>")
-vim.opt.scrolloff = 0
+-- require('~/.config/nvim/init.lua')
 
 -- generic LSP settings
 
@@ -183,10 +180,10 @@ formatters.setup {
 
 -- increase timeout for formatting
 lvim.builtin.which_key.mappings["l"]["f"] = {
-  function()
-    require("lvim.lsp.utils").format { timeout_ms = 2000 }
-  end,
-  "Format",
+    function()
+        require("lvim.lsp.utils").format { timeout_ms = 2000 }
+    end,
+    "Format",
 }
 
 -- add current line blame like gitlens in vscodium
@@ -266,7 +263,17 @@ lvim.plugins = {
             })
         end
     },
+    {
+        'unblevable/quick-scope',
+    },
+    {
+        'ggandor/leap.nvim',
+    },
 }
+
+-- External Plugin Configs
+vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+require('leap').add_default_mappings()
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
