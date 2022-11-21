@@ -1,3 +1,0 @@
-source ~/.vimrc
-colorscheme habamax
-
