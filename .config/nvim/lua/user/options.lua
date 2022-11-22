@@ -34,6 +34,7 @@ vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.whichwrap = "h,l,~,[,]"
 vim.opt.matchpairs:append("<:>")
+vim.opt.scrolloff = 0
 
 local undodir = '/tmp/.nvim-undo'
 -- create if does not exists

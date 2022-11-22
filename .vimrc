@@ -90,7 +90,7 @@ command Suw :w !sudo tee % >/dev/null
 command Gds :vert Git diff --staged
 " open a new temporary file
 cnoremap tmp tabedit /tmp/test.
-command Cpy :norm mtggVGy`tzz
+command Cpy :%y
 
 " restore cursor to the previous editing session
 set viminfo='10,\"100,:20,%,n~/.viminfo

@@ -24,7 +24,7 @@ end
 
 nkeymap.set("n", "\\i", IncludeGuard)
 
-nkeymap.set("n", "<Space>", "<PageDown>")
+-- nkeymap.set("n", "<Space>", "<PageDown>")
 nkeymap.set("n", "<BS>", "<PageUp>")
 
 -- scroll the window (but leaving the cursor in the same place) by a couple of
