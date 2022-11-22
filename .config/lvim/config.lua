@@ -288,3 +288,11 @@ require('leap').add_default_mappings()
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
+
+require("user.options")
+require("user.exec_cmd")
+require("user.keybindings")
+require("user.user_commands")
+require("user.autocommands")
+require("user.abbreviations")
+
