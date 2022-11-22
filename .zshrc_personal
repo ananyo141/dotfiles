@@ -59,6 +59,10 @@ export PYTHONPATH=$HOME
 
 # Load startup configuration of zoxide
 eval "$(zoxide init zsh)"
-# Attach to a tmux session or create new
-tmux attach 2>/dev/null || tmux new-session 2>/dev/null
+
+# Attach to a tmux session or create new if not already in a tmux
+# session
+if [ -z "$TMUX" ]; then
+				tmux attach 2>/dev/null || tmux new-session 2>/dev/null
+fi
 

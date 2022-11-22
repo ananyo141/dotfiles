@@ -130,6 +130,11 @@ if [ -d "$HOME/.local/lib/python3.10/site-packages" ] ;
 fi
 
 
+if [ -d "$HOME/.npm-global" ] ;
+  then PATH="$HOME/.npm-global/bin:$PATH"
+fi
+
+
 ### ALIASES ###
 
 #list
@@ -185,7 +190,7 @@ alias merge="xrdb -merge ~/.Xresources"
 
 # Aliases for software managment
 # pacman or pm
-alias pacman='sudo pacman --color auto'
+alias pacman='pacman --color auto'
 alias update='sudo pacman -Syyu'
 
 # paru as aur helper - updates everything
