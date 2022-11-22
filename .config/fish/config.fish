@@ -4,7 +4,7 @@ if status is-interactive
     # initialize zoxide
     zoxide init fish | source
     # attach or create new tmux session
-    if [ -z "$TMUX" ]; then
+    if [ -z "$TMUX" ]
         tmux attach 2>/dev/null || tmux new-session 2>/dev/null
     end
 end
