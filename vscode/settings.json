@@ -64,5 +64,6 @@
     "editor.wordBasedSuggestions": false
   },
   "workbench.iconTheme": "material-icon-theme",
-  "terminal.integrated.defaultProfile.linux": "tmux"
+  "terminal.integrated.defaultProfile.linux": "fish",
+  "editor.fontFamily": "'Comic Mono', 'Droid Sans Mono', 'monospace', monospace"
 }

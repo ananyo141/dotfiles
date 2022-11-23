@@ -1,2 +1,0 @@
-#!/bin/sh
-DISPLAY=:0 feh --no-fehbg --bg-scale --randomize $HOME/.wallpapers
