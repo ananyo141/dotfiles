@@ -38,15 +38,15 @@ nkeymap.set("n", "<F6>", "<C-W>w")
 nkeymap.set("n", "<S-F6>", "<C-W>W")
 
 -- use <Ctrl>+N/<Ctrl>+P to cycle through files:
-nkeymap.set("n", "<C-N>", ":next<CR>")
-nkeymap.set("n", "<C-P>", ":prev<CR>")
+nkeymap.set("n", "<C-N>", ":bnext<CR>")
+nkeymap.set("n", "<C-P>", ":bprev<CR>")
 
 -- Use bash like terminal mappings in commandline
-nkeymap.set("n", "<C-A>", "<HOME>")
-nkeymap.set("n", "<C-E>", "<End>")
-nkeymap.set("n", "<C-K>", "<C-U>")
-nkeymap.set("n", "<C-P>", "<Up>")
-nkeymap.set("n", "<C-N>", "<Down>")
+nkeymap.set("c", "<C-A>", "<HOME>")
+nkeymap.set("c", "<C-E>", "<End>")
+nkeymap.set("c", "<C-K>", "<C-U>")
+nkeymap.set("c", "<C-P>", "<Up>")
+nkeymap.set("c", "<C-N>", "<Down>")
 
 nkeymap.set("n", "<F1>", ":help<Space>")
 

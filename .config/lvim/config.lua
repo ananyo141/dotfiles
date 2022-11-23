@@ -266,14 +266,10 @@ lvim.plugins = {
     {
         'unblevable/quick-scope',
     },
-    {
-        'ggandor/leap.nvim',
-    },
 }
 
 -- External Plugin Configs
 vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
-require('leap').add_default_mappings()
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
