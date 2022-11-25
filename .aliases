@@ -14,6 +14,8 @@ alias x='exa --icons'
 alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
 alias tf='terraform'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
+alias pacup='sudo pacman -Syu --noconfirm'
+alias updates='checkupdates | tee /dev/tty | wc -l'
 
 # tmux Aliases
 alias tmas='tmux attach-session -t'
