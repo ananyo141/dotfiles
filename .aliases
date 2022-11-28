@@ -52,4 +52,5 @@ alias gitss='git show'
 alias gitu='git add . && git commit && git push'
 alias gitch='git checkout'
 alias gitsw='git switch'
+alias gitcount='git rev-list --count HEAD'
 
