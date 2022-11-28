@@ -1,6 +1,7 @@
 # Aliases for the current shell
 # Source them in the shell config
 
+# filesystem manipulation
 alias ls='ls -F --color=auto'
 alias la='ls -AFh --color=auto'
 alias ll='ls -AFhl --color=auto'
@@ -8,11 +9,15 @@ alias cp='cp -rvi'
 alias mv='mv -vi'
 alias py='python3'
 alias x='exa --icons'
-alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
-alias tf='terraform'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
+
+# package manager
 alias pacup='sudo pacman -Syu --noconfirm'
 alias updates='checkupdates | tee /dev/tty | wc -l'
+
+# compiler
+alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
+alias gdl='g++ -g leetcode.cpp && gdb -q ./a.out --tui'
 
 # vim aliases
 alias v='vim'
