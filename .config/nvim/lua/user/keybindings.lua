@@ -67,13 +67,13 @@ keymap.set("v", "<S-Tab>", "<C-D>")
 nkeymap.set("n", "Y", "y$")
 
 -- have \tp ("toggle paste") toggle paste on/off and report the change, and
-nkeymap.set("n", "\tp", ":set invpaste paste?<CR>")
+-- nkeymap.set("n", "\tp", ":set invpaste paste?<CR>")
 keymap.set("n", "<F4>", "\tp")
 keymap.set("i", "<F4>", "<C-O>\tp")
 vim.opt.pastetoggle = "<F4>"
 
 -- have \tl ("toggle list") toggle list on/off and report the change:
-nkeymap.set("n", "\tl", ":set invlist list?<CR>")
+-- nkeymap.set("n", "\tl", ":set invlist list?<CR>")
 keymap.set("n", "<F2>", "\tl")
 
 -- toggle search pattern highlighting using Ctrl+/
