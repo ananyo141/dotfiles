@@ -105,3 +105,10 @@ nkeymap.set("t", "<C-L>", "<C-\\><C-N><C-W><C-L>")
 -- save session
 nkeymap.set("n", "<leader>ss", ":mksession!<CR>")
 
+-- scoot visually selected lines
+nkeymap.set("v", "J", ":m '>+1<CR>gv=gv")
+nkeymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- keep cursor in place while joining lines
+nkeymap.set("n", "J", "mzJ`z")
+
