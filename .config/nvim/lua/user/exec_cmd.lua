@@ -1,3 +1,4 @@
+-- enable filetype detection:
 vim.cmd [[ filetype plugin indent on ]]
 vim.cmd [[ runtime macros/matchit.vim ]]
 

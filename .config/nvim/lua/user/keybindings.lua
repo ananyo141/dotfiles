@@ -1,19 +1,23 @@
-local keymap = vim.keymap
+local keymap = vim.keymap -- set local alias
+
+-- local function for noremaps
 local nkeymap = {
   set = function(mode, trigger, command)
     vim.keymap.set(mode, trigger, command, { noremap = true })
   end
 }
+
 -- Custom bindings
-nkeymap.set("n", "<Enter>", ":w<CR>")
-nkeymap.set("n", "<F7>", ":source $MYVIMRC<CR>")
+nkeymap.set("n", "<Enter>", ":w<CR>")               -- save on enter
+nkeymap.set("n", "<F7>", ":source $MYVIMRC<CR>")    -- F7 sources rc file
 
-nkeymap.set("n", "<leader>i", 'o#include ""<Esc>$i')
-nkeymap.set("n", "<leader>I", "o#include <><Esc>$i")
+nkeymap.set("n", "<leader>i", 'o#include ""<Esc>$i')    -- insert user c-header
+nkeymap.set("n", "<leader>I", "o#include <><Esc>$i")    -- insert system c-header
 
-nkeymap.set("n", "<leader>o", "o<Esc>k")
-nkeymap.set("n", "<leader>O", "O<Esc>j")
+nkeymap.set("n", "<leader>o", "o<Esc>k")    -- insert newline one line down
+nkeymap.set("n", "<leader>O", "O<Esc>j")    -- insert newline one line up
 
+-- Automatically surround a c-cpp header file with include guards
 local IncludeGuard = function()
   local basename = string.gsub(vim.fn.bufname(), '[.]', '_')
   local guard = string.upper(basename) .. "_H_"
@@ -22,7 +26,7 @@ local IncludeGuard = function()
   vim.fn.append(vim.fn.line("$"), "#endif // for #ifndef " .. guard)
 end
 
-nkeymap.set("n", "\\i", IncludeGuard)
+nkeymap.set("n", "\\i", IncludeGuard) -- use \\i to invoke
 
 -- nkeymap.set("n", "<Space>", "<PageDown>")
 nkeymap.set("n", "<BS>", "<PageUp>")
@@ -50,13 +54,15 @@ nkeymap.set("c", "<C-N>", "<Down>")
 
 nkeymap.set("n", "<F1>", ":help<Space>")
 
+-- format lines
 nkeymap.set("n", "Q", "gqap")
 nkeymap.set("v", "Q", "gq")
 
-
+-- stay in visual mode after indenting
 nkeymap.set("v", "<", "<gv")
 nkeymap.set("v", ">", ">gv")
 
+-- have the usual indentation keystrokes still work in visual mode:
 nkeymap.set("v", "<C-T>", ">")
 nkeymap.set("v", "<C-D>", "<LT>")
 keymap.set("v", "<Tab>", "<C-T>")
@@ -98,3 +104,4 @@ nkeymap.set("t", "<C-L>", "<C-\\><C-N><C-W><C-L>")
 
 -- save session
 nkeymap.set("n", "<leader>ss", ":mksession!<CR>")
+
