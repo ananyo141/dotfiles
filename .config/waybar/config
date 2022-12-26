@@ -14,11 +14,11 @@
         "tooltip": false
     },
     "cpu": {
-        "format": " {usage}",
+        "format": " {usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": " {}",
+        "format": " {used}G",
         "tooltip": false
     },
     "battery": {
@@ -27,7 +27,7 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}",
+        "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""],
         "max-length": 25,
         "tooltip": false
@@ -43,9 +43,9 @@
         "tooltip": false
     },
     "custom/arch": {
-        "format": "",
+        "format": "",
         "tooltip": false,
-        "on-click": "alacritty --hold -e neofetch"
+        "on-click": "alacritty --hold -e neofetch",
     },
     "temperature": {
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",

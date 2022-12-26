@@ -21,13 +21,20 @@ window#waybar {
 #memory,
 #pulseaudio,
 #backlight,
-#battery,
 #temperature,
 #custom-arch,
 #custom-spotify,
 #custom-weather,
 #custom-notification {
     padding: 0 15px;
+}
+
+#battery {
+		padding-right: 15px;
+}
+
+#custom-arch {
+		font-size: 21px;
 }
 
 #battery.charging {
