@@ -33,7 +33,7 @@
         "tooltip": false
     },
     "network": {
-        "format": " {signalStrength}",
+        "format": " {essid}",
         "tooltip": false
     },
     "pulseaudio": {
