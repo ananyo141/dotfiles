@@ -1,10 +1,11 @@
 {
-    "modules-left": ["custom/arch", "cpu", "memory", "temperature"],
+    "modules-left": ["custom/arch", "cpu", "memory"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/spotify", "custom/weather", "custom/notification" ,"network", "pulseaudio", "backlight", "battery"],
+    "modules-right": ["custom/notification" ,"network", "custom/updates", "pulseaudio", "battery"],
+
     "clock": {
-        "format": "{:%e %B %Y %H:%M}",
-        "timezone": "Europe/Paris",
+        "format": "{:%e %B %Y %I:%M %p}",
+        "timezone": "Asia/Kolkata",
         "tooltip": false
     },
     "backlight": {
@@ -79,5 +80,11 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -d -sw",
         "escape": true
+    },
+    "custom/updates": {
+        "exec": "checkupdates 2>/dev/null | wc -l",
+        "interval": 900,
+        "format": " {}",
+        "tooltip": false
     }
 }
