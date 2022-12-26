@@ -1,0 +1,41 @@
+* {
+    font-family: "Font Awesome 5 Free";
+    font-size: 15px;
+}
+
+window#waybar {
+    color: #bd93f9;
+    background-color: rgba(40, 42, 54, 0.7);
+    border-radius: 0%;
+}
+
+.modules-center,
+.modules-left,
+.modules-right {
+    min-height:40px;
+}
+
+#clock,
+#network,
+#cpu,
+#memory,
+#pulseaudio,
+#backlight,
+#battery,
+#temperature,
+#custom-arch,
+#custom-spotify,
+#custom-weather,
+#custom-notification {
+    padding: 0 15px;
+}
+
+#battery.charging {
+    background-color: transparent;
+    color: #50fa7b;
+}
+
+#battery.warning:not(.charging) {
+    background-color: transparent;
+    color: #ff5555;
+}
