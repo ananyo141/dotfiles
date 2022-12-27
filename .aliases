@@ -16,17 +16,17 @@ alias disks='lsblk | grep -v loop'
 alias pacup='sudo pacman -Syu --noconfirm'
 alias updates='checkupdates | tee /dev/tty | wc -l'
 
-# compiler
+# cp or leetcode
 alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
 alias gdl='g++ -g leetcode.cpp && gdb -q ./a.out --tui'
+alias startcount='termdown 45m --title "Problem" && mpv ~/Downloads/termdown.wav'
 
 # vim aliases
 alias v='vim'
 alias vs='vim -S'
 alias vrc='vim ~/.vimrc'
-alias nvim='lvim'
 alias nvs='nvim -S'
-alias lrc='nvim ~/.config/lvim/config.lua'
+alias lrc='lvim ~/.config/lvim/config.lua'
 alias nvrc='nvim ~/.config/nvim/init.lua'
 
 # tmux Aliases
@@ -44,11 +44,12 @@ alias gitds='git diff --staged'
 alias gita='git add'
 alias gitap='git add -p'
 alias gitA='git add -A'
+alias gitac='git add -A && git commit'
 alias gitb='git branch'
 alias gitc='git commit'
 alias gitcp='git commit && git push'
 alias gitP='git push'
-alias gitl='git log --stat'
+alias gitl='git log --stat --graph'
 alias gitss='git show'
 alias gitu='git add . && git commit && git push'
 alias gitch='git checkout'
