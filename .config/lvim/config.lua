@@ -69,18 +69,18 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-    "bash",
-    "c",
-    "javascript",
-    "json",
-    "lua",
-    "python",
-    "typescript",
-    "tsx",
-    "css",
-    "rust",
-    "java",
-    "yaml",
+  "bash",
+  "c",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "tsx",
+  "css",
+  "rust",
+  "java",
+  "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -133,29 +133,29 @@ lvim.builtin.treesitter.highlight.enable = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-    -- { command = "black", filetypes = { "python" } },
-    -- { command = "isort", filetypes = { "python" } },
-    {
-        -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-        command = "prettier",
-        ---@usage arguments to pass to the formatter
-        -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-        extra_args = { "--print-with", "100" },
-        ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-        filetypes = { "css",
-            "graphql",
-            "html",
-            "javascript",
-            "javascriptreact",
-            "json",
-            "less",
-            "markdown",
-            "scss",
-            "typescript",
-            "typescriptreact",
-            "yaml",
-        },
+  -- { command = "black", filetypes = { "python" } },
+  -- { command = "isort", filetypes = { "python" } },
+  {
+    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "prettier",
+    ---@usage arguments to pass to the formatter
+    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    extra_args = { "--print-with", "100" },
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "css",
+      "graphql",
+      "html",
+      "javascript",
+      "javascriptreact",
+      "json",
+      "less",
+      "markdown",
+      "scss",
+      "typescript",
+      "typescriptreact",
+      "yaml",
     },
+  },
 }
 
 -- -- set additional linters
@@ -180,10 +180,10 @@ formatters.setup {
 
 -- increase timeout for formatting
 lvim.builtin.which_key.mappings["l"]["f"] = {
-    function()
-        require("lvim.lsp.utils").format { timeout_ms = 2000 }
-    end,
-    "Format",
+  function()
+    require("lvim.lsp.utils").format { timeout_ms = 2000 }
+  end,
+  "Format",
 }
 
 -- add current line blame like gitlens in vscodium
@@ -191,85 +191,132 @@ lvim.builtin.gitsigns.opts["current_line_blame"] = true
 
 -- Additional Plugins
 lvim.plugins = {
-    {
-        "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-    },
-    {
-        "christoomey/vim-tmux-navigator",
-    },
-    {
-        "MunifTanjim/prettier.nvim",
-        config = function()
-            require("prettier").setup({
-                bin = 'prettierd', -- `prettier` or `prettierd` (v0.22+) from 'https://github.com/fsouza/prettierd'
-                filetypes = {
-                    "css",
-                    "graphql",
-                    "html",
-                    "javascript",
-                    "javascriptreact",
-                    "json",
-                    "less",
-                    "markdown",
-                    "scss",
-                    "typescript",
-                    "typescriptreact",
-                    "yaml",
-                },
-            })
-        end
-    },
-    {
+  {
+    "kylechui/nvim-surround",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+  },
+  {
+    "MunifTanjim/prettier.nvim",
+    config = function()
+      require("prettier").setup({
+        bin = 'prettierd', -- `prettier` or `prettierd` (v0.22+) from 'https://github.com/fsouza/prettierd'
+        filetypes = {
+          "css",
+          "graphql",
+          "html",
+          "javascript",
+          "javascriptreact",
+          "json",
+          "less",
+          "markdown",
+          "scss",
+          "typescript",
+          "typescriptreact",
+          "yaml",
+        },
+      })
+    end
+  },
+  {
 
-        "Pocco81/auto-save.nvim",
-        config = function()
-            require("auto-save").setup({
-                enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
-                execution_message = {
-                    message = function() -- message to print on save
-                        return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
-                    end,
-                    dim = 0.18, -- dim the color of `message`
-                    cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
-                },
-                trigger_events = { "InsertLeave", "TextChanged" }, -- vim events that trigger auto-save. See :h events
-                -- function that determines whether to save the current buffer or not
-                -- return true: if buffer is ok to be saved
-                -- return false: if it's not ok to be saved
-                condition = function(buf)
-                    local fn = vim.fn
-                    local utils = require("auto-save.utils.data")
+    "Pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup({
+        enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
+        execution_message = {
+          message = function() -- message to print on save
+            return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
+          end,
+          dim = 0.18, -- dim the color of `message`
+          cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+        },
+        trigger_events = { "InsertLeave", "TextChanged" }, -- vim events that trigger auto-save. See :h events
+        -- function that determines whether to save the current buffer or not
+        -- return true: if buffer is ok to be saved
+        -- return false: if it's not ok to be saved
+        condition = function(buf)
+          local fn = vim.fn
+          local utils = require("auto-save.utils.data")
 
-                    if fn.getbufvar(buf, "&modifiable") == 1 and
-                        utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
-                        return true -- met condition(s), can save
-                    end
-                    return false -- can't save
-                end,
-                write_all_buffers = false, -- write all buffers when the current one meets `condition`
-                debounce_delay = 135, -- saves the file at most every `debounce_delay` milliseconds
-                callbacks = { -- functions to be executed at different intervals
-                    enabling = nil, -- ran when enabling auto-save
-                    disabling = nil, -- ran when disabling auto-save
-                    before_asserting_save = nil, -- ran before checking `condition`
-                    before_saving = nil, -- ran before doing the actual save
-                    after_saving = nil -- ran after doing the actual save
-                }
-            })
-        end
-    },
-    {
-        'unblevable/quick-scope',
-    },
+          if fn.getbufvar(buf, "&modifiable") == 1 and
+              utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
+            return true -- met condition(s), can save
+          end
+          return false -- can't save
+        end,
+        write_all_buffers = false, -- write all buffers when the current one meets `condition`
+        debounce_delay = 135, -- saves the file at most every `debounce_delay` milliseconds
+        callbacks = { -- functions to be executed at different intervals
+          enabling = nil, -- ran when enabling auto-save
+          disabling = nil, -- ran when disabling auto-save
+          before_asserting_save = nil, -- ran before checking `condition`
+          before_saving = nil, -- ran before doing the actual save
+          after_saving = nil -- ran after doing the actual save
+        }
+      })
+    end
+  },
+  {
+    'unblevable/quick-scope',
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        textobjects = {
+          select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              -- You can optionally set descriptions to the mappings (used in the desc parameter of
+              -- nvim_buf_set_keymap) which plugins like which-key display
+              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            },
+            -- You can choose the select mode (default is charwise 'v')
+            --
+            -- Can also be a function which gets passed a table with the keys
+            -- * query_string: eg '@function.inner'
+            -- * method: eg 'v' or 'o'
+            -- and should return the mode ('v', 'V', or '<c-v>') or a table
+            -- mapping query_strings to modes.
+            selection_modes = {
+              ['@parameter.outer'] = 'v', -- charwise
+              ['@function.outer'] = 'V', -- linewise
+              ['@class.outer'] = '<c-v>', -- blockwise
+            },
+            -- If you set this to `true` (default is `false`) then any textobject is
+            -- extended to include preceding or succeeding whitespace. Succeeding
+            -- whitespace has priority in order to act similarly to eg the built-in
+            -- `ap`.
+            --
+            -- Can also be a function which gets passed a table with the keys
+            -- * query_string: eg '@function.inner'
+            -- * selection_mode: eg 'v'
+            -- and should return true of false
+            include_surrounding_whitespace = true,
+          },
+        },
+      }
+    end
+  },
 }
 
 -- External Plugin Configs
-vim.g.qs_highlight_on_keys = {'f', 'F', 't', 'T'}
+vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
@@ -291,4 +338,3 @@ require("user.keybindings")
 require("user.user_commands")
 -- require("user.autocommands")
 require("user.abbreviations")
-
