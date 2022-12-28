@@ -17,7 +17,6 @@ window#waybar {
 
 #clock,
 #network,
-#cpu,
 #pulseaudio,
 #backlight,
 #temperature,
@@ -26,6 +25,11 @@ window#waybar {
 #custom-weather,
 #custom-notification {
     padding: 0 15px;
+}
+
+#cpu,
+#memory {
+		padding-left: 15px;
 }
 
 #battery {
