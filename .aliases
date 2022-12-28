@@ -35,25 +35,45 @@ alias tmks='tmux kill-session -t'
 alias tmns='tmux new-session -t'
 alias tmls='tmux ls'
 
-# Git Aliases
+# Git Aliases #
+# one-off aliases
 alias gits='git status'
 alias gitf='git fetch'
 alias gitp='git pull'
+alias gitP='git push'
+alias gitb='git branch'
+alias gitsw='git switch'
+alias gitss='git show'
+# show the number of commits
+alias gitcount='git rev-list --count HEAD'
+
+# - CHECKOUT -
+alias gitch='git checkout'
+# checkout parts of a file (maybe from a specific commit)
+# git checkout -p <sha>^ -- <file>
+alias gitchp='git checkout -p'
+
+# - DIFF -
 alias gitd='git diff'
 alias gitds='git diff --staged'
+
+# - ADD -
 alias gita='git add'
+# stage parts of a file
 alias gitap='git add -p'
 alias gitA='git add -A'
 alias gitac='git add -A && git commit'
-alias gitb='git branch'
+
+# - COMMIT -
 alias gitc='git commit'
 alias gitcp='git commit && git push'
-alias gitP='git push'
-alias gitl='git log --stat --graph'
-alias gitlf='git log --follow --stat -p --'
-alias gitss='git show'
 alias gitu='git add . && git commit && git push'
-alias gitch='git checkout'
-alias gitsw='git switch'
-alias gitcount='git rev-list --count HEAD'
+
+# - LOG -
+alias gitl='git log --stat --graph'
+# track a file changes accross commits
+alias gitlf='git log --follow --stat -p --'
+# find a commit by message,
+# add --all at end to search all branches
+alias gitlg='git log --stat --grep'
 
