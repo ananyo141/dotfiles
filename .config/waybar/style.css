@@ -18,7 +18,6 @@ window#waybar {
 #clock,
 #network,
 #cpu,
-#memory,
 #pulseaudio,
 #backlight,
 #temperature,
@@ -35,6 +34,11 @@ window#waybar {
 
 #custom-arch {
 		font-size: 21px;
+}
+
+#custom-kernel {
+		font-style: italic;
+		letter-spacing: -0.080em;
 }
 
 #battery.charging {

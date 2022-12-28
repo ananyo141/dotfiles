@@ -1,5 +1,5 @@
 {
-    "modules-left": ["custom/arch", "cpu", "memory"],
+    "modules-left": ["custom/arch", "custom/kernel", "cpu", "memory"],
     "modules-center": ["clock"],
     "modules-right": ["custom/notification" ,"network", "custom/updates", "pulseaudio", "battery"],
 
@@ -41,6 +41,11 @@
         "format-bluetooth": " {volume}",
         "format-muted": "",
         "tooltip": false
+    },
+    "custom/kernel": {
+        "exec": "uname -sr",
+        "format": "{}",
+        "tooltip": false,
     },
     "custom/arch": {
         "format": "",
