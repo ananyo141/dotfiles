@@ -15,6 +15,7 @@ alias disks='lsblk | grep -v loop'
 # package manager
 alias pacup='sudo pacman -Syu --noconfirm'
 alias updates='checkupdates | tee /dev/tty | wc -l'
+alias pcache='du -sh /var/cache/pacman/pkg'
 
 # cp or leetcode
 alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
