@@ -328,8 +328,8 @@ nnoremap <F6> <C-W>w
 nnoremap <S-F6> <C-W>W
 
 " use <Ctrl>+N/<Ctrl>+P to cycle through files:
-nnoremap <C-N> :next<CR>
-nnoremap <C-P> :prev<CR>
+nnoremap <C-N> :bnext<CR>
+nnoremap <C-P> :bprev<CR>
 " [<Ctrl>+N by default is like j, and <Ctrl>+P like k.]
 
 " Use bash like terminal mappings in commandline
