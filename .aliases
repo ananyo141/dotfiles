@@ -117,8 +117,8 @@ alias gitlg='git log --stat --grep'
 
 #            STASH
 #            =====
-alias gitsl='git stash list'
-alias gitsp='git stash pop'
+alias gitstl='git stash list'
+alias gitstp='git stash pop'
 
 # show stashed changes, accepts stash index
 alias gitsts='git stash show -p --stat'
