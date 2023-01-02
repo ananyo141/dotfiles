@@ -11,6 +11,9 @@ alias py='python3'
 alias x='exa --icons'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
 alias disks='lsblk | grep -v loop'
+# check for disk usage according to partitions (diskfree)
+# print first line of df unaffected, then sorts by most 'Usage' field
+alias diskf='echo -e "$(df -h | head -1)" && df -h | tail +2 | grep -v loop | sort -hrk3'
 
 # package manager
 alias pacup='sudo pacman -Syu --noconfirm'
@@ -44,7 +47,7 @@ alias gitp='git pull'
 alias gitP='git push'
 alias gitb='git branch'
 alias gitsw='git switch'
-alias gitss='git show'
+alias gitss='git show --stat -p'
 # show the number of commits
 alias gitcount='git rev-list --count HEAD'
 
