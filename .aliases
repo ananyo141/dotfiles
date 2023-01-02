@@ -1,31 +1,52 @@
 # Aliases for the current shell
 # Source them in the shell config
 
-# filesystem manipulation
+# Filesystem Manipulation
+# =======================
 alias ls='ls -F --color=auto'
 alias la='ls -AFh --color=auto'
 alias ll='ls -AFhl --color=auto'
 alias cp='cp -rvi'
 alias mv='mv -vi'
-alias py='python3'
-alias x='exa --icons'
-alias trees='tree -ahF -t --du --filesfirst -C | less -R'
 alias disks='lsblk | grep -v loop'
 # check for disk usage according to partitions (diskfree)
 # print first line of df unaffected, then sorts by most 'Usage' field
 alias diskf='echo -e "$(df -h | head -1)" && df -h | tail +2 | grep -v loop | sort -hrk3'
 
-# package manager
+# Utilities
+# =========
+alias py='python3'
+alias x='exa --icons'
+alias trees='tree -ahF -t --du --filesfirst -C | less -R'
+alias hypstat='hyperfine -N --warmup 5'
+# get proc info from pid
+alias pinfo='ps -fp'
+# find a proc by name and output information
+alias pfind='pgrep -a'
+# find which program is using a resource
+alias puser='fuser -uv'
+# always inform if files are identical
+alias diff='diff -s'
+
+# Package Manager
+# ===============
 alias pacup='sudo pacman -Syu --noconfirm'
-alias updates='checkupdates | tee /dev/tty | wc -l'
+alias pacups='checkupdates | tee /dev/tty | wc -l'
 alias pcache='du -sh /var/cache/pacman/pkg'
 
-# cp or leetcode
+# CP or Leetcode
+# ==============
 alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
 alias gdl='g++ -g leetcode.cpp && gdb -q ./a.out --tui'
-alias startcount='termdown 45m --title "Problem" && mpv ~/Downloads/termdown.wav'
+# mneumonic for (g)cc (c)ompile (lc) leetcode (ch) codechef
+alias gclc='g++ leetcode.cpp && ./a.out'
+alias gcch='g++ codechef.cpp && ./a.out <inp.out | cat -A'
+# start a counter for a problem, provide file argument as an alarm
+alias startcount='termdown 45m --title "Problem" && mpv'
 
-# vim aliases
+# Vim aliases
+# ===========
+# -S are for loading the session files (Session.vim)
 alias v='vim'
 alias vs='vim -S'
 alias vrc='vim ~/.vimrc'
@@ -34,12 +55,15 @@ alias lrc='lvim ~/.config/lvim/config.lua'
 alias nvrc='nvim ~/.config/nvim/init.lua'
 
 # tmux Aliases
+# ============
+# -t refers to target session
 alias tmas='tmux attach-session -t'
 alias tmks='tmux kill-session -t'
 alias tmns='tmux new-session -t'
 alias tmls='tmux ls'
 
-# Git Aliases #
+# Git Aliases
+# ===========
 # one-off aliases
 alias gits='git status'
 alias gitf='git fetch'
@@ -48,36 +72,57 @@ alias gitP='git push'
 alias gitb='git branch'
 alias gitsw='git switch'
 alias gitss='git show --stat -p'
+
 # show the number of commits
 alias gitcount='git rev-list --count HEAD'
 
-# - CHECKOUT -
+#            CHECKOUT
+#            ========
 alias gitch='git checkout'
+
 # checkout parts of a file (maybe from a specific commit)
 # git checkout -p <sha>^ -- <file>
 alias gitchp='git checkout -p'
 
-# - DIFF -
+#             DIFF
+#             ====
 alias gitd='git diff'
 alias gitds='git diff --staged'
 
-# - ADD -
+#             ADD
+#             ===
 alias gita='git add'
+
 # stage parts of a file
 alias gitap='git add -p'
 alias gitA='git add -A'
 alias gitac='git add -A && git commit'
 
-# - COMMIT -
+#            COMMIT
+#            ======
 alias gitc='git commit'
 alias gitcp='git commit && git push'
 alias gitu='git add . && git commit && git push'
 
-# - LOG -
+#             LOG
+#             ===
 alias gitl='git log --stat --graph'
+
 # track a file changes accross commits
 alias gitlf='git log --follow --stat -p --'
+
 # find a commit by message,
 # add --all at end to search all branches
 alias gitlg='git log --stat --grep'
+
+#            STASH
+#            =====
+alias gitsl='git stash list'
+alias gitsp='git stash pop'
+
+# show stashed changes, accepts stash index
+alias gitsts='git stash show -p --stat'
+
+# save the work in progress in a named stash
+alias gitsave='git stash push -um'
 
