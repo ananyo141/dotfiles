@@ -15,6 +15,9 @@ alias diskf='echo -e "$(df -h | head -1)" && df -h | tail +2 | grep -v loop | so
 
 # Utilities
 # =========
+alias refish='source ~/.config/fish/config.fish'
+alias rezsh='source ~/.zshrc'
+alias rebash='source ~/.bashrc'
 alias py='python3'
 alias x='exa --icons'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
@@ -53,6 +56,8 @@ alias vrc='vim ~/.vimrc'
 alias nvs='nvim -S'
 alias lrc='lvim ~/.config/lvim/config.lua'
 alias nvrc='nvim ~/.config/nvim/init.lua'
+# fuzzy find and open a file in vim
+alias vfzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {}" | xargs -ro vim'
 
 # tmux Aliases
 # ============
