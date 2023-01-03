@@ -30,6 +30,7 @@ alias pfind='pgrep -a'
 alias puser='fuser -uv'
 # always inform if files are identical
 alias diff='diff -s'
+alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {}"'
 
 # Package Manager
 # ===============
