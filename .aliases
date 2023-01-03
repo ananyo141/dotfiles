@@ -118,8 +118,10 @@ alias gitl='git log --stat --graph'
 alias gitlf='git log --follow --stat -p --'
 
 # find a commit by message,
-# add --all at end to search all branches
+# add --all at end to search all branches, -i for ignorecase
 alias gitlg='git log --stat --grep'
+# fuzzy search for a commit in git
+alias gitfzf='git log --oneline | fzf --prompt="Search > " --preview "git show --stat --color -p {1}"'
 
 #            STASH
 #            =====
