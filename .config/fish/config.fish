@@ -13,3 +13,7 @@ if test -e ~/.aliases
     source ~/.aliases
 end
 
+if test -e ~/.envvars
+    source ~/.envvars
+end
+

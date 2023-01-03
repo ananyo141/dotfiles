@@ -42,20 +42,11 @@ to appropritate file extensions
 # Source aliases for zshrc
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-# Make Vim default editor
-export VISUAL=vim
-export EDITOR="$VISUAL"
-export PAGER='/usr/bin/vimpager'
+# Source envvars for zshrc
+[[ -f ~/.envvars ]] && source ~/.envvars
 
 # Make zsh like vi
 set -o vi
-
-export HISTCONTROL=ignoredups
-export HISTSIZE=1000
-
-# Path Settings
-export PATH=$PATH:$HOME/bin:$HOME/.emacs.d/bin
-export PYTHONPATH=$HOME
 
 # Load startup configuration of zoxide
 eval "$(zoxide init zsh)"

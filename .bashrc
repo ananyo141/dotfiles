@@ -130,25 +130,17 @@ ex ()
   fi
 }
 
-# My custom additions
-export PATH=$PATH:$HOME/bin:$HOME/.local/bin
-export PYTHONPATH=$HOME
-
 # give default permissions of directories to owner group
 umask 0002
-
-# ignore duplicates in history and increase record
-# size from 500 to 1000
-export HISTCONTROL=ignoredups
-export HISTSIZE=1000
-export VISUAL=vim
-export EDITOR="$VISUAL"
 
 # Make bash like vi
 set -o vi
 
 # Source aliases for from file
 [[ -f ~/.aliases ]] && source ~/.aliases
+
+# Source envvars for bashrc
+[[ -f ~/.envvars ]] && source ~/.envvars
 
 # custom shell prompt
 # PS1="\[\033[1;44m\]<\u \[\033[0;33m\] \w>\[\033[1;33m\]\$\[\033[0;37m\] "
