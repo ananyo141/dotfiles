@@ -39,9 +39,11 @@ alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {
 # Package Manager
 # ===============
 alias pacup='sudo pacman -Syu --noconfirm'
-alias pacups='checkupdates | fzf --height 90% --preview "pacman -Qii {1}"'
+alias pacups='checkupdates | fzf --preview "pacman -Qii {1}"'
+alias pacfzf='pacman -Q | fzf --preview "pacman -Qii {1}"'
 alias pacache='du -sh /var/cache/pacman/pkg'
-alias pacfiles='pacman -Ql | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
+# remove redundant entries (multiple /usr/bin or /usr/share/ duplicates)
+alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
 alias paclogs='cat /var/log/pacman.log | fzf --preview "echo {3..}"'
 
 # CP or Leetcode
