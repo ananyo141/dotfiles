@@ -30,11 +30,11 @@ alias pfind='pgrep -a'
 alias puser='fuser -uv'
 # always inform if files are identical
 alias diff='diff -s'
-alias journalfzf='journalctl | fzf --preview "echo {6..} | fmt"'
+alias journalfzf='journalctl | fzf --preview "echo {6..}"'
 # use default fzf opts and fallbacks for handling different sorts of previews
 # try to preview file with bat; if fails try to list directory with exa; else
 # output formatted text
-alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || exa --icons {} 2>/dev/null || echo {} | fmt"'
+alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || exa --icons {} 2>/dev/null || echo {}"'
 
 # Package Manager
 # ===============
@@ -42,7 +42,7 @@ alias pacup='sudo pacman -Syu --noconfirm'
 alias pacups='checkupdates | fzf --preview "pacman -Qii {1}"'
 alias pacache='du -sh /var/cache/pacman/pkg'
 alias pacfiles='pacman -Ql | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
-alias paclogs='cat /var/log/pacman.log | fzf --preview "echo {3..} | fmt"'
+alias paclogs='cat /var/log/pacman.log | fzf --preview "echo {3..}"'
 
 # CP or Leetcode
 # ==============
@@ -127,7 +127,7 @@ alias gitlf='git log --follow --stat -p --'
 # add --all at end to search all branches, -i for ignorecase
 alias gitlg='git log --stat --grep'
 # fuzzy search for a commit in git
-alias gitfzf='git log --oneline | fzf --prompt="Search > " --preview "git show --stat --color -p {1}"'
+alias gitfzf='git log --oneline | fzf --height 100 --prompt="Search > " --preview "git show --stat --color -p {1}"'
 
 #            STASH
 #            =====

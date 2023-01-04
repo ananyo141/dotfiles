@@ -1,12 +1,11 @@
-
-# My custom additions
+# PATH Variables
 export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/.emacs.d/bin"
 export PYTHONPATH=$HOME
 
 # ignore duplicates in history and increase record
-# size from 500 to 1000
 export HISTCONTROL=ignoredups
-export HISTSIZE=10000
+export HISTSIZE=100000
+export SAVEHIST="$HISTSIZE"
 
 # Make Vim default editor
 export VISUAL=vim
@@ -14,5 +13,10 @@ export EDITOR="$VISUAL"
 export PAGER="/usr/bin/vimpager"
 
 # fzf variables
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude=.git'
-export FZF_DEFAULT_OPTS='--layout=reverse --border'
+export FD_OPTIONS="--follow --hidden --exclude .git --exclude node_modules"
+
+# Change find backend
+# Use 'git ls-files' when inside GIT repo, or fd otherwise
+export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
+# Change behavior of fzf dialogue
+export FZF_DEFAULT_OPTS="--height 70% --reverse --border --multi --preview-window=right:wrap"
