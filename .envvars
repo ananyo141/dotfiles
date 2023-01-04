@@ -19,4 +19,4 @@ export FD_OPTIONS="--follow --hidden --exclude .git --exclude node_modules"
 # Use 'git ls-files' when inside GIT repo, or fd otherwise
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
 # Change behavior of fzf dialogue
-export FZF_DEFAULT_OPTS="--height 70% --reverse --border --multi --preview-window=right:wrap"
+export FZF_DEFAULT_OPTS="--reverse --border --multi --preview-window=right:wrap"
