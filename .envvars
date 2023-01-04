@@ -6,7 +6,7 @@ export PYTHONPATH=$HOME
 # ignore duplicates in history and increase record
 # size from 500 to 1000
 export HISTCONTROL=ignoredups
-export HISTSIZE=1000
+export HISTSIZE=10000
 
 # Make Vim default editor
 export VISUAL=vim

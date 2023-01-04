@@ -77,7 +77,7 @@ ZSH_THEME_RANDOM_QUIET=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git fzf-zsh-plugin)
 
 export LANG='en_IN.UTF-8'
 source $ZSH/oh-my-zsh.sh
@@ -450,4 +450,30 @@ pfetch
 #cpufetch
 #colorscript random
 # =============================================================================
+
+# Package: fzf-tab-completion
+source /usr/share/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+bindkey '^I' fzf_completion
+# or for everything
+zstyle ':completion:*' fzf-search-display true
+# basic file preview for ls (you can replace with something more sophisticated than head)
+zstyle ':completion::*:ls::*' fzf-completion-opts --preview='eval exa --icons {1}'
+
+# preview when completing env vars (note: only works for exported variables)
+# eval twice, first to unescape the string, second to expand the $variable
+zstyle ':completion::*:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-completion-opts --preview='eval eval echo {1}'
+
+# preview a `git status` when completing git add
+zstyle ':completion::*:git::git,add,*' fzf-completion-opts --preview='git -c color.status=always status --short'
+
+# if other subcommand to git is given, show a git diff or git log
+zstyle ':completion::*:git::*,[a-z]*' fzf-completion-opts --preview='
+eval set -- {+1}
+for arg in "$@"; do
+    { git diff --color=always -- "$arg" | git log --color=always "$arg" } 2>/dev/null
+done'
+
+# fzf-git-bindings-gist
+source /usr/share/fzf-git-bindings/functions.sh
+source /usr/share/fzf-git-bindings/key-binding.zsh
 
