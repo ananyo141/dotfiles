@@ -321,6 +321,9 @@ lvim.plugins = {
 vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
 vim.g["sneak#label"] = 1
 vim.g["sneak#use_ic_scs"] = 1
+-- remap sneak keys to preserve f,t repeat motions
+vim.keymap.set("n", "\\;", "<Plug>Sneak_;")
+vim.keymap.set("n", "\\,", "<Plug>Sneak_,")
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

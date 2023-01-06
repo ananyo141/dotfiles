@@ -51,3 +51,6 @@ highlight ErrorText cterm=underline
 " Sneak labels
 let g:sneak#label = 1
 let g:sneak#use_ic_scs = 1
+" define maps for sneak repeats to free up ; or , for f and t
+nnoremap \; <Plug>Sneak_;
+nnoremap \, <Plug>Sneak_,
