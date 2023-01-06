@@ -200,6 +200,9 @@ lvim.plugins = {
     end
   },
   {
+    "justinmk/vim-sneak",
+  },
+  {
     "christoomey/vim-tmux-navigator",
   },
   {
@@ -314,9 +317,9 @@ lvim.plugins = {
     end
   },
 }
-
 -- External Plugin Configs
 vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
+vim.g["sneak#label"] = 1
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

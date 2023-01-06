@@ -10,6 +10,7 @@ command! PackClean  call minpac#clean()
 " packages
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 call minpac#add('tpope/vim-surround')
+call minpac#add('justinmk/vim-sneak') 
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('christoomey/vim-tmux-navigator')
@@ -47,3 +48,5 @@ colorscheme everforest
 " Few terminals can't show error highlighting in coc
 highlight ErrorText cterm=underline
 
+" Sneak labels
+let g:sneak#label = 1
