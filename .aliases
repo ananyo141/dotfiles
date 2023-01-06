@@ -38,11 +38,11 @@ alias pfind='pgrep -a'
 # find which program is using a resource
 alias puser='fuser -uv'
 # fuzzy find processes
-alias psfzf='ps -eo pid,ppid,user,comm | fzf --header-lines=1 --preview="ps -o pid,ppid,user,group,start,etime,%cpu,%mem,cmd -p {1} || echo Cannot preview {1} because it exited." --preview-window="bottom:4:wrap"'
+alias psfzf='ps -eo pid,ppid,user,comm | fzf --header-lines=1 --preview="ps -o pid,ppid,user,group,start,etime,%cpu,%mem,cmd -p {1} || echo Cannot preview {1} because it exited." --preview-window="bottom:4:wrap" --header "Press Ctrl-R to reload" --bind "ctrl-r:reload(eval ps -eo pid,ppid,user,comm)"'
 
 # Package Manager
 # ===============
-alias pacup='sudo pacman -Syu --noconfirm'
+alias pacupd='sudo pacman -Syu --noconfirm'
 alias pacups='checkupdates | fzf --preview "pacman -Qii {1}"'
 alias pacfzf='pacman -Q | fzf --preview "pacman -Qii {1}"'
 alias pacache='du -sh /var/cache/pacman/pkg'
