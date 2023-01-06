@@ -4,7 +4,7 @@
 
 # terminal emulator
 alt + Return
-	xfce4-terminal
+	alacritty
 
 # program launcher
 alt + d
