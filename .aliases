@@ -134,7 +134,7 @@ alias gitlf='git log --follow --stat -p --'
 # add --all at end to search all branches, -i for ignorecase
 alias gitlg='git log --stat --grep'
 # fuzzy search for a commit in git
-alias gitfzf='git log --pretty="format:* %C(yellow)%h%Creset %s" --color | fzf --ansi --prompt="Search > " --preview "git show --stat --color --pretty=\"Commit: %C(green)%H%Creset%nAuthor: %C(green)%an%Creset <%ce>%nTime: %C(green)%ah%Creset\" -p {2}" | cut -f2 -d " "'
+alias gitfzf='git log --pretty="format:* %C(yellow)%h%Creset - %as - %s" --color | fzf --ansi --prompt="Search > " --preview "git show --stat --color --pretty=\"%C(yellow)Commit: %H%Creset%nParent: %C(green)%P%Creset%nAuthor: %C(white)%an%Creset <%ce>%nTime: %ah\" -p {2}" | cut -f2 -d " "'
 
 #            STASH
 #            =====
