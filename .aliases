@@ -38,13 +38,13 @@ alias pfind='pgrep -a'
 # find which program is using a resource
 alias puser='fuser -uv'
 # fuzzy find processes
-alias psfzf='ps -eo pid,ppid,user,comm | fzf --header-lines=1 --preview="ps -o pid,ppid,user,group,start,etime,%cpu,%mem,cmd -p {1} || echo Cannot preview {1} because it exited." --preview-window="bottom:4:wrap" --header "Press Ctrl-R to reload" --bind "ctrl-r:reload(eval ps -eo pid,ppid,user,comm)"'
+alias psfzf='ps -eo pid,ppid,user,comm | fzf --header-lines=1 --preview="ps -o pid,ppid,user,group,start,etime,%cpu,%mem,cmd -p {1} || echo Cannot preview {1} because it exited." --preview-window="bottom:4:wrap" --header "Press Ctrl-R to reload" --bind "ctrl-r:reload(eval ps -eo pid,ppid,user,comm)" | awk "{print \$1}"'
 
 # Package Manager
 # ===============
 alias pacupd='sudo pacman -Syu --noconfirm'
 alias pacups='checkupdates | fzf --preview "pacman -Qii {1}"'
-alias pacfzf='pacman -Q | fzf --preview "pacman -Qii {1}"'
+alias pacfzf='pacman -Q | fzf --preview "pacman -Qii {1}" | cut -f1 -d " "'
 alias pacache='du -sh /var/cache/pacman/pkg'
 # remove redundant entries (multiple /usr/bin or /usr/share/ duplicates)
 alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
