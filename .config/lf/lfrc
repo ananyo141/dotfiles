@@ -137,6 +137,7 @@ map ux extract
 
 # Basic Functions
 map . set hidden!
+map i set icons!
 map DD delete
 map p paste
 map x cut
