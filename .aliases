@@ -22,19 +22,23 @@ alias py='python3'
 alias x='exa --icons'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
 alias hypstat='hyperfine -N --warmup 5'
+# always inform if files are identical
+alias diff='diff -s'
+alias journalfzf='journalctl | fzf --preview "echo {6..}" --preview-window="bottom:4:wrap"'
+# use default fzf opts and fallbacks for handling different sorts of previews
+# try to preview file with bat; if fails try to list directory with exa; else
+# output formatted text
+alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || exa --color=always --icons {} 2>/dev/null || echo {}"'
+
+# System Processes
 # get proc info from pid
 alias pinfo='ps -fp'
 # find a proc by name and output information
 alias pfind='pgrep -a'
 # find which program is using a resource
 alias puser='fuser -uv'
-# always inform if files are identical
-alias diff='diff -s'
-alias journalfzf='journalctl | fzf --preview "echo {6..}"'
-# use default fzf opts and fallbacks for handling different sorts of previews
-# try to preview file with bat; if fails try to list directory with exa; else
-# output formatted text
-alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || exa --color=always --icons {} 2>/dev/null || echo {}"'
+# fuzzy find processes
+alias psfzf='ps -eo pid,ppid,user,comm | fzf --header-lines=1 --preview="ps -o pid,ppid,user,group,start,etime,%cpu,%mem,cmd -p {1} || echo Cannot preview {1} because it exited." --preview-window="bottom:4:wrap"'
 
 # Package Manager
 # ===============
@@ -44,7 +48,7 @@ alias pacfzf='pacman -Q | fzf --preview "pacman -Qii {1}"'
 alias pacache='du -sh /var/cache/pacman/pkg'
 # remove redundant entries (multiple /usr/bin or /usr/share/ duplicates)
 alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
-alias paclogs='cat /var/log/pacman.log | fzf --preview "echo {3..}"'
+alias paclogs='cat /var/log/pacman.log | fzf --preview "echo {3..}" --preview-window="bottom:5:wrap"'
 
 # CP or Leetcode
 # ==============
@@ -86,6 +90,7 @@ alias gitP='git push'
 alias gitb='git branch'
 alias gitsw='git switch'
 alias gitss='git show --stat -p'
+alias gitrs='git restore --staged'
 
 # show the number of commits
 alias gitcount='git rev-list --count HEAD'
