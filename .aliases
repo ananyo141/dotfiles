@@ -125,7 +125,7 @@ alias gitu='git add . && git commit && git push'
 
 #             LOG
 #             ===
-alias gitl='git log --stat --graph'
+alias gitl='git log --stat --graph --color'
 
 # track a file changes accross commits
 alias gitlf='git log --follow --stat -p --'
@@ -134,7 +134,7 @@ alias gitlf='git log --follow --stat -p --'
 # add --all at end to search all branches, -i for ignorecase
 alias gitlg='git log --stat --grep'
 # fuzzy search for a commit in git
-alias gitfzf='git log --oneline | fzf --prompt="Search > " --preview "git show --stat --color -p {1}" | cut -f1 -d " "'
+alias gitfzf='git log --pretty="format:* %C(yellow)%h%Creset %s" --color | fzf --ansi --prompt="Search > " --preview "git show --stat --color --pretty=\"Commit: %C(green)%H%Creset%nAuthor: %C(green)%an%Creset <%ce>%nTime: %C(green)%ah%Creset\" -p {2}" | cut -f2 -d " "'
 
 #            STASH
 #            =====
