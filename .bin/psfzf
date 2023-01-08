@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# ps format options
+# see man ps for more info
+PS_SHORT_FMT="pid,ppid,user,comm"
+PS_DETAILED_FMT="pid,ppid,user,group,start,etime,%cpu,%mem,cmd"
+
+# fzf preview options
+PREVIEW_WINDOW="bottom:4:wrap"
+PREVIEW_CMD="ps -o $PS_DETAILED_FMT -p {1} || echo Cannot preview {1} because it exited"
+HEADER="Press Ctrl-R to reload"
+
+main() {
+  # Entry point
+  # Output current system processes
+  ps -eo "$PS_SHORT_FMT" | \
+
+  # fuzzy select process with command name
+  # use ctrl-r to reload running processes
+  fzf \
+    --header-lines=1 \
+    --preview "$PREVIEW_CMD" \
+    --preview-window="$PREVIEW_WINDOW" \
+    --header "$HEADER" \
+    --bind "ctrl-r:reload(eval ps -eo $PS_SHORT_FMT)" | \
+
+  # print selected process id
+  awk "{print \$1}"
+}
+
+main
+

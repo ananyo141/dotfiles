@@ -38,7 +38,7 @@ alias pfind='pgrep -a'
 # find which program is using a resource
 alias puser='fuser -uv'
 # fuzzy find processes
-alias psfzf='ps -eo pid,ppid,user,comm | fzf --header-lines=1 --preview="ps -o pid,ppid,user,group,start,etime,%cpu,%mem,cmd -p {1} || echo Cannot preview {1} because it exited." --preview-window="bottom:4:wrap" --header "Press Ctrl-R to reload" --bind "ctrl-r:reload(eval ps -eo pid,ppid,user,comm)" | awk "{print \$1}"'
+# ** moved to scripts directory .bin/psfzf **
 
 # Package Manager
 # ===============
@@ -134,7 +134,7 @@ alias gitlf='git log --follow --stat -p --'
 # add --all at end to search all branches, -i for ignorecase
 alias gitlg='git log --stat --grep'
 # fuzzy search for a commit in git
-alias gitfzf='git log --pretty="format:* %C(yellow)%h%Creset - %as - %s" --color | fzf --ansi --prompt="Search > " --preview "git show --stat --color --pretty=\"%C(yellow)Commit: %H%Creset%nParent: %C(green)%P%Creset%nAuthor: %C(white)%an%Creset <%ce>%nTime: %ah\" -p {2}" | cut -f2 -d " "'
+# ** moved to scripts directory .bin/gitfzf **
 
 #            STASH
 #            =====

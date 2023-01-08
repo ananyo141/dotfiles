@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# flags to enable custom colored display
+# see man pages for git log, show for more options
+LOG_PRETTY='format:* %C(yellow bold)%h%Creset - %C(magenta)%as%Creset - %s'
+SHOW_PRETTY='%C(yellow)Commit: %H%Creset%n'`
+            `'Parent: %C(green)%P%Creset%n'`
+            `'Author: %C(white)%an%Creset <%ce>%n'`
+            `'Time: %C(ul)%ah%n%n%Creset'`
+            `'%C(italic brightmagenta)%B%Creset'
+
+# build show flags for fzf preview window
+SHOW_FLAGS="--stat --color --pretty=\"$SHOW_PRETTY\""
+
+# fzf prompt
+FZF_PROMPT='Search > '
+
+# Check if in a git repo
+check_git() {
+  if ! git -C "$1" rev-parse --is-inside-work-tree &> /dev/null; then
+      echo "Error: Not a git repository" >&2
+      exit 1
+  fi
+}
+
+main() {
+  # Entry point
+  # if no arguments, use current directory
+  local gitdir=${1:-$PWD}
+  check_git "$gitdir"
+
+  # generate one-line logs
+  git -C "$gitdir" \
+    log --color --pretty="$LOG_PRETTY" | \
+
+  # pipe into fzf
+  fzf \
+    --ansi \
+    --height 100% \
+    --prompt="$FZF_PROMPT" \
+    --preview "git -C $gitdir show $SHOW_FLAGS -p {2}" | \
+
+  # pipe into cut to get the commit hash
+  cut -f2 -d " "
+}
+
+main "$@"
