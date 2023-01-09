@@ -42,6 +42,7 @@
 " first clear any existing autocommands:
 autocmd!
 
+let g:mapleader = " "
 nnoremap <silent> <F7> :source $MYVIMRC<CR>
 
 " Set syntax recognition on
