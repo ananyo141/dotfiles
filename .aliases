@@ -105,8 +105,8 @@ alias gitchp='git checkout -p'
 
 #             DIFF
 #             ====
-alias gitd='git diff'
-alias gitds='git diff --staged'
+alias gitd='git diff --stat -p'
+alias gitds='git diff --stat --staged -p'
 
 #             ADD
 #             ===
