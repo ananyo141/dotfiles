@@ -44,7 +44,7 @@ alias puser='fuser -uv'
 # ===============
 alias pacupd='sudo pacman -Syu --noconfirm'
 alias pacups='checkupdates | fzf --preview "pacman -Qii {1}"'
-alias pacfzf='pacman -Q | fzf --preview "pacman -Qii {1}" | cut -f1 -d " "'
+alias pacfzf='pacman -Q --color=always | fzf --ansi --preview "pacman -Qii {1}" | cut -f1 -d " "'
 alias pacache='du -sh /var/cache/pacman/pkg'
 # remove redundant entries (multiple /usr/bin or /usr/share/ duplicates)
 alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'

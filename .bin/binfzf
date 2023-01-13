@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+main() {
+  # list the contents of /usr/bin directory
+  # use detailed listing with colors
+  ls -hl --color /usr/bin | \
+
+  # use fzf to preview and see which
+  # installed package owns the binary
+  fzf --ansi \
+      --header-lines 1 \
+      --preview "pacman -Qo {-1}" \
+      --preview-window "bottom:5:border-double" \
+      --preview-label " Package Name "
+}
+
+main
