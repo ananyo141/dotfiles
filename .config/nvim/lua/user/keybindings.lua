@@ -112,3 +112,10 @@ nkeymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- keep cursor in place while joining lines
 nkeymap.set("n", "J", "mzJ`z")
 
+-- compile current file with g++
+nkeymap.set("n", "<F5>", function()
+  local bufname = vim.fn.expand("%:p")
+  local command = string.format("g++ -O2 -Wall %s && ./a.out <input.out >output.out", bufname)
+  vim.fn.jobstart(command)
+  print("Compiling " .. bufname)
+end)
