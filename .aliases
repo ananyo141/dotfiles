@@ -48,12 +48,16 @@ alias pacfzf='pacman -Q --color=always | fzf --ansi --preview "pacman -Qii {1}" 
 alias pacache='du -sh /var/cache/pacman/pkg'
 # remove redundant entries (multiple /usr/bin or /usr/share/ duplicates)
 alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
-alias paclogs='cat /var/log/pacman.log | fzf --preview "echo {3..}" --preview-window="bottom:5:wrap"'
+alias paclogs='tac /var/log/pacman.log | fzf --preview "echo {3..}" --preview-window="bottom:5:wrap"'
+# requires pacutils package
+alias cpaclogs='paclog --color | tac | fzf --preview "echo {3..}" --preview-window="bottom:5:wrap" --ansi'
 
 # CP or Leetcode
 # ==============
 alias gs++='g++ -Wall -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer'
 alias gdl='g++ -g leetcode.cpp && gdb -q ./a.out --tui'
+# use cgdb as gdb frontend
+alias cgdl='g++ -g leetcode.cpp && cgdb -q ./a.out'
 # mneumonic for (g)cc (c)ompile (lc) leetcode (ch) codechef
 alias gclc='g++ leetcode.cpp && ./a.out'
 alias gcch='g++ codechef.cpp && ./a.out <inp.out | cat -A'
