@@ -22,6 +22,7 @@ alias py='python3'
 alias x='exa --icons'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
 alias hypstat='hyperfine -N --warmup 5'
+alias info='info --vi-keys'
 # always inform if files are identical
 alias diff='diff -s'
 alias journalfzf='journalctl | fzf --preview "echo {6..}" --preview-window="bottom:4:wrap"'
@@ -48,6 +49,7 @@ alias pacfzf='pacman -Q --color=always | fzf --ansi --preview "pacman -Qii {1}" 
 alias pacache='du -sh /var/cache/pacman/pkg'
 # remove redundant entries (multiple /usr/bin or /usr/share/ duplicates)
 alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
+alias paclog='paclog --color | less -R'
 alias paclogs='tac /var/log/pacman.log | fzf --preview "echo {3..}" --preview-window="bottom:5:wrap"'
 # requires pacutils package
 alias cpaclogs='paclog --color | tac | fzf --preview "echo {3..}" --preview-window="bottom:5:wrap" --ansi'
@@ -150,4 +152,3 @@ alias gitsts='git stash show -p --stat'
 
 # save the work in progress in a named stash
 alias gitsave='git stash push -um'
-
