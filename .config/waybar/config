@@ -1,12 +1,27 @@
 {
-    "modules-left": ["custom/arch", "custom/kernel", "memory", "cpu"],
+    "modules-left": ["custom/arch", "custom/kernel", "wlr/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/notification" ,"network", "custom/updates", "pulseaudio", "battery"],
+    "modules-right": ["custom/notification", "network", "custom/updates", "pulseaudio", "battery"],
 
     "clock": {
         "format": "{:%e %B %Y %I:%M %p}",
         "timezone": "Asia/Kolkata",
         "tooltip": false
+    },
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        }
     },
     "backlight": {
         "device": "intel_backlight",
@@ -43,7 +58,7 @@
         "tooltip": false
     },
     "custom/kernel": {
-        "exec": "uname -sr",
+        "exec": "uname -r",
         "format": "{}",
         "tooltip": false,
     },

@@ -17,6 +17,7 @@ window#waybar {
 
 #clock,
 #network,
+#workspaces,
 #pulseaudio,
 #backlight,
 #temperature,
@@ -25,6 +26,16 @@ window#waybar {
 #custom-weather,
 #custom-notification {
     padding: 0 15px;
+}
+
+#workspaces button {
+		padding-left: 0px;
+    background-color: transparent;
+    color: #bd93f9;
+}
+
+#workspaces button.active{
+    border-bottom: 3px solid white;
 }
 
 #cpu,
