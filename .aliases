@@ -20,11 +20,12 @@ alias rezsh='source ~/.zshrc'
 alias rebash='source ~/.bashrc'
 alias py='python3'
 alias x='exa --icons'
+alias xa='exa -larsmod --icons --git'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
 alias hypstat='hyperfine -N --warmup 5'
 alias info='info --vi-keys'
 # always inform if files are identical
-alias diff='diff -s'
+alias diff='diff -su --color'
 alias journalfzf='journalctl | fzf --preview "echo {6..}" --preview-window="bottom:4:wrap"'
 # use default fzf opts and fallbacks for handling different sorts of previews
 # try to preview file with bat; if fails try to list directory with exa; else
