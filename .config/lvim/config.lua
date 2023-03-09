@@ -6,7 +6,6 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
@@ -229,17 +228,16 @@ lvim.plugins = {
     end
   },
   {
-
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup({
-        enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
+        enabled = true,        -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
         execution_message = {
           message = function() -- message to print on save
             return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
           end,
-          dim = 0.18, -- dim the color of `message`
-          cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+          dim = 0.18,                                      -- dim the color of `message`
+          cleaning_interval = 1250,                        -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
         },
         trigger_events = { "InsertLeave", "TextChanged" }, -- vim events that trigger auto-save. See :h events
         -- function that determines whether to save the current buffer or not
@@ -251,18 +249,19 @@ lvim.plugins = {
 
           if fn.getbufvar(buf, "&modifiable") == 1 and
               utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
-            return true -- met condition(s), can save
+            return true            -- met condition(s), can save
           end
-          return false -- can't save
+          return false             -- can't save
         end,
         write_all_buffers = false, -- write all buffers when the current one meets `condition`
-        debounce_delay = 135, -- saves the file at most every `debounce_delay` milliseconds
-        callbacks = { -- functions to be executed at different intervals
-          enabling = nil, -- ran when enabling auto-save
-          disabling = nil, -- ran when disabling auto-save
+        debounce_delay = 135,      -- saves the file at most every `debounce_delay` milliseconds
+        callbacks = {
+          -- functions to be executed at different intervals
+          enabling = nil,              -- ran when enabling auto-save
+          disabling = nil,             -- ran when disabling auto-save
           before_asserting_save = nil, -- ran before checking `condition`
-          before_saving = nil, -- ran before doing the actual save
-          after_saving = nil -- ran after doing the actual save
+          before_saving = nil,         -- ran before doing the actual save
+          after_saving = nil           -- ran after doing the actual save
         }
       })
     end
@@ -277,10 +276,8 @@ lvim.plugins = {
         textobjects = {
           select = {
             enable = true,
-
             -- Automatically jump forward to textobj, similar to targets.vim
             lookahead = true,
-
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer",
@@ -299,7 +296,7 @@ lvim.plugins = {
             -- mapping query_strings to modes.
             selection_modes = {
               ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V', -- linewise
+              ['@function.outer'] = 'V',  -- linewise
               ['@class.outer'] = '<c-v>', -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
@@ -317,9 +314,46 @@ lvim.plugins = {
       }
     end
   },
+  {
+    'zbirenbaum/copilot.lua',
+    config = function()
+      require('copilot').setup({
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<Tab>",
+            accept_word = false,
+            accept_line = false,
+            next = "<C-n>",
+            prev = "<C-p>",
+            dismiss = "<C-E>",
+          },
+        },
+        event = "VimEnter",
+        config = function()
+          vim.defer_fn(function()
+            require("copilot").setup()
+          end, 100)
+        end,
+      })
+    end
+  },
+  { 'mbbill/undotree' },
+  {
+    'akinsho/flutter-tools.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('flutter-tools').setup {}
+    end
+  },
 }
 -- External Plugin Configs
 vim.g.qs_highlight_on_keys = { 'f', 'F', 't', 'T' }
+lvim.keys.normal_mode["<leader>u"] = ":UndotreeToggle<CR>"
+lvim.keys.normal_mode["\\f"] = ":FlutterOutlineToggle<CR>"
+
 vim.g["sneak#label"] = 1
 vim.g["sneak#use_ic_scs"] = 1
 -- remap sneak keys to preserve f,t repeat motions
