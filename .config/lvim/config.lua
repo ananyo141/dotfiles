@@ -65,7 +65,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -231,13 +231,13 @@ lvim.plugins = {
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup({
-        enabled = true,        -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
+        enabled = true, -- start auto-save when the plugin is loaded (i.e. when your package manager loads it)
         execution_message = {
           message = function() -- message to print on save
             return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
           end,
-          dim = 0.18,                                      -- dim the color of `message`
-          cleaning_interval = 1250,                        -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
+          dim = 0.18, -- dim the color of `message`
+          cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
         },
         trigger_events = { "InsertLeave", "TextChanged" }, -- vim events that trigger auto-save. See :h events
         -- function that determines whether to save the current buffer or not
@@ -249,19 +249,19 @@ lvim.plugins = {
 
           if fn.getbufvar(buf, "&modifiable") == 1 and
               utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
-            return true            -- met condition(s), can save
+            return true -- met condition(s), can save
           end
-          return false             -- can't save
+          return false -- can't save
         end,
         write_all_buffers = false, -- write all buffers when the current one meets `condition`
-        debounce_delay = 135,      -- saves the file at most every `debounce_delay` milliseconds
+        debounce_delay = 135, -- saves the file at most every `debounce_delay` milliseconds
         callbacks = {
           -- functions to be executed at different intervals
-          enabling = nil,              -- ran when enabling auto-save
-          disabling = nil,             -- ran when disabling auto-save
+          enabling = nil, -- ran when enabling auto-save
+          disabling = nil, -- ran when disabling auto-save
           before_asserting_save = nil, -- ran before checking `condition`
-          before_saving = nil,         -- ran before doing the actual save
-          after_saving = nil           -- ran after doing the actual save
+          before_saving = nil, -- ran before doing the actual save
+          after_saving = nil -- ran after doing the actual save
         }
       })
     end
@@ -296,7 +296,7 @@ lvim.plugins = {
             -- mapping query_strings to modes.
             selection_modes = {
               ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V',  -- linewise
+              ['@function.outer'] = 'V', -- linewise
               ['@class.outer'] = '<c-v>', -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
@@ -361,6 +361,40 @@ vim.keymap.set("n", "\\;", "<Plug>Sneak_;")
 vim.keymap.set("n", "\\,", "<Plug>Sneak_,")
 
 vim.keymap.set("n", "\\t", ":Telescope resume<CR>", { noremap = true })
+
+-- DAP Configuration
+-- local dap = require('dap')
+-- 
+-- dap.adapters.cppdbg = {
+--   id = 'cppdbg',
+--   type = 'executable',
+--   command = '/home/ananyo/.local/share/nvim/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+-- }
+-- 
+-- dap.configurations.cpp = {
+--   {
+--     name = "Launch file",
+--     type = "cppdbg",
+--     request = "launch",
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopAtEntry = true,
+--   },
+--   {
+--     name = 'Attach to gdbserver :1234',
+--     type = 'cppdbg',
+--     request = 'launch',
+--     MIMode = 'gdb',
+--     miDebuggerServerAddress = 'localhost:1234',
+--     miDebuggerPath = '/usr/bin/gdb',
+--     cwd = '${workspaceFolder}',
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--   },
+-- }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {

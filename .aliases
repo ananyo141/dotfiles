@@ -65,7 +65,7 @@ alias cgdl='g++ -g leetcode.cpp && cgdb -q ./a.out'
 alias gclc='g++ leetcode.cpp && ./a.out'
 alias gcch='g++ codechef.cpp && ./a.out <inp.out | cat -A'
 # start a counter for a problem, provide file argument as an alarm
-alias startcount='termdown 45m --title "Problem" && mpv'
+alias startcount='termdown 20m --title "Problem" && mpv'
 
 # Vim aliases
 # ===========

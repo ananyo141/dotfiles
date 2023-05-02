@@ -3,22 +3,22 @@ import:
 
 font:
   normal:
-    family: Comic Mono
-    style: Regular
+    family: UbuntuMono Nerd Font
+    style: Normal
 
   bold:
-    family: Comic Mono
+    family: UbuntuMono Nerd Font
     style: Bold
 
   italic:
-    family: Comic Mono
+    family: UbuntuMono Nerd Font
     style: Italic
 
   bold_italic:
-    family: Comic Mono
+    family: UbuntuMono Nerd Font
     style: Bold Italic
 
-  size: 14
+  size: 15
 
 window:
   opacity: 0.8
