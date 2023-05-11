@@ -8,6 +8,10 @@
 # when directly symlinked
 .config/tmux/plugins/
 
+# ignore lunarvim *lock files
+.config/lvim/lazy-lock.json
+.config/lvim/plugin/packer_compiled.lua
+
 # python cache
 __pycache__/
 *.py[o,c]
