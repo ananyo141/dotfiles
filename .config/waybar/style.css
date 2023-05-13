@@ -1,6 +1,6 @@
 * {
     font-family: "Font Awesome 5 Free";
-    font-size: 15px;
+    font-size: 17px;
 }
 
 window#waybar {
@@ -48,7 +48,7 @@ window#waybar {
 }
 
 #custom-arch {
-		font-size: 21px;
+		font-size: 23px;
 }
 
 #custom-kernel {
