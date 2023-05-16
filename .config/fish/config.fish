@@ -7,6 +7,7 @@ if status is-interactive
     if [ -z "$TMUX" ]
         tmux attach 2>/dev/null || tmux new-session 2>/dev/null
     end
+    pfetch
 end
 
 if test -e ~/.aliases
