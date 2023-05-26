@@ -54,7 +54,7 @@
     "pulseaudio": {
         "format": "  {volume}",
         "format-bluetooth": "  {volume}",
-        "format-muted": "",
+        "format-muted": "󰝟 ",
         "tooltip": false
     },
     "custom/kernel": {
