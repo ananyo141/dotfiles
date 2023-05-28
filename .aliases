@@ -98,7 +98,8 @@ alias gitb='git branch'
 alias gitsw='git switch'
 alias gitss='git show --stat -p'
 alias gitrs='git restore --staged'
-alias gituncommit='git reset --soft HEAD~'
+alias gitun='git reset --soft HEAD~'
+alias gitchose='git checkout $(gitfzf)'
 
 # show the number of commits
 alias gitcount='git rev-list --count HEAD'
