@@ -20,6 +20,7 @@ call minpac#add('vim-airline/vim-airline')
 call minpac#add('preservim/nerdtree')
 call minpac#add('bling/vim-bufferline') 
 call minpac#add('catppuccin/vim', {'as': 'catppuccin'}) 
+call minpac#add('unblevable/quick-scope') 
 
 " Plugin Configs
 if has('termguicolors')
@@ -55,3 +56,10 @@ let g:sneak#use_ic_scs = 1
 " define maps for sneak repeats to free up ; or , for f and t
 nnoremap \; <Plug>Sneak_;
 nnoremap \, <Plug>Sneak_,
+
+" quick-scope
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
