@@ -19,8 +19,8 @@ alias refish='source ~/.config/fish/config.fish'
 alias rezsh='source ~/.zshrc'
 alias rebash='source ~/.bashrc'
 alias py='python3'
-alias x='exa --icons'
-alias xa='exa -larsmod --icons --git'
+alias x='eza --icons'
+alias xa='eza -larsmod --icons --git'
 alias trees='tree -ahF -t --du --filesfirst -C | less -R'
 alias hypstat='hyperfine -N --warmup 5'
 alias info='info --vi-keys'
@@ -28,9 +28,9 @@ alias info='info --vi-keys'
 alias diff='diff -su --color'
 alias journalfzf='journalctl | fzf --preview "echo {6..}" --preview-window="bottom:4:wrap"'
 # use default fzf opts and fallbacks for handling different sorts of previews
-# try to preview file with bat; if fails try to list directory with exa; else
+# try to preview file with bat; if fails try to list directory with eza; else
 # output formatted text
-alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || exa --color=always --icons {} 2>/dev/null || echo {}"'
+alias fzf='fzf --preview "bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || eza --color=always --icons {} 2>/dev/null || echo {}"'
 
 # System Processes
 # get proc info from pid
@@ -50,7 +50,7 @@ alias pacfzf='pacman -Q --color=always | fzf --ansi --preview "pacman -Qii {1}" 
 alias pacache='du -sh /var/cache/pacman/pkg'
 alias mirrors='sudo reflector --verbose --sort rate --country India --latest 5 --save /etc/pacman.d/mirrorlist'
 # remove redundant entries (multiple /usr/bin or /usr/share/ duplicates)
-alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || exa --icons {2}"'
+alias pacfiles='pacman -Ql | sort -k2 | uniq -f1 | fzf --preview "bat --color=always {2} 2>/dev/null || eza --icons {2}"'
 alias paclog='paclog --color | less -R'
 alias paclogs='tac /var/log/pacman.log | fzf --preview "echo {3..}" --preview-window="bottom:5:wrap"'
 # requires pacutils package
