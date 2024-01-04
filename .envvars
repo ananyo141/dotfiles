@@ -1,6 +1,11 @@
-# PATH Variables
-export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/.emacs.d/bin"
+# Go Paths
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+# Python Paths
 export PYTHONPATH=$HOME
+
+# PATH Variables
+export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/.cargo/bin:$GOPATH/bin"
 
 # ignore duplicates in history and increase record
 export HISTCONTROL=ignoredups
