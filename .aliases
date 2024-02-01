@@ -45,7 +45,7 @@ alias puser='fuser -uv'
 # Package Manager
 # ===============
 alias pacupd='sudo pacman -Syu --noconfirm'
-alias pacups='checkupdates | fzf --preview "pacman -Qii {1}"'
+alias pacups='checkupdates --nocolor | fzf --preview "pacman -Qii {1}"'
 alias pacfzf='pacman -Q --color=always | fzf --ansi --preview "pacman -Qii {1}" | cut -f1 -d " "'
 alias pacache='du -sh /var/cache/pacman/pkg'
 alias mirrors='sudo reflector --verbose --sort rate --country India --latest 5 --save /etc/pacman.d/mirrorlist'
