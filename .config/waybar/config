@@ -1,5 +1,5 @@
 {
-    "modules-left": ["custom/arch", "custom/kernel", "wlr/workspaces"],
+    "modules-left": ["custom/arch", "custom/kernel", "memory", "wlr/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["custom/notification", "network", "custom/updates", "pulseaudio", "battery"],
 
@@ -33,7 +33,7 @@
         "tooltip": false
     },
     "memory": {
-        "format": " {used}G",
+        "format": "  {used}G",
         "tooltip": false
     },
     "battery": {
