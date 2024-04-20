@@ -33,7 +33,7 @@
         "tooltip": false
     },
     "memory": {
-        "format": "  {used}G",
+        "format": "󰘚  {used}G",
         "tooltip": false
     },
     "battery": {
