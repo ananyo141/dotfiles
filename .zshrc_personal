@@ -39,6 +39,19 @@ to appropritate file extensions
 	gdb --silent "$binaryname"
 }
 
+# Function to open nvim with selected config
+function nvims() {
+  items=("default" "kickstart.nvim" "lazyvim" "nvchad" "astronvim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config >> " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config=""
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
 # Source aliases for zshrc
 [[ -f ~/.aliases ]] && source ~/.aliases
 
