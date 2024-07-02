@@ -13,6 +13,13 @@ alias disks='lsblk | grep -v loop'
 # print first line of df unaffected, then sorts by most 'Usage' field
 alias diskf='echo -e "$(df -h | head -1)" && df -h | tail +2 | grep -v loop | sort -hrk3'
 
+# Neovim Configurations
+# =====================
+alias lzvim="NVIM_APPNAME=lazyvim nvim"
+alias kvim="NVIM_APPNAME=kickstart.nvim nvim"
+alias nvchad="NVIM_APPNAME=nvchad nvim"
+alias avim="NVIM_APPNAME=astronvim nvim"
+
 # Utilities
 # =========
 alias refish='source ~/.config/fish/config.fish'
