@@ -1,14 +1,19 @@
--- Clear previous autocommands 
--- in case of config reload
-vim.api.nvim_clear_autocmds {}
+require "config.options"
+require "config.keymaps"
+require "config.user_commands"
+require "config.abbreviations"
+require "config.autocommands"
 
--- Settings
-vim.g.mapleader = " " -- make space leader key
+-- [[ Install `lazy.nvim` plugin manager ]]
+--    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+end ---@diagnostic disable-next-line: undefined-field
+vim.opt.rtp:prepend(lazypath)
 
-require("user.options")         -- editor options
-require("user.exec_cmd")        -- execute vim commands
-require("user.keybindings")     -- custom keymaps
-require("user.user_commands")   -- custom ex commands
-require("user.autocommands")    -- user autocommands
-require("user.abbreviations")   -- abbreviations
-
+require("lazy").setup({
+    spec = "plugins",
+    change_detection = { notify = false }
+})

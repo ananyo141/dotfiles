@@ -20,4 +20,3 @@ abbrev('ifname', "if __name__ == '__main__':")
 abbrev('defini', "def __init__(self):")
 abbrev('definis', "def __init__(self,")
 abbrev('inis', "__init__(self,")
-
