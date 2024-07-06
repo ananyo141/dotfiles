@@ -2,8 +2,7 @@
    'akinsho/toggleterm.nvim', 
    event = "VeryLazy",
    version = "*",
-   config = function()
-     require("toggleterm").setup{
+   opts = {
       open_mapping = [[<c-\>]],
       shell = vim.o.shell,
       auto_scroll = true,
@@ -21,6 +20,5 @@
       float_opts = {
          border = 'curved',
        }
-     }
-   end
+   }
  }

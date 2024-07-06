@@ -9,8 +9,18 @@ return {
     --   If not available, we use `mini` as the fallback
     "rcarriga/nvim-notify",
     },
-  config = function()
-    require("noice").setup({
+  opts = {
+      routes = {
+        {
+          filter = {
+              event = "msg_show",
+              find = "Autosaved",
+          },
+          opts = {
+              skip = true,
+          },
+        },
+      },
       lsp = {
         hover = {
           -- Set not show a message if hover is not available
@@ -30,8 +40,7 @@ return {
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
         inc_rename = false, -- enables an input dialog for inc-rename.nvim
-        lsp_doc_border = false, -- add a border to hover docs and signature help
+        lsp_doc_border = true, -- add a border to hover docs and signature help
       },
-    })
-  end
+  }
 }
