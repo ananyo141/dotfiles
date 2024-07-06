@@ -2,6 +2,7 @@ local map = function(keypress, command, mode, opts)
   vim.keymap.set(mode or 'n', keypress, command, opts or { noremap = true, silent = true })
 end
 
+map("<leader>;", ":e $MYVIMRC<CR>")
 map('<Enter>', ':w<CR>')
 map('<C-N>', ':bnext<CR>')
 map('<C-P>', ':bprev<CR>')
@@ -42,15 +43,12 @@ map("<C-K>", "<C-\\><C-N><C-W><C-K>", "t")
 map("<C-H>", "<C-\\><C-N><C-W><C-H>", "t")
 map("<C-L>", "<C-\\><C-N><C-W><C-L>", "t")
 
-
 -- scoot visually selected lines
 map("J", ":m '>+1<CR>gv=gv", "v")
 map("K", ":m '<-2<CR>gv=gv", "v")
 
 -- keep cursor in place while joining lines
 map("J", "mzJ`z")
-
-
 
 -- Function to close buffers to the right
 local function close_buffers_to_the_right()
