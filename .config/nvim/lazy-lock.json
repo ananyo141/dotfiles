@@ -9,6 +9,7 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "05a9ab28b53f71d1aece421ef32fee2cb857a843" },
   "conform.nvim": { "branch": "master", "commit": "cd75be867f2331b22905f47d28c0c270a69466aa" },
+  "copilot.lua": { "branch": "master", "commit": "86537b286f18783f8b67bccd78a4ef4345679625" },
   "dropbar.nvim": { "branch": "master", "commit": "79847a78ec0c58f5e5c0360192b03d0cee803e95" },
   "fidget.nvim": { "branch": "main", "commit": "c12f8a58ee472ce5983c3a3f3aad0ff6c49a6a83" },
   "flash.nvim": { "branch": "main", "commit": "ec0bf2842189f65f60fd40bf3557cac1029cc932" },
