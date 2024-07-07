@@ -1,5 +1,6 @@
 return { -- Autocompletion
     'hrsh7th/nvim-cmp',
+    version = false, -- last release is very old
     event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source

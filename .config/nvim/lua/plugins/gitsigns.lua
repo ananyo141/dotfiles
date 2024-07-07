@@ -4,6 +4,7 @@
 
 return {
     'lewis6991/gitsigns.nvim',
+    event = 'BufEnter',
     opts = {
       attach_to_untracked = false,
       current_line_blame = true, -- Enables line blame
