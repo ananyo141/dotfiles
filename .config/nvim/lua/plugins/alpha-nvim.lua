@@ -1,8 +1,8 @@
 return {
   'goolord/alpha-nvim',
   event = 'VimEnter',
-  dependencies = { 
-    'nvim-tree/nvim-web-devicons', 
+  dependencies = {
+    'nvim-tree/nvim-web-devicons',
     'MaximilianLloyd/ascii.nvim',
   },
   config = function()
@@ -14,12 +14,12 @@ return {
 
     -- Set menu
     dashboard.section.buttons.val = {
-      dashboard.button("e", "New file", ":ene <BAR> startinsert <CR>"),
-      dashboard.button("f", "Find file", ":Telescope find_files<CR>"),
-      dashboard.button("r", "Recent files", ":Telescope oldfiles<CR>"),
-      dashboard.button("s", "Restore session", [[<cmd>lua require("persistence").load({ last = true })<cr>]]),
-      dashboard.button("c", "Config", ":e $MYVIMRC<CR>"),
-      dashboard.button("q", "Quit", ":qa<CR>"),
+      dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+      dashboard.button("f", "󱁴  Find file", ":Telescope find_files<CR>"),
+      dashboard.button("r", "󱋡  Recent files", ":Telescope oldfiles<CR>"),
+      dashboard.button("s", "  Restore session", [[<cmd>lua require("persistence").load({ last = true })<cr>]]),
+      dashboard.button("c", "  Config", ":e $MYVIMRC<CR>"),
+      dashboard.button("q", "󰈆  Quit", ":qa<CR>"),
     }
 
     -- Set footer
