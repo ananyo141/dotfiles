@@ -11,6 +11,18 @@ return {
       mode = '',
       desc = '[F]ormat buffer',
     },
+    {
+      '<leader>lk',
+      vim.diagnostic.goto_prev,
+      mode = 'n',
+      desc = 'Go to previous diagnostic message',
+    },
+    {
+      '<leader>lj',
+      vim.diagnostic.goto_next,
+      mode = 'n',
+      desc = 'Go to next diagnostic message',
+    },
   },
   opts = {
     notify_on_error = false,
@@ -28,11 +40,11 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
+      python = { "isort", "black" },
       --
       -- You can use a sub-list to tell conform to run *until* a formatter
       -- is found.
-      -- javascript = { { "prettierd", "prettier" } },
+      javascript = { { "prettierd", "prettier" } },
     },
   }
 }

@@ -3,9 +3,17 @@
 -- config. This will add also the recommended keymaps.
 
 return {
-  {
     'lewis6991/gitsigns.nvim',
     opts = {
+      attach_to_untracked = false,
+      current_line_blame = true, -- Enables line blame
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+        delay = 800,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+      },
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 
@@ -34,10 +42,10 @@ return {
 
         -- Actions
         -- visual mode
-        map('v', '<leader>hs', function()
+        map('v', '<leader>gs', function()
           gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'stage git hunk' })
-        map('v', '<leader>hr', function()
+        map('v', '<leader>gr', function()
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = 'reset git hunk' })
         -- normal mode
@@ -57,5 +65,4 @@ return {
         map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
       end,
     },
-  },
 }
