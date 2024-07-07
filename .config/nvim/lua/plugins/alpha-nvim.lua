@@ -1,19 +1,16 @@
 return {
   'goolord/alpha-nvim',
   event = 'VimEnter',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 
+    'nvim-tree/nvim-web-devicons', 
+    'MaximilianLloyd/ascii.nvim',
+  },
   config = function()
     local alpha = require('alpha')
     local dashboard = require('alpha.themes.dashboard')
 
     -- Set header
-    dashboard.section.header.val = {
-      [[ _   _                          _             ]],
-      [[| \ | |   ___    ___   __   __ (_)  _ __ ___  ]],
-      [[|  \| |  / _ \  / _ \  \ \ / / | | | '_ ` _ \ ]],
-      [[| |\  | |  __/ | (_) |  \ V /  | | | | | | | |]],
-      [[|_| \_|  \___|  \___/    \_/   |_| |_| |_| |_|]],
-    }
+    dashboard.section.header.val = require('ascii').get_random_global()
 
     -- Set menu
     dashboard.section.buttons.val = {
@@ -26,7 +23,7 @@ return {
     }
 
     -- Set footer
-    dashboard.section.footer.val = "Welcome to Neovim"
+    dashboard.section.footer.val = "Welcome to Neovim!"
 
     -- Apply theme
     alpha.setup(dashboard.opts)
