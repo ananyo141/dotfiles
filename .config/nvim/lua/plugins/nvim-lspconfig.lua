@@ -44,6 +44,9 @@ return {
         --  Useful when your language has ways of declaring types without an actual implementation.
         map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
+        -- Open diagnostic error in a floating window
+        map('gl', vim.diagnostic.open_float, 'Open Diagnostic')
+
         -- Jump to the type of the word under your cursor.
         --  Useful when you're not sure what type a variable is and you want to see
         --  the definition of its *type*, not where it was *defined*.
