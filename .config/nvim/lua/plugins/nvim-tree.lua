@@ -9,7 +9,7 @@ return  {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
-  -- Configuration options for nvim-tree
+    -- Configuration options for nvim-tree
     sync_root_with_cwd = true,
     disable_netrw = true,
     hijack_netrw = true,
@@ -18,7 +18,7 @@ return  {
     update_cwd = true,
     update_focused_file = {
       enable = true,
-      update_cwd = true,
+      -- update_cwd = true,
     },
     view = {
       width = 30,
