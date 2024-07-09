@@ -1,3 +1,7 @@
+# Locale Settings
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
 # Go Paths
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
