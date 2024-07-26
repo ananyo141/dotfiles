@@ -1,8 +1,17 @@
+local virtual_text_enabled = false
+
+local function toggle_virtual_text()
+    virtual_text_enabled = not virtual_text_enabled
+    vim.diagnostic.config({
+        virtual_text = virtual_text_enabled and {
+            prefix = ' ',
+        } or false,
+    })
+    print("Virtual text " .. (virtual_text_enabled and "enabled" or "disabled"))
+end
+
 vim.diagnostic.config {
-  virtual_text = false,
-  -- virtual_text = {
-  --   prefix = ' ',
-  -- },
+  virtual_text = virtual_text_enabled,
   underline = true,
   signs = true,
   update_in_insert = false,
@@ -29,3 +38,6 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = "rounded",
 })
+
+-- Map key for toggling virtual text
+vim.keymap.set('n', '<leader>th', toggle_virtual_text, {noremap = true, silent = true, desc = '[T]oggle virtual [h]ints'})
