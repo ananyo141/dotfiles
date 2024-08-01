@@ -11,6 +11,7 @@ return  {
   opts = {
     -- Configuration options for nvim-tree
     sync_root_with_cwd = true,
+    respect_buf_cwd = true,
     disable_netrw = true,
     hijack_netrw = true,
     open_on_tab = false,
@@ -19,6 +20,7 @@ return  {
     update_focused_file = {
       enable = true,
       -- update_cwd = true,
+    update_root = true
     },
     view = {
       width = 30,
