@@ -127,8 +127,9 @@ execute 'set listchars+=tab:' . nr2char(187) . nr2char(183)
 " have the mouse enabled all the time:
 set mouse=a
 
-" don't have files trying to override this .vimrc:
-set nomodeline
+" set filetype as per file directive
+set modeline
+set modelines=5
 
 " * Text Formatting -- General
 
@@ -184,6 +185,7 @@ inoremap (<CR> (<CR>)<C-o>O
 set formatoptions-=t
 set formatoptions-=o
 set textwidth=79
+set noswapfile
 
 " get rid of the default style of C comments, and define a style with two stars
 " at the start of `middle' rows which (looks nicer and) avoids asterisks used
@@ -492,6 +494,12 @@ function! s:VSetSearch(cmdtype)
     let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
     let @s = temp
 endfunction
+
+" Auto-install minpac
+let s:minpac_dir = expand('~/.vim/pack/minpac/opt/minpac')
+if empty(glob(s:minpac_dir))
+  execute '!git clone https://github.com/k-takata/minpac.git' s:minpac_dir
+endif
 
 " Load vim plugins file if present (disable for nvim)
 let vimplug_file = '~/.vimplugs'
