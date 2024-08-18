@@ -99,7 +99,7 @@ vim.opt.shortmess:append("r")   -- enable short message
 vim.opt.relativenumber = true
 
 -- Stop at underscores in words
-vim.opt.iskeyword:remove('_')
+-- vim.opt.iskeyword:remove('_')
 
 -- normally don't automatically format `text' as it is typed, IE only do this
 -- with comments, at 79 characters:
