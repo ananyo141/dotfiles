@@ -62,7 +62,7 @@ return {
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map('<leader>lr', vim.lsp.buf.rename, '[R]ename')
+        -- map('<leader>lr', vim.lsp.buf.rename, '[R]ename') -- NOTE: Using `IncRename` plugin instead
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
