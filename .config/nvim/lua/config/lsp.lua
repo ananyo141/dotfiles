@@ -40,4 +40,8 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 -- Map key for toggling virtual text
-vim.keymap.set('n', '<leader>th', toggle_virtual_text, {noremap = true, silent = true, desc = '[T]oggle virtual [h]ints'})
+vim.keymap.set('n', '<leader>th', toggle_virtual_text, {
+  noremap = true,
+  silent = true,
+  desc = '[T]oggle virtual [h]ints'
+})
