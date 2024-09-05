@@ -1,4 +1,4 @@
-local virtual_text_enabled = false
+local virtual_text_enabled = true
 
 local function toggle_virtual_text()
     virtual_text_enabled = not virtual_text_enabled

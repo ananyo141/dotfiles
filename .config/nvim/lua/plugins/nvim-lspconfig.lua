@@ -146,6 +146,22 @@ return {
       -- But for many setups, the LSP (`tsserver`) will work just fine
       -- tsserver = {},
       --
+
+      -- Disable warnings for long lines in Python
+      pylsp = {
+        settings = {
+          pylsp = {
+            plugins = {
+              pycodestyle = {
+                enabled = true,
+                ignore = {'W391', 'E501'},
+                maxLineLength = 100
+              }
+            }
+          }
+        }
+      },
+
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
