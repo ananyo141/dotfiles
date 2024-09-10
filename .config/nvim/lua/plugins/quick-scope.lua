@@ -1,4 +1,4 @@
 return {
-  'unblevable/quick-scope',
-  event = 'BufEnter',
+	"unblevable/quick-scope",
+	event = "BufEnter",
 }

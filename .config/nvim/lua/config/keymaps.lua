@@ -1,15 +1,15 @@
 local map = function(keypress, command, mode, opts)
-  vim.keymap.set(mode or 'n', keypress, command, opts or { noremap = true, silent = true })
+	vim.keymap.set(mode or "n", keypress, command, opts or { noremap = true, silent = true })
 end
 
 map("<leader>;", ":e $MYVIMRC<CR>")
-map('<Enter>', ':w<CR>')
-map('<C-N>', ':bnext<CR>')
-map('<C-P>', ':bprev<CR>')
-map('<leader>c', ':bdelete<CR>')
-map('<leader>q', ':close<CR>')
-map('\\o', 'o<Esc>k')  -- insert newline one line down
-map('\\O', 'O<Esc>j')  -- insert newline one line up
+map("<Enter>", ":w<CR>")
+map("<C-N>", ":bnext<CR>")
+map("<C-P>", ":bprev<CR>")
+map("<leader>c", ":bdelete<CR>")
+map("<leader>q", ":close<CR>")
+map("\\o", "o<Esc>k") -- insert newline one line down
+map("\\O", "O<Esc>j") -- insert newline one line up
 
 map("<BS>", "<PageUp>")
 map("Q", "gqap")

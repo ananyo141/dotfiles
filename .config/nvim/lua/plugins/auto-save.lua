@@ -4,7 +4,7 @@ return {
 		execution_message = {
 			message = function() -- message to print on save
 				-- return ("AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
-				return ("Autosaved")
+				return "Autosaved"
 			end,
 			dim = 0.18, -- dim the color of `message`
 			cleaning_interval = 1250, -- (milliseconds) automatically clean MsgArea after displaying `message`. See :h MsgArea
@@ -18,10 +18,10 @@ return {
 		condition = function(buf)
 			local fn = vim.fn
 			local utils = require("auto-save.utils.data")
-      -- don't save non-normal buffers
-      if vim.bo[buf].buftype ~= "" then
-        return false
-      end
+			-- don't save non-normal buffers
+			if vim.bo[buf].buftype ~= "" then
+				return false
+			end
 			if fn.getbufvar(buf, "&modifiable") == 1 and utils.not_in(fn.getbufvar(buf, "&filetype"), {}) then
 				return true -- met condition(s), can save
 			end

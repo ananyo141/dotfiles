@@ -1,14 +1,14 @@
 return {
-  "folke/flash.nvim",
-  event = "BufEnter",
-  ---@type Flash.Config
-  opts = {
-    modes = {
-      char = {
-        enabled = false,
-      },
-    },
-  },
+	"folke/flash.nvim",
+	event = "BufEnter",
+	---@type Flash.Config
+	opts = {
+		modes = {
+			char = {
+				enabled = false,
+			},
+		},
+	},
   -- stylua: ignore
   keys = {
     { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash", nowait = true },
