@@ -96,6 +96,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 		vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch existing buffers" })
 		vim.keymap.set("n", "<leader>sx", builtin.lsp_references, { desc = "[S]earch references" })
+		vim.keymap.set("n", "<leader>sy", builtin.lsp_document_symbols, { desc = "[S]earch S[y]mbols" })
 
 		-- Slightly advanced example of overriding default behavior and theme
 		vim.keymap.set("n", "<leader>/", function()
