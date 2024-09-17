@@ -1,5 +1,6 @@
 # ignore .bak extension files
 *.bak
+.DS_Store
 
 # (n)vim session files
 *.vim
