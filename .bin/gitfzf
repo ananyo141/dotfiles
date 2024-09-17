@@ -38,6 +38,7 @@ main() {
     --ansi \
     --height 100% \
     --prompt="$FZF_PROMPT" \
+    --preview-window=up:80% \
     --preview "git -C $gitdir show $SHOW_FLAGS -p {2}" | \
 
   # pipe into cut to get the commit hash
