@@ -6,11 +6,13 @@ return {
 		"MaximilianLloyd/ascii.nvim",
 	},
 	config = function()
+		local utils = require("utils")
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
 
 		-- Set header
-		dashboard.section.header.val = require("ascii").get_random_global()
+		dashboard.section.header.val =
+			utils.merge_tables(require("ascii").get_random_global(), require("alpha.fortune")())
 
 		-- Set menu
 		dashboard.section.buttons.val = {
@@ -27,7 +29,16 @@ return {
 		}
 
 		-- Set footer
-		dashboard.section.footer.val = "Welcome to Neovim!"
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "LazyVimStarted",
+			callback = function()
+				local stats = require("lazy").stats()
+				local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+				dashboard.section.footer.val =
+					string.format("     ⚡ Neovim loaded %d/%d plugins in %.2fms", stats.loaded, stats.count, ms)
+				pcall(vim.cmd.AlphaRedraw)
+			end,
+		})
 
 		-- Apply theme
 		alpha.setup(dashboard.opts)
