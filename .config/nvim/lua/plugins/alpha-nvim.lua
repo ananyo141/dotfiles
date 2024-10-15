@@ -43,6 +43,14 @@ return {
 		-- Apply theme
 		alpha.setup(dashboard.opts)
 
+		for _, button in ipairs(dashboard.section.buttons.val) do
+			button.opts.hl = "AlphaButtons"
+			button.opts.hl_shortcut = "AlphaShortcut"
+		end
+		dashboard.section.header.opts.hl = "AlphaHeader"
+		dashboard.section.buttons.opts.hl = "AlphaButtons"
+		dashboard.opts.layout[1].val = 99
+
 		-- Disable folding on alpha buffer
 		vim.cmd([[
       autocmd FileType alpha setlocal nofoldenable
