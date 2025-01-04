@@ -1,8 +1,12 @@
 return { -- Useful plugin to show you pending keybinds.
 	"folke/which-key.nvim",
-	event = "VimEnter", -- Sets the loading event to 'VimEnter'
-	config = function() -- This is the function that runs, AFTER loading
+	event = "VeryLazy",
+	opts = {
+		preset = "modern",
+	},
+	config = function(_, opts) -- This is the function that runs, AFTER loading
 		local wk = require("which-key")
+		wk.setup(opts)
 		wk.add({
 			{ "<leader>b", group = "[B]uffer" },
 			{ "<leader>b_", hidden = true },
