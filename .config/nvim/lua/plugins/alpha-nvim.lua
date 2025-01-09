@@ -22,7 +22,7 @@ return {
 			dashboard.button(
 				"s",
 				"  Restore session",
-				[[<cmd>lua require("persistence").load({ last = true })<cr>]]
+				[[<cmd>lua require("persistence").load()<cr>]]
 			),
 			dashboard.button("c", "  Config", ":e $MYVIMRC<CR>"),
 			dashboard.button("q", "󰈆  Quit", ":qa<CR>"),
