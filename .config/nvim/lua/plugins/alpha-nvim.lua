@@ -2,7 +2,7 @@ return {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
 	dependencies = {
-		"nvim-tree/nvim-web-devicons",
+		"echasnovski/mini.nvim", -- Required for icons
 		"MaximilianLloyd/ascii.nvim",
 	},
 	config = function()
@@ -19,11 +19,7 @@ return {
 			dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
 			dashboard.button("f", "󱁴  Find file", ":Telescope find_files<CR>"),
 			dashboard.button("r", "󱋡  Recent files", ":Telescope oldfiles<CR>"),
-			dashboard.button(
-				"s",
-				"  Restore session",
-				[[<cmd>lua require("persistence").load()<cr>]]
-			),
+			dashboard.button("s", "  Restore session", [[<cmd>lua require("persistence").load()<cr>]]),
 			dashboard.button("c", "  Config", ":e $MYVIMRC<CR>"),
 			dashboard.button("q", "󰈆  Quit", ":qa<CR>"),
 		}
@@ -52,8 +48,6 @@ return {
 		dashboard.opts.layout[1].val = 99
 
 		-- Disable folding on alpha buffer
-		vim.cmd([[
-      autocmd FileType alpha setlocal nofoldenable
-    ]])
+		vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
 	end,
 }

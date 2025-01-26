@@ -1,6 +1,5 @@
-local map = function(keypress, command, mode, opts)
-	vim.keymap.set(mode or "n", keypress, command, opts or { noremap = true, silent = true })
-end
+local utils = require("utils")
+local map = utils.map_key
 
 map("<leader>;", ":e $MYVIMRC<CR>")
 map("<Enter>", ":w<CR>")

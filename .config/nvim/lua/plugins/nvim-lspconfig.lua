@@ -9,7 +9,7 @@ return {
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{ "j-hui/fidget.nvim", opts = {} },
+		-- { "j-hui/fidget.nvim", opts = {} },
 
 		-- `lazydev.nvim` is a plugin that properly configures LuaLS for editing your Neovim
 		-- config by lazily updating your workspace libraries.
