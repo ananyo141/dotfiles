@@ -66,7 +66,7 @@ return {
 				find = "yf", -- Find surrounding (to the right)
 				find_left = "yF", -- Find surrounding (to the left)
 				highlight = "yh", -- Highlight surrounding
-				replace = "css", -- Replace surrounding
+				replace = "cs", -- Replace surrounding
 				update_n_lines = "yn", -- Update `n_lines`
 
 				suffix_last = "l", -- Suffix to search with "prev" method
