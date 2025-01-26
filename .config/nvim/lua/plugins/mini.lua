@@ -74,6 +74,9 @@ return {
 			},
 		})
 
+		-- Split Join
+		require("mini.splitjoin").setup()
+
 		-- Simple and easy statusline.
 		local statusline = require("mini.statusline")
 		-- set use_icons to true if you have a Nerd Font
