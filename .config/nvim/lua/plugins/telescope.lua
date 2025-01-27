@@ -64,7 +64,15 @@ return { -- Fuzzy Finder (files, lsp, etc)
 			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
 			--   },
 			-- },
-			-- pickers = {}
+			pickers = {
+				live_grep = {
+					additional_args = {
+						"--hidden",
+						"--glob", -- exclude certain files
+						"!{**/.git/*}",
+					},
+				},
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
