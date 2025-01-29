@@ -1,5 +1,6 @@
 return {
 	"b0o/incline.nvim",
+	event = "BufRead",
 	config = function()
 		local helpers = require("incline.helpers")
 		local devicons = require("nvim-web-devicons")
@@ -29,6 +30,4 @@ return {
 			end,
 		})
 	end,
-	-- Optional: Lazy load Incline
-	event = "VeryLazy",
 }

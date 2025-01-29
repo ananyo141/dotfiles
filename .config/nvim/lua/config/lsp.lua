@@ -45,3 +45,15 @@ vim.keymap.set("n", "<leader>th", toggle_virtual_text, {
 	silent = true,
 	desc = "[T]oggle virtual [h]ints",
 })
+
+vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, {
+	noremap = true,
+	silent = true,
+	desc = "Go to previous diagnostic message",
+})
+
+vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, {
+	noremap = true,
+	silent = true,
+	desc = "Go to next diagnostic message",
+})

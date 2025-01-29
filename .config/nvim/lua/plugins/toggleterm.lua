@@ -16,7 +16,6 @@ return {
 		persist_size = true,
 		direction = "float",
 		close_on_exit = true,
-		shell = vim.o.shell,
 		float_opts = {
 			border = "curved",
 		},

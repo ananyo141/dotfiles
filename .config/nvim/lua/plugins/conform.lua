@@ -1,7 +1,6 @@
 return {
 	-- Autoformat
 	"stevearc/conform.nvim",
-	lazy = false,
 	keys = {
 		{
 			"<leader>lf",
@@ -10,18 +9,6 @@ return {
 			end,
 			mode = "",
 			desc = "[F]ormat buffer",
-		},
-		{
-			"<leader>lk",
-			vim.diagnostic.goto_prev,
-			mode = "n",
-			desc = "Go to previous diagnostic message",
-		},
-		{
-			"<leader>lj",
-			vim.diagnostic.goto_next,
-			mode = "n",
-			desc = "Go to next diagnostic message",
 		},
 	},
 	opts = {

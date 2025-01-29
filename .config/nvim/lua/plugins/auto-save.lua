@@ -1,7 +1,7 @@
 return {
 	"okuuva/auto-save.nvim",
 	version = "*",
-	event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
+	event = "BufWritePre", -- optional for lazy loading on trigger events
 	opts = {
 		execution_message = {
 			message = function() -- message to print on save

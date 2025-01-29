@@ -2,7 +2,7 @@ return {
 	"akinsho/bufferline.nvim",
 	version = "*",
 	dependencies = "echasnovski/mini.nvim", -- Required for icons
-	event = "BufWinEnter",
+	event = "BufReadPre",
 	keys = {
 		{
 			"<leader>bh",
