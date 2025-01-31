@@ -4,6 +4,9 @@ return {
 	-- Collection of various small independent plugins/modules
 	"echasnovski/mini.nvim",
 	version = "false",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-textobjects", -- for mini.ai
+	},
 	config = function()
 		-- Icon Provider
 		require("mini.icons").setup()
@@ -13,12 +16,54 @@ return {
 		require("mini.pairs").setup()
 
 		-- Better Around/Inside textobjects
-		require("mini.ai").setup({ n_lines = 500 })
+		local ai = require("mini.ai")
+		ai.setup({
+			n_lines = 500,
+			custom_textobjects = {
+				o = ai.gen_spec.treesitter({ -- code block
+					a = { "@block.outer", "@conditional.outer", "@loop.outer" },
+					i = { "@block.inner", "@conditional.inner", "@loop.inner" },
+				}),
+				f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }), -- function
+				c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }), -- class
+				t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" }, -- tags
+				d = { "%f[%d]%d+" }, -- digits
+				e = { -- Word with case
+					{ "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
+					"^().*()$",
+				},
+				u = ai.gen_spec.function_call(), -- u for "Usage"
+				U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
+			},
+		})
 
 		-- Animation
-		require("mini.animate").setup({
+		-- Disable mouse wheel animation
+		local animate = require("mini.animate")
+		local mouse_scrolled = false
+		for _, scroll in ipairs({ "Up", "Down" }) do
+			local key = "<ScrollWheel" .. scroll .. ">"
+			vim.keymap.set("", key, function()
+				mouse_scrolled = true
+				return key
+			end, { noremap = true, expr = true })
+		end
+
+		animate.setup({
 			cursor = {
 				enable = false,
+			},
+			scroll = {
+				timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+				subscroll = animate.gen_subscroll.equal({
+					predicate = function(total_scroll)
+						if mouse_scrolled then
+							mouse_scrolled = false
+							return false
+						end
+						return total_scroll > 1
+					end,
+				}),
 			},
 		})
 
