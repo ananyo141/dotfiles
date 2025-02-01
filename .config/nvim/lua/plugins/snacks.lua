@@ -2,10 +2,18 @@ local utils = require("utils")
 
 return {
 	"folke/snacks.nvim",
-	event = "VeryLazy",
+	priority = 1000,
+	lazy = false,
 	---@type snacks.Config
 	opts = {
 		picker = {
+			win = {
+				input = {
+					keys = {
+						["<Esc>"] = { "close", mode = { "n", "i" } },
+					},
+				},
+			},
 			layout = {
 				-- Vertical Telescope layout
 				layout = {
@@ -63,6 +71,17 @@ return {
 				border = "rounded",
 			},
 		},
+		zen = {
+			toggles = {
+				dim = false,
+			},
+			on_open = function()
+				require("incline").disable()
+			end,
+			on_close = function()
+				require("incline").enable()
+			end,
+		},
 	},
 	-- stylua: ignore
 	---@diagnostic disable:undefined-global
@@ -70,21 +89,29 @@ return {
 		{ "<C-\\>", mode = { "n", "t" }, function() Snacks.terminal.toggle() end },
 		{ "<leader>lL", "<cmd>Lazy<CR>", desc = "Open lazy.nvim" },
 
+		{ "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+		{ "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+		{ "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+		{ "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+		{ "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+		{ "<leader>c", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+
 		-- Snacks Picker
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
 		-- find
 		{ "<leader>s;", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
 		{ "<leader>f", function()
 			if Snacks.git.get_root() then
-				Snacks.picker.git_files()
+				Snacks.picker.git_files({ hidden = true, untracked = true })
 			else
-				Snacks.picker.files()
+				Snacks.picker.files({ hidden = true })
 			end
 		end, nowait = true, desc = "Find Files" },
 		{ "<leader>sR", function() Snacks.picker.recent() end, desc = "Recent" },
 		-- git
 		{ "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Checkout" },
 		{ "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+		{ "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
 		-- Grep
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
