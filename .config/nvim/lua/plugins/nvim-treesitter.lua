@@ -4,6 +4,9 @@ return { -- Highlight, edit, and navigate code
 	version = false, -- last release is very old
 	event = "BufReadPost",
 	lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-textobjects", -- for mini.ai
+	},
 	opts = {
 		ensure_installed = { "bash", "c", "diff", "html", "lua", "luadoc", "markdown", "vim", "vimdoc" },
 		-- Autoinstall languages that are not installed

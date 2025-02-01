@@ -5,9 +5,6 @@ return {
 	"echasnovski/mini.nvim",
 	version = "false",
 	event = "VeryLazy",
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-textobjects", -- for mini.ai
-	},
 	config = function()
 		-- Icon Provider
 		require("mini.icons").setup()
