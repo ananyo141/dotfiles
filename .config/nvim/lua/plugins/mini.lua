@@ -3,7 +3,7 @@ local utils = require("utils")
 return {
 	-- Collection of various small independent plugins/modules
 	"echasnovski/mini.nvim",
-	version = "false",
+	version = false,
 	event = "VeryLazy",
 	config = function()
 		-- Icon Provider
