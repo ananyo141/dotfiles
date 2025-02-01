@@ -4,6 +4,7 @@ return {
 	-- Collection of various small independent plugins/modules
 	"echasnovski/mini.nvim",
 	version = "false",
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-textobjects", -- for mini.ai
 	},
@@ -81,7 +82,7 @@ return {
 
 		-- Frecency
 		require("mini.visits").setup()
-		utils.map_key("<Leader>rf", MiniVisits.select_path, "n", { desc = "Select recent file" })
+		utils.map_key("<Leader>rf", MiniVisits.select_path, "Select recent file")
 		local get_label_name = function()
 			-- Get the project name and the current git branch
 			return vim.fn.fnamemodify(
@@ -101,7 +102,7 @@ return {
 		utils.map_key("<leader>rs", function()
 			local label = get_label_name()
 			MiniVisits.select_path("", { filter = label })
-		end, "n", { desc = "Select branch label" })
+		end, "Select branch label")
 
 		-- Add/delete/replace surroundings (brackets, quotes, etc.)
 		require("mini.surround").setup({
@@ -182,6 +183,6 @@ return {
 				MiniFiles.reveal_cwd()
 			end
 		end
-		utils.map_key("<Leader>e", minifiles_toggle, "n", { desc = "Open file explorer" })
+		utils.map_key("<Leader>e", minifiles_toggle, "Open file explorer")
 	end,
 }

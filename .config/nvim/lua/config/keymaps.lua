@@ -1,5 +1,7 @@
 local utils = require("utils")
-local map = utils.map_key
+local map = function(key, command, mode)
+	utils.map_key(key, command, nil, mode)
+end
 
 map("<leader>;", ":e $MYVIMRC<CR>")
 map("<Enter>", ":w<CR>")
