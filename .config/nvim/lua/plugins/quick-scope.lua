@@ -1,4 +1,9 @@
 return {
 	"unblevable/quick-scope",
-	event = "BufRead",
+	keys = {
+		"f",
+		"F",
+		"t",
+		"T",
+	},
 }

@@ -39,5 +39,10 @@ return {
 				Snacks.terminal.toggle()
 			end,
 		},
+		{
+			"<leader>lL",
+			"<cmd>Lazy<CR>",
+			desc = "Open lazy.nvim",
+		},
 	},
 }
