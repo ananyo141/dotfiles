@@ -116,8 +116,8 @@ return {
 		-- Grep
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
 		{ "<leader>sb", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
-		{ "<leader>ss", function() Snacks.picker.grep() end, desc = "Grep" },
-		{ "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+		{ "<leader>ss", function() Snacks.picker.grep({ hidden = true, untracked = true }) end, desc = "Grep" },
+		{ "<leader>sw", function() Snacks.picker.grep_word({ hidden = true, untracked = true }) end, desc = "Visual selection or word", mode = { "n", "x" } },
 		-- search
 		{ '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
 		{ "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },

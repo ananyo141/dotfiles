@@ -1,17 +1,20 @@
 local virtual_text_enabled = true
+local prefix = "●"
 
 local function toggle_virtual_text()
 	virtual_text_enabled = not virtual_text_enabled
 	vim.diagnostic.config({
 		virtual_text = virtual_text_enabled and {
-			prefix = " ",
+			prefix = prefix,
 		} or false,
 	})
 	print("Virtual text " .. (virtual_text_enabled and "enabled" or "disabled"))
 end
 
 vim.diagnostic.config({
-	virtual_text = virtual_text_enabled,
+	virtual_text = virtual_text_enabled and {
+		prefix = prefix,
+	} or false,
 	underline = true,
 	signs = true,
 	update_in_insert = false,
