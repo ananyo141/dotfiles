@@ -13,6 +13,17 @@ return {
 		-- Auto pairs
 		require("mini.pairs").setup()
 
+		-- Move
+		require("mini.move").setup({
+			mappings = {
+				-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+				left = "H",
+				right = "L",
+				down = "J",
+				up = "K",
+			},
+		})
+
 		-- Better Around/Inside textobjects
 		local ai = require("mini.ai")
 		ai.setup({
@@ -125,6 +136,9 @@ return {
 		-- Comment lines
 		require("mini.comment").setup()
 
+		-- Cursorword
+		require("mini.cursorword").setup()
+
 		-- File Explorer
 		local map_split = function(buf_id, lhs, direction)
 			local rhs = function()
@@ -143,6 +157,12 @@ return {
 			local desc = "Split " .. direction
 			vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = desc })
 		end
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "MiniFilesActionRename",
+			callback = function(event)
+				Snacks.rename.on_rename_file(event.data.from, event.data.to)
+			end,
+		})
 		vim.api.nvim_create_autocmd("FileType", {
 			pattern = { "snacks_picker_preview", "mason", "lazy" },
 			callback = function()

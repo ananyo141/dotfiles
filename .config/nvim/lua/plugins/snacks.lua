@@ -6,7 +6,10 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
+		quickfile = {},
+		bigfile = {},
 		picker = {
+
 			win = {
 				input = {
 					keys = {
@@ -62,9 +65,7 @@ return {
 				},
 			},
 		},
-		indent = {
-			enable = true,
-		},
+		indent = {},
 		terminal = {
 			win = {
 				style = "float",
