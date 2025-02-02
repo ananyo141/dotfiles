@@ -8,10 +8,8 @@ return {
 	keys = {
 		{
 			"<leader>p",
-			function()
-				require("telescope").extensions.yank_history.yank_history({})
-			end,
-			mode = { "n", "x" },
+			"<cmd>YankyRingHistory<CR>",
+			mode = { "n" },
 			desc = "Open Yank History",
 		},
 		{ "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank Text" },
