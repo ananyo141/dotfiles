@@ -111,7 +111,7 @@ return {
 		{ "<leader>sR", function() Snacks.picker.recent() end, desc = "Recent" },
 		-- git
 		{ "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Checkout" },
-		{ "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+		{ "<leader>sg", function() Snacks.picker.git_status() end, desc = "Git Status" },
 		{ "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History" },
 		-- Grep
 		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
