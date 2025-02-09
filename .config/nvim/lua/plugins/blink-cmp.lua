@@ -48,6 +48,10 @@ return {
 						{ "kind_icon", "kind", gap = 1 },
 					},
 					components = {
+						label = {
+							ellipsis = true,
+							width = { max = 26 },
+						},
 						kind_icon = {
 							ellipsis = true,
 							text = function(ctx)
