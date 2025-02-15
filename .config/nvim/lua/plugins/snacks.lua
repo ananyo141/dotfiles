@@ -8,8 +8,8 @@ return {
 	opts = {
 		quickfile = {},
 		bigfile = {},
+		image = {},
 		picker = {
-
 			win = {
 				input = {
 					keys = {
