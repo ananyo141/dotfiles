@@ -13,6 +13,7 @@ return {
 		picker = {
 			sources = {
 				explorer = {
+					hidden = true,
 					layout = {
 						layout = {
 							backdrop = false,
