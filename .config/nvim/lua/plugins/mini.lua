@@ -196,6 +196,6 @@ return {
 				MiniFiles.reveal_cwd()
 			end
 		end
-		utils.map_key("<Leader>e", minifiles_toggle, "Open file explorer")
+		utils.map_key("<Leader>E", minifiles_toggle, "Open file explorer")
 	end,
 }

@@ -9,7 +9,54 @@ return {
 		quickfile = {},
 		bigfile = {},
 		image = {},
+		explorer = {},
 		picker = {
+			sources = {
+				explorer = {
+					layout = {
+						layout = {
+							backdrop = false,
+							width = 35,
+							height = 0,
+							position = "left",
+							border = "none",
+							box = "vertical",
+							{
+								win = "list",
+								border = "none",
+								wo = {
+									winhl = "NormalFloat:Normal,FloatBorder:VertSplit",
+									list = false,
+								},
+							},
+							{
+								win = "preview",
+								height = 0.4,
+								border = "top",
+								wo = {
+									winhl = "NormalFloat:Normal,FloatBorder:VertSplit",
+								},
+							},
+							{
+								win = "input",
+								height = 1,
+								border = "none",
+								wo = {
+									winhl = "NormalFloat:Normal,FloatBorder:VertSplit",
+								},
+							},
+						},
+					},
+					win = {
+						list = {
+							keys = {
+								["-"] = "explorer_up",
+								["`"] = "explorer_cd",
+							},
+						},
+					},
+				},
+			},
 			win = {
 				input = {
 					keys = {
@@ -89,6 +136,7 @@ return {
 	keys = {
 		{ "<C-\\>", mode = { "n", "t" }, function() Snacks.terminal.toggle() end },
 		{ "<leader>lL", "<cmd>Lazy<CR>", desc = "Open lazy.nvim" },
+		{ "<leader>e", function() Snacks.explorer() end, desc = "Open Explorer" },
 
 		{ "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
 		{ "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
