@@ -15,6 +15,7 @@ vim.diagnostic.config({
 	virtual_text = virtual_text_enabled and {
 		prefix = prefix,
 	} or false,
+	virtual_lines = { current_line = true },
 	underline = true,
 	signs = true,
 	update_in_insert = false,
