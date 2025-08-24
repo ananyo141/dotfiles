@@ -97,6 +97,8 @@ alias tmls='tmux ls'
 
 # Git Aliases
 # ===========
+alias git='PAGER= git' # disable git vimpager to use git-delta
+
 # one-off aliases
 alias gits='git status'
 alias gitf='git fetch'
