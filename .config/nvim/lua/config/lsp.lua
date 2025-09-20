@@ -17,7 +17,20 @@ vim.diagnostic.config({
 	} or false,
 	virtual_lines = { current_line = true },
 	underline = true,
-	signs = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+		},
+	},
 	update_in_insert = false,
 	float = {
 		source = "if_many",
@@ -26,22 +39,8 @@ vim.diagnostic.config({
 	},
 })
 
--- Define custom icons for diagnostics
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
--- Optionally, configure floating diagnostics window
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = "rounded",
-})
+-- Set border for all floating windows, including LSP hover and signature help.
+vim.o.winborder = "rounded"
 
 -- Map key for toggling virtual text
 vim.keymap.set("n", "<leader>th", toggle_virtual_text, {
@@ -50,13 +49,17 @@ vim.keymap.set("n", "<leader>th", toggle_virtual_text, {
 	desc = "[T]oggle virtual [h]ints",
 })
 
-vim.keymap.set("n", "<leader>lk", vim.diagnostic.goto_prev, {
+vim.keymap.set("n", "<leader>lk", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end, {
 	noremap = true,
 	silent = true,
 	desc = "Go to previous diagnostic message",
 })
 
-vim.keymap.set("n", "<leader>lj", vim.diagnostic.goto_next, {
+vim.keymap.set("n", "<leader>lj", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end, {
 	noremap = true,
 	silent = true,
 	desc = "Go to next diagnostic message",
