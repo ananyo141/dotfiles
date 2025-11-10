@@ -27,11 +27,33 @@ return {
 	},
 	keys = {
 		{
+			"<leader>av",
+			mode = "v",
+			function()
+				require("codecompanion").add({})
+			end,
+			desc = "Code Companion Add",
+		},
+		{
+			"<leader>aa",
+			function()
+				require("codecompanion").actions({ window_opts = { layout = "float", width = 0.8, height = 0.8 } })
+			end,
+			desc = "Code Companion Actions",
+		},
+		{
 			"<leader>ac",
 			function()
 				require("codecompanion").toggle({ window_opts = { layout = "float", width = 0.8, height = 0.8 } })
 			end,
-			desc = "Run Code Companion",
+			desc = "Toggle Code Companion",
+		},
+		{
+			"<leader>aC",
+			function()
+				require("codecompanion").chat({ window_opts = { layout = "float", width = 0.8, height = 0.8 } })
+			end,
+			desc = "New Chat with Code Companion",
 		},
 	},
 }

@@ -93,9 +93,9 @@ return {
 					},
 				},
 			},
-			matcher = {
-				frecency = true,
-			},
+			-- matcher = {
+			-- 	frecency = true,
+			-- },
 		},
 		dashboard = {
 			preset = {

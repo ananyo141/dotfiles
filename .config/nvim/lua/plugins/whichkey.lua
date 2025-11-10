@@ -8,10 +8,9 @@ return { -- Useful plugin to show you pending keybinds.
 		local wk = require("which-key")
 		wk.setup(opts)
 		wk.add({
+			{ "<leader>a", group = "[A]I" },
 			{ "<leader>b", group = "[B]uffer" },
 			{ "<leader>b_", hidden = true },
-			{ "<leader>c", group = "[C]ode" },
-			{ "<leader>c_", hidden = true },
 			{ "<leader>d", group = "[D]ocument" },
 			{ "<leader>d_", hidden = true },
 			{ "<leader>g", group = "[G]it Hunk" },
