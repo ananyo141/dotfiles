@@ -12,7 +12,7 @@
 - **Interactive Shell:** If you need to enter the CLI to run multiple commands, use:
   `docker exec -u frappe -w /workspace/frappe-bench -it <container_name> /bin/bash`
 
-- **Single Commands:** If you need to run a single command (like `bench migrate`), execute it directly like this:
+- **Single Commands:** If you need to run a single command (like `bench execute`), execute it directly like this:
   `docker exec -u frappe -w /workspace/frappe-bench <container_name> bench <command>`
 
 ## Web Dashboard Access (Chrome DevTools MCP)
