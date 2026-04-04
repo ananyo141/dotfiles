@@ -477,3 +477,4 @@ done'
 source /usr/share/fzf-git-bindings/functions.sh
 source /usr/share/fzf-git-bindings/key-binding.zsh
 
+source /usr/share/nvm/init-nvm.sh

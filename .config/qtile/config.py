@@ -32,7 +32,7 @@ import subprocess
 from typing import List  # noqa: F401
 from libqtile import layout, bar, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
-from libqtile.command import lazy
+from libqtile.lazy import lazy
 from libqtile.widget import Spacer
 #import arcobattery
 
@@ -43,7 +43,7 @@ mod2 = "control"
 
 home = os.path.expanduser('~')
 
-@hook.subscribe.startup
+@hook.subscribe.startup_once
 def autostart():
     autoscript = os.path.expanduser('~/.config/qtile/autostart.sh')
     if os.path.isfile(autoscript):
