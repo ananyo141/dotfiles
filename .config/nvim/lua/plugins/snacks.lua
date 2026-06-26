@@ -184,10 +184,10 @@ return {
 		{ "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 		{ "<leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
 		-- LSP
-		{ "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+		{ "gd", function() Snacks.picker.lsp_definitions({ unique_lines = true }) end, desc = "Goto Definition" },
 		{ "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-		{ "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-		{ "<leader>sx", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+		{ "gI", function() Snacks.picker.lsp_implementations({ unique_lines = true }) end, desc = "Goto Implementation" },
+		{ "<leader>sx", function() Snacks.picker.lsp_type_definitions({ unique_lines = true }) end, desc = "Goto T[y]pe Definition" },
 		{ "<leader>sy", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
 	},
 }

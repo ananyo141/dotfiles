@@ -13,7 +13,7 @@ return { -- Useful plugin to show you pending keybinds.
 			{ "<leader>b_", hidden = true },
 			{ "<leader>d", group = "[D]ocument" },
 			{ "<leader>d_", hidden = true },
-			{ "<leader>g", group = "[G]it Hunk" },
+			{ "<leader>g", group = "[G]it" },
 			{ "<leader>g_", hidden = true },
 			{ "<leader>l", group = "[L]SP" },
 			{ "<leader>l_", hidden = true },
@@ -25,7 +25,7 @@ return { -- Useful plugin to show you pending keybinds.
 			{ "<leader>t_", hidden = true },
 			{ "<leader>w", group = "[W]orkspace" },
 			{ "<leader>w_", hidden = true },
-			{ "<leader>g", desc = "[G]it Hunk", mode = "v" },
+			{ "<leader>g", desc = "[G]it", mode = "v" },
 		})
 	end,
 }

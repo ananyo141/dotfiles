@@ -84,16 +84,26 @@ return {
 			-- tsserver = {},
 			--
 
-			-- Disable warnings for long lines in Python
-			pylsp = {
+			-- pyright for Python (go-to-definition, hover, references)
+			-- Reads extraPaths from pyrightconfig.json in project root
+			pyright = {
 				settings = {
-					pylsp = {
-						plugins = {
-							pycodestyle = {
-								enabled = true,
-								ignore = { "W391", "E501", "W191", "W503" },
-								maxLineLength = 100,
-							},
+					python = {
+						analysis = {
+							typeCheckingMode = "off", -- Frappe code is untyped; we only want navigation
+							autoSearchPaths = false,
+							autoImportCompletions = false,
+							indexing = false,
+							useLibraryCodeForTypes = false,
+							diagnosticMode = "openFilesOnly",
+							reportAttributeAccessIssue = "none",
+							reportUnknownMemberType = "none",
+							reportUnknownVariableType = "none",
+							reportUnknownArgumentType = "none",
+							reportUnknownParameterType = "none",
+							reportMissingTypeStubs = "none",
+							reportGeneralTypeIssues = "none",
+							reportOptionalMemberAccess = "none",
 						},
 					},
 				},

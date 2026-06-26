@@ -3,6 +3,57 @@ local map = function(key, command, mode)
 	utils.map_key(key, command, nil, mode)
 end
 
+local function copy_github_permalink(use_visual_range)
+	local file = vim.api.nvim_buf_get_name(0)
+	if file == "" then
+		vim.notify("No file in current buffer", vim.log.levels.ERROR)
+		return
+	end
+
+	local function git(args)
+		local output = vim.fn.systemlist(vim.list_extend({ "git", "-C", vim.fn.fnamemodify(file, ":h") }, args))
+		if vim.v.shell_error ~= 0 then
+			return nil
+		end
+
+		return output[1]
+	end
+
+	local repo_root = git({ "rev-parse", "--show-toplevel" })
+	local remote = git({ "config", "--get", "remote.origin.url" })
+	local commit = git({ "rev-parse", "HEAD" })
+	local relative_file = git({ "ls-files", "--full-name", "--", file })
+
+	if not repo_root or not remote or not commit then
+		vim.notify("Not inside a git repo with an origin remote", vim.log.levels.ERROR)
+		return
+	end
+
+	if not relative_file or relative_file == "" then
+		vim.notify("Current file is not tracked by git", vim.log.levels.ERROR)
+		return
+	end
+
+	remote = remote:gsub("git@github.com:", "https://github.com/"):gsub("ssh://git@github.com/", "https://github.com/"):gsub("%.git$", "")
+
+	local start_line = use_visual_range and vim.fn.line("v") or vim.fn.line(".")
+	local end_line = vim.fn.line(".")
+
+	if start_line > end_line then
+		start_line, end_line = end_line, start_line
+	end
+
+	local line_suffix = "#L" .. start_line
+	if start_line ~= end_line then
+		line_suffix = line_suffix .. "-L" .. end_line
+	end
+
+	local url = remote .. "/blob/" .. commit .. "/" .. relative_file .. line_suffix
+
+	vim.fn.setreg("+", url)
+	vim.notify("Copied GitHub permalink")
+end
+
 map("<leader>;", ":e $MYVIMRC<CR>")
 map("<Enter>", ":w<CR>")
 map("<C-N>", ":bnext<CR>")
@@ -49,3 +100,15 @@ map("K", ":m '<-2<CR>gv=gv", "v")
 
 -- keep cursor in place while joining lines
 map("J", "mzJ`z")
+
+vim.keymap.set("n", "<leader>gy", function()
+	copy_github_permalink(false)
+end, {
+	desc = "Git copy GitHub permalink",
+})
+
+vim.keymap.set("x", "<leader>gy", function()
+	copy_github_permalink(true)
+end, {
+	desc = "Git copy GitHub permalink",
+})
