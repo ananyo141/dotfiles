@@ -1,13 +1,39 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "permission": {
-    "websearch": "allow"
-  },
-  "mcp": {
-    "chrome-devtools": {
-      "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
+    "$schema": "https://opencode.ai/config.json",
+    "permission": {
+        "websearch": "allow",
+        "read": {
+            "/": "allow"
+        },
+        "edit": {
+            "/": "allow"
+        },
+        "external_directory": {
+            "/": "allow"
+        }
+    },
+    "mcp": {
+        "chrome-devtools": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "chrome-devtools-mcp@latest"
+            ]
+        }
+    },
+    "plugin": [
+        "superpowers@git+https://github.com/obra/superpowers.git",
+        "@slkiser/opencode-quota",
+        "@mohak34/opencode-notifier@latest"
+    ],
+    "experimental": {
+        "quotaToast": {
+            "enableToast": false,
+            "showSessionTokens": false,
+            "enabledProviders": "auto",
+            "formatStyle": "allWindows",
+            "percentDisplayMode": "used"
+        }
     }
-  },
-  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"]
 }
