@@ -19,18 +19,42 @@ local function copy_github_permalink(use_visual_range)
 		return output[1]
 	end
 
+	local function remote_url()
+		local upstream = git({ "rev-parse", "--abbrev-ref", "--symbolic-full-name", "@{u}" })
+		if upstream then
+			local remote_name = upstream:match("^([^/]+)/")
+			local url = remote_name and git({ "config", "--get", "remote." .. remote_name .. ".url" })
+			if url then
+				return url
+			end
+		end
+
+		return git({ "config", "--get", "remote.origin.url" }) or git({ "config", "--get", "remote.upstream.url" })
+	end
+
+	local function encode_url_path(path)
+		return path:gsub("([^A-Za-z0-9%-%._~/])", function(char)
+			return string.format("%%%02X", string.byte(char))
+		end)
+	end
+
 	local repo_root = git({ "rev-parse", "--show-toplevel" })
-	local remote = git({ "config", "--get", "remote.origin.url" })
+	local remote = remote_url()
 	local commit = git({ "rev-parse", "HEAD" })
-	local relative_file = git({ "ls-files", "--full-name", "--", file })
+	local relative_file = git({ "-c", "core.quotePath=false", "ls-files", "--full-name", "--", file })
 
 	if not repo_root or not remote or not commit then
-		vim.notify("Not inside a git repo with an origin remote", vim.log.levels.ERROR)
+		vim.notify("Not inside a git repo with a GitHub remote", vim.log.levels.ERROR)
 		return
 	end
 
 	if not relative_file or relative_file == "" then
 		vim.notify("Current file is not tracked by git", vim.log.levels.ERROR)
+		return
+	end
+
+	if not remote:match("github%.com") then
+		vim.notify("Remote is not GitHub: " .. remote, vim.log.levels.ERROR)
 		return
 	end
 
@@ -48,7 +72,7 @@ local function copy_github_permalink(use_visual_range)
 		line_suffix = line_suffix .. "-L" .. end_line
 	end
 
-	local url = remote .. "/blob/" .. commit .. "/" .. relative_file .. line_suffix
+	local url = remote .. "/blob/" .. commit .. "/" .. encode_url_path(relative_file) .. line_suffix
 
 	vim.fn.setreg("+", url)
 	vim.notify("Copied GitHub permalink")
