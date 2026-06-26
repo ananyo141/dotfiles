@@ -18,7 +18,7 @@ config.window_padding = {
 
 config.font_size = 16
 config.color_scheme = "Dracula+"
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.97
 
 -- and finally, return the configuration to wezterm
 return config
