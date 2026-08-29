@@ -30,7 +30,7 @@ import re
 import socket
 import subprocess
 from typing import List  # noqa: F401
-from libqtile import layout, bar, widget, hook
+from libqtile import layout, bar, widget, hook, qtile
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Rule
 from libqtile.lazy import lazy
 from libqtile.widget import Spacer
@@ -515,8 +515,10 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8),
+                   wallpaper='~/.config/qtile/wall.jpg', wallpaper_mode='fill'),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8),
+                   wallpaper='~/.config/qtile/wall.jpg', wallpaper_mode='fill')]
 screens = init_screens()
 
 
@@ -579,13 +581,17 @@ main = None
 
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
+    # autostart.sh is full of X11-only tools (picom, variety, setxkbmap...)
+    # that hang or misbehave under the wayland backend
+    if qtile.core.name == "x11":
+        home = os.path.expanduser('~')
+        subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
 @hook.subscribe.startup
 def start_always():
-    # Set the cursor to something sane in X
-    subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
+    if qtile.core.name == "x11":
+        # Set the cursor to something sane in X
+        subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
 
 @hook.subscribe.client_new
 def set_floating(window):
