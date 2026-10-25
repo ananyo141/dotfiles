@@ -85,8 +85,45 @@ return {
 			--
 
 			-- pyright for Python (go-to-definition, hover, references)
-			-- Reads extraPaths from pyrightconfig.json in project root
+			-- Frappe bench: add every apps/<app> dir to extraPaths so cross-app
+			-- imports (frappe, erpnext, hrms, ...) resolve for go-to-definition.
+			-- root_dir may be the bench root (pyrightconfig.json marker) or apps/<app>.
+			-- NOTE: mason-lspconfig v2 auto-enables servers via vim.lsp.enable(), so
+			-- per-server config must be registered with vim.lsp.config() (see below).
 			pyright = {
+				before_init = function(_, config)
+					local root_dir = config.root_dir
+					if not root_dir then
+						return
+					end
+					local function is_bench(dir)
+						return vim.fn.isdirectory(dir .. "/apps") == 1 and vim.fn.isdirectory(dir .. "/sites") == 1
+					end
+					local bench
+					if is_bench(root_dir) then
+						bench = root_dir
+					elseif vim.fs.basename(vim.fs.dirname(root_dir)) == "apps" then
+						local candidate = vim.fs.dirname(vim.fs.dirname(root_dir))
+						if is_bench(candidate) then
+							bench = candidate
+						end
+					end
+					if not bench then
+						return
+					end
+					local extra = {}
+					for name, kind in vim.fs.dir(bench .. "/apps") do
+						if kind == "directory" and name:sub(1, 1) ~= "." then
+							table.insert(extra, bench .. "/apps/" .. name)
+						end
+					end
+					-- Mutate in place: the client already holds a reference to this
+					-- table (client.settings), so replacing it would be a no-op.
+					config.settings = config.settings or {}
+					config.settings.python = config.settings.python or {}
+					config.settings.python.analysis = config.settings.python.analysis or {}
+					config.settings.python.analysis.extraPaths = extra
+				end,
 				settings = {
 					python = {
 						analysis = {
@@ -141,17 +178,14 @@ return {
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disabling
-					-- certain features of an LSP (for example, turning off formatting for tsserver)
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
-		})
+		-- mason-lspconfig v2 enables installed servers through vim.lsp.enable(),
+		-- which reads vim.lsp.config() — the old `handlers` + lspconfig.setup() path
+		-- is no longer honored. Register every server config here instead.
+		vim.lsp.config("*", { capabilities = capabilities })
+		for server_name, server in pairs(servers) do
+			vim.lsp.config(server_name, server)
+		end
+
+		require("mason-lspconfig").setup()
 	end,
 }
