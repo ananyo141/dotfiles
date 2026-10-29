@@ -21,3 +21,25 @@ __pycache__/
 # opencode notifier runtime state
 .config/opencode/opencode-notifier-state.json
 
+
+# credentials / auth state
+.config/gh/hosts.yml
+.config/github-copilot/
+.config/stripe/
+.config/configstore/
+
+# runtime state, logs, caches
+.config/cagent/
+.config/chatter/
+.config/herdr/
+.config/jgit/
+.config/mole/
+.config/openchamber/
+.config/qBittorrent/
+
+# nested git clone of LazyVim/starter
+.config/lazyvim/
+
+# work-internal skills (employee/task IDs, internal endpoints) — public repo
+.config/opencode/skills/weekly-timesheet/
+.config/opencode/skills/jira-ticket-handling/
