@@ -97,6 +97,7 @@ vim.opt.hidden = true -- hide buffer on change
 vim.opt.completeopt = { "menuone", "longest" }
 vim.opt.shortmess:append("r") -- enable short message
 vim.opt.relativenumber = true
+vim.opt.exrc = true
 
 -- Stop at underscores in words
 -- vim.opt.iskeyword:remove('_')
