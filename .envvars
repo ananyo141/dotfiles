@@ -7,19 +7,20 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 # Python Paths
 export PYTHONPATH=$HOME
+[[ -d "$HOME/workspaces/rtcamp/python_packages" ]] && export PYTHONPATH="$PYTHONPATH:$HOME/workspaces/rtcamp/python_packages"
 
 # PATH Variables
-export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/.npm_global/bin:$HOME/.local/share/bob/nvim-bin"
+export PATH="$PATH:$HOME/bin:$HOME/.bin:$HOME/.local/bin:$HOME/.emacs.d/bin:$HOME/.cargo/bin:$GOPATH/bin:$HOME/.npm_global/bin:$HOME/.local/share/bob/nvim-bin:$HOME/.pyenv/shims"
 
 # ignore duplicates in history and increase record
 export HISTCONTROL=ignoredups
 export HISTSIZE=100000
 export SAVEHIST="$HISTSIZE"
 
-# Make Vim default editor
-export VISUAL=vim
+# Make NeoVim default editor
+export VISUAL=nvim
 export EDITOR="$VISUAL"
-export PAGER="bat"
+export PAGER="vimpager"
 export MANPAGER="vimpager"
 
 # fzf variables
@@ -30,6 +31,10 @@ export FD_OPTIONS="--follow --hidden --exclude .git --exclude node_modules"
 export FZF_DEFAULT_COMMAND="git ls-files --cached --others --exclude-standard | fd --type f --type l $FD_OPTIONS"
 # Change behavior of fzf dialogue
 export FZF_DEFAULT_OPTS="--reverse --border --multi --preview-window=right:nowrap --header '<C-A>: Select All <C-X>: Toggle Wrap <C-Z> Toggle Preview' --bind='ctrl-f:preview-down,ctrl-b:preview-up' --bind='ctrl-a:toggle-all' --bind='ctrl-x:toggle-preview-wrap' --bind='ctrl-z:toggle-preview'"
+if [[ -d /opt/homebrew/opt/fzf ]]; then
+    export FZF_PATH="/opt/homebrew/opt/fzf"
+    export FZF_BASE="/opt/homebrew/opt/fzf"
+fi
 
 # Android SDK for react native
 export ANDROID_HOME="$HOME/Android/Sdk"
