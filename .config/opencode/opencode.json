@@ -29,7 +29,8 @@
     "plugin": [
         "superpowers@git+https://github.com/obra/superpowers.git",
         "@slkiser/opencode-quota",
-        "@mohak34/opencode-notifier@latest"
+        "@mohak34/opencode-notifier@latest",
+        "./plugins/caveman/plugin.js"
     ],
     "experimental": {
         "quotaToast": {
