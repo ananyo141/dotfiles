@@ -473,6 +473,33 @@ def init_widgets_list():
                #          ),
                widget.TextBox(
                         font="FontAwesome",
+                        text="  ",
+                        foreground=colors[3],
+                        background=colors[1],
+                        padding = 0,
+                        fontsize=16
+                        ),
+               widget.Volume(
+                        foreground = colors[5],
+                        background = colors[1],
+                        fontsize = 12,
+                        mute_format = "muted",
+                        volume_app = "pavucontrol",
+                        mute_command = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+                        volume_up_command = "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+                        volume_down_command = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+                        get_volume_command = "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"%d%%\", $2*100+0.5}'",
+                        check_mute_command = "wpctl get-volume @DEFAULT_AUDIO_SINK@",
+                        check_mute_string = "[MUTED]",
+                        ),
+               widget.Sep(
+                        linewidth = 1,
+                        padding = 10,
+                        foreground = colors[2],
+                        background = colors[1]
+                        ),
+               widget.TextBox(
+                        font="FontAwesome",
                         text="  ",
                         foreground=colors[3],
                         background=colors[1],
