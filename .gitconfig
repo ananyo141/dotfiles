@@ -1,6 +1,7 @@
 [user]
 	name = Ananyobrata Pal
 	email = ananyo141@gmail.com
+	signingkey = 0188B5D17AB1449D
 [core]
 	editor = vim
 	pager = delta
@@ -17,3 +18,7 @@
 
 [merge]
 	conflictStyle = zdiff3
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
