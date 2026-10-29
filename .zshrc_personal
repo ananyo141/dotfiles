@@ -64,6 +64,9 @@ set -o vi
 # Load startup configuration of zoxide
 eval "$(zoxide init zsh)"
 
+# Initialize pyenv
+eval "$(pyenv init -)"
+
 # Attach to a tmux session or create new if not already in a tmux
 # session
 if [ -z "$TMUX" ]; then
