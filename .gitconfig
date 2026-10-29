@@ -1,7 +1,6 @@
 [user]
 	name = Ananyobrata Pal
 	email = ananyo141@gmail.com
-	signingkey = 0188B5D17AB1449D
 [core]
 	editor = vim
 	pager = delta
@@ -14,7 +13,6 @@
 	navigate = true  # use n and N to move between diff sections
 	dark = true      # or light = true, or omit for auto-detection
 	line-numbers = true
-	side-by-side = true
 
 [merge]
 	conflictStyle = zdiff3
@@ -22,3 +20,7 @@
 	gpgsign = true
 [tag]
 	gpgsign = true
+
+# machine-specific: signing key/format, delta layout. Not tracked.
+[include]
+	path = ~/.gitconfig.local
