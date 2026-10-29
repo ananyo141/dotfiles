@@ -19,7 +19,11 @@
                 "npx",
                 "-y",
                 "chrome-devtools-mcp@latest"
-            ]
+            ],
+            "env": {
+                "DISPLAY": ":0",
+                "XAUTHORITY": "/home/ananyo/.Xauthority"
+            }
         }
     },
     "plugin": [
