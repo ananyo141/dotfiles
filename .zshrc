@@ -3,10 +3,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-#installation via script from github
-#export ZSH="/home/$USER/.oh-my-zsh"
-#installation via paru -S oh-my-zsh-git
-export ZSH=/usr/share/oh-my-zsh/
+# paru -S oh-my-zsh-git on Arch, install script elsewhere
+if [[ -d /usr/share/oh-my-zsh ]]; then
+    export ZSH=/usr/share/oh-my-zsh/
+else
+    export ZSH="$HOME/.oh-my-zsh"
+fi
+[[ -f $HOME/.envvars ]] && source $HOME/.envvars
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -103,7 +106,7 @@ source $ZSH/oh-my-zsh.sh
 ####   ARCOLINUX SETTINGS   ####
 # export PAGER='bat'
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 setopt GLOB_DOTS
 #share commands between terminal instances or not
@@ -444,7 +447,9 @@ alias personal='cp -Rf /personal/* ~'
 #sfetch
 #ufetch
 #ufetch-arco
-pfetch
+PF_SOURCE=~/.config/pfetch/vnstat.sh \
+PF_INFO="ascii title os host kernel uptime pkgs memory today month" \
+    pfetch
 #sysinfo
 #sysinfo-retro
 #cpufetch
@@ -457,5 +462,22 @@ for _fzfgit in /usr/share/fzf-git-bindings/functions.sh \
     [[ -r $_fzfgit ]] && source $_fzfgit
 done
 unset _fzfgit
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+[[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
 
-source /usr/share/nvm/init-nvm.sh
+# macOS-only tool paths, skipped where the directory is absent
+for _p in "$HOME/.antigravity/antigravity/bin" /opt/homebrew/opt/mysql-client/bin "$HOME/.lando/bin"; do
+    [[ -d $_p ]] && export PATH="$_p:$PATH"
+done
+unset _p
+
+# pnpm
+if [[ -d "$HOME/Library/pnpm" ]]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
+    case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
+fi
