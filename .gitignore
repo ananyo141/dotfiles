@@ -18,3 +18,6 @@ __pycache__/
 *.py[o,c]
 .mypy_cache/
 
+# opencode notifier runtime state
+.config/opencode/opencode-notifier-state.json
+
