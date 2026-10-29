@@ -626,6 +626,17 @@ def start_always():
         # Set the cursor to something sane in X
         subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
 
+# Switching the monitor's input makes every output look disconnected for a
+# moment; qtile 0.37.1 then swaps in a bar-less placeholder Screen and crashes
+# with "'Screen' object has no attribute 'group'" when the monitor comes back,
+# so the bar never returns. Skip reconfiguring while no output is connected.
+reconfigure_screens = False
+
+@hook.subscribe.screen_change
+def _screen_change(event):
+    if qtile.get_output_info():
+        qtile.reconfigure_screens()
+
 @hook.subscribe.client_new
 def set_floating(window):
     if (window.window.get_wm_transient_for()
