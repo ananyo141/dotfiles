@@ -541,11 +541,17 @@ widgets_screen1 = init_widgets_screen1()
 widgets_screen2 = init_widgets_screen2()
 
 
+# On X11, variety (autostart.sh) owns the wallpaper. Its feh call kills the X
+# client holding the old root pixmap, i.e. qtile's wallpaper painter, after
+# which every reload/screen change dies in Screen.paint() before keys are
+# grabbed. So qtile only paints the wallpaper itself on wayland.
 def init_screens():
+    wallpaper = {} if qtile.core.name == "x11" else dict(
+        wallpaper='~/.config/qtile/wall.jpg', wallpaper_mode='fill')
     return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8),
-                   wallpaper='~/.config/qtile/wall.jpg', wallpaper_mode='fill'),
+                   **wallpaper),
             Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8),
-                   wallpaper='~/.config/qtile/wall.jpg', wallpaper_mode='fill')]
+                   **wallpaper)]
 screens = init_screens()
 
 
