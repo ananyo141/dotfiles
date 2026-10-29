@@ -197,7 +197,7 @@ keys = [
 
     # CUSTOM KEYS
     Key(["mod4", "shift"], "s", lazy.spawn("shutdown now"), desc="Shutdown system"),
-    Key(["mod4"], "s", lazy.spawn("systemctl suspend"), desc="Suspend system"),
+    # Key(["mod4"], "s", lazy.spawn("systemctl suspend"), desc="Suspend system"),
     #Key(["mod4"], "l", lazy.spawn("sleep 0.5 && xset dpms force off"), desc="Lock Screen"),    # not working
 
 ]
