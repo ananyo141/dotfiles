@@ -4,6 +4,7 @@ uninstall.sh
 # GIT
 \.git
 \.gitignore
+\.githooks
 
 \.doomcheats
 

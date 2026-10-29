@@ -1,0 +1,10 @@
+#!/bin/sh
+# Block commits whose staged changes contain secrets.
+# Enabled per clone with: git config core.hooksPath .githooks (install.sh does this)
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+    echo "pre-commit: gitleaks not installed, skipping secret scan (brew/pacman install gitleaks)" >&2
+    exit 0
+fi
+
+exec gitleaks git --pre-commit --staged --no-banner --redact
