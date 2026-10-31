@@ -61,6 +61,8 @@ def window_to_next_group(qtile):
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
+SCREENSHOT = os.path.expanduser("~/.config/qtile/scripts/screenshot.sh")
+
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -83,7 +85,7 @@ keys = [
     # Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     # Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod], "d", lazy.spawn('rofi -show run'), desc="Run rofi launcher"),
+    Key([mod], "d", lazy.spawn('rofi -show drun -show-icons'), desc="Run rofi launcher"),
     Key([mod], "c", lazy.spawn('rofi -modi "clipboard:greenclip print" -show clipboard -run-command \'{cmd}\''), desc="Run clipboard manager"),
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -101,7 +103,8 @@ keys = [
         desc="Toggle Fullscreen",
     ),
     # Toggle between different layouts as defined below
-    Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "Tab", lazy.screen.toggle_group(), desc="Toggle to last workspace"),
+    Key([mod], "grave", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -113,7 +116,10 @@ keys = [
 	Key([mod], "b", lazy.hide_show_bar(position="bottom")),
     # Custom bindings
     Key([mod], "Return", lazy.spawn('alacritty'), desc="Launch terminal"),
-	Key([mod], "p", lazy.spawn("scrot"), desc="Take a screenshot"),
+    Key([], "Print", lazy.spawn(SCREENSHOT + " full"), desc="Screenshot full screen"),
+    Key(["shift"], "Print", lazy.spawn(SCREENSHOT + " select"), desc="Screenshot region"),
+    Key([mod], "Print", lazy.spawn(SCREENSHOT + " window"), desc="Screenshot focused window"),
+    Key([mod], "p", lazy.spawn(SCREENSHOT + " select"), desc="Screenshot region"),
 
 # Most of our keybindings are in sxhkd file - except these
 
@@ -220,7 +226,6 @@ def window_to_next_screen(qtile, switch_group=False, switch_screen=False):
 
 keys.extend([
     # MOVE WINDOW TO NEXT SCREEN
-    Key(["mod1"], "Tab", lazy.function(window_to_next_screen, switch_screen=True)), # both not working
     Key(["mod1", "shift"], "Tab", lazy.function(window_to_previous_screen, switch_screen=True)),
 ])
 
@@ -233,7 +238,7 @@ group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
 #group_names = ["ampersand", "eacute", "quotedbl", "apostrophe", "parenleft", "section", "egrave", "exclam", "ccedilla", "agrave",]
 
 #group_labels = ["1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "0",]
-group_labels = ["", "", "", "", "", "", "", "", "", "",]
+group_labels = ["", "", "", "", "", "", "", "", "", "",]
 #group_labels = ["Web", "Edit/chat", "Image", "Gimp", "Meld", "Video", "Vb", "Files", "Mail", "Music",]
 
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
@@ -264,281 +269,242 @@ for i in groups:
     ])
 
 
-def init_layout_theme():
-    return {"margin":5,
-            "border_width":2,
-            "border_focus": "#5e81ac",
-            "border_normal": "#4c566a"
-            }
+# ─── THEME ─────────────────────────────────────────────────────────────
+# Catppuccin Mocha – swap these values to re-theme everything at once
+colors = {
+    "crust":    "#11111b",
+    "mantle":   "#181825",
+    "base":     "#1e1e2e",
+    "surface0": "#313244",
+    "surface1": "#45475a",
+    "overlay0": "#6c7086",
+    "subtext":  "#a6adc8",
+    "text":     "#cdd6f4",
+    "lavender": "#b4befe",
+    "blue":     "#89b4fa",
+    "sapphire": "#74c7ec",
+    "teal":     "#94e2d5",
+    "green":    "#a6e3a1",
+    "yellow":   "#f9e2af",
+    "peach":    "#fab387",
+    "red":      "#f38ba8",
+    "pink":     "#f5c2e7",
+    "mauve":    "#cba6f7",
+}
 
-layout_theme = init_layout_theme()
+# JetBrainsMono Nerd Font for text and icon glyphs; Noto Sans as text fallback.
+# "Symbols Nerd Font" itself is NOT installed (only "... Mono"): naming it made
+# fontconfig substitute Nimbus Sans, whose placeholder at U+EFC5 replaced the
+# memory icon. So icons use an installed Nerd Font, the "Propo" variant: in
+# the plain one icons are drawn up to ~2x wider than their advance width, so
+# qtile sizes the widget too narrow and clips them (wifi, volume).
+FONT = "JetBrainsMono Nerd Font, Noto Sans, Symbols Nerd Font"
+ICON_FONT = "JetBrainsMono Nerd Font Propo"
 
+layout_theme = {
+    "margin": 10,
+    "border_width": 2,
+    "border_focus": colors["mauve"],
+    "border_normal": colors["surface0"],
+}
 
 layouts = [
-    layout.MonadTall(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
-    layout.MonadWide(margin=8, border_width=2, border_focus="#5e81ac", border_normal="#4c566a"),
+    layout.MonadTall(**layout_theme),
+    layout.MonadWide(**layout_theme),
     layout.Matrix(**layout_theme),
     layout.Bsp(**layout_theme),
     layout.Floating(**layout_theme),
     layout.RatioTile(**layout_theme),
-    layout.Max(**layout_theme)
+    layout.Max(**layout_theme),
 ]
 
-# COLORS FOR THE BAR
-#Theme name : ArcoLinux Default
-def init_colors():
-    return [["#2F343F", "#2F343F"], # color 0
-            ["#2F343F", "#2F343F"], # color 1
-            ["#c0c5ce", "#c0c5ce"], # color 2
-            ["#fba922", "#fba922"], # color 3
-            ["#3384d0", "#3384d0"], # color 4
-            ["#f3f4f5", "#f3f4f5"], # color 5
-            ["#cd1f3f", "#cd1f3f"], # color 6
-            ["#62FF00", "#62FF00"], # color 7
-            ["#6790eb", "#6790eb"], # color 8
-            ["#a9a9a9", "#a9a9a9"]] # color 9
+
+# ─── BAR ───────────────────────────────────────────────────────────────
+# qtile-extras gives rounded "pill" backgrounds; without it widgets fall
+# back to flat coloured blocks so the config still loads.
+try:
+    from qtile_extras import widget as xwidget
+    from qtile_extras.widget.decorations import RectDecoration
+    HAS_EXTRAS = True
+except ImportError:
+    xwidget = widget
+    HAS_EXTRAS = False
 
 
-colors = init_colors()
+class Net(xwidget.Net):
+    # Polling widgets re-poll on every click, but Net divides the bytes since
+    # the previous poll by update_interval, so an early poll shows a speed
+    # far too low (and shortchanges the next one). Run only the click action.
+    def button_press(self, x, y, button):
+        widget.base._TextBox.button_press(self, x, y, button)
 
 
-# WIDGETS FOR THE BAR
-
-def init_widgets_defaults():
-    return dict(font="Noto Sans",
-                fontsize = 12,
-                padding = 2,
-                background=colors[1])
-
-widget_defaults = init_widgets_defaults()
-
-def init_widgets_list():
-    prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
-    widgets_list = [
-               widget.GroupBox(font="FontAwesome",
-                        fontsize = 16,
-                        margin_y = -1,
-                        margin_x = 0,
-                        padding_y = 6,
-                        padding_x = 5,
-                        borderwidth = 0,
-                        disable_drag = True,
-                        active = colors[9],
-                        inactive = colors[5],
-                        rounded = False,
-                        highlight_method = "text",
-                        this_current_screen_border = colors[8],
-                        foreground = colors[2],
-                        background = colors[1]
-                        ),
-               widget.Sep(
-                        linewidth = 1,
-                        padding = 10,
-                        foreground = colors[2],
-                        background = colors[1]
-                        ),
-               widget.CurrentLayout(
-                        font = "Noto Sans Bold",
-                        foreground = colors[5],
-                        background = colors[1]
-                        ),
-               widget.Sep(
-                        linewidth = 1,
-                        padding = 10,
-                        foreground = colors[2],
-                        background = colors[1]
-                        ),
-               widget.WindowName(font="Noto Sans",
-                        fontsize = 12,
-                        foreground = colors[5],
-                        background = colors[1],
-                        ),
-               # widget.Net(
-               #          font="Noto Sans",
-               #          fontsize=12,
-               #          interface="enp0s31f6",
-               #          foreground=colors[2],
-               #          background=colors[1],
-               #          padding = 0,
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.NetGraph(
-               #          font="Noto Sans",
-               #          fontsize=12,
-               #          bandwidth="down",
-               #          interface="auto",
-               #          fill_color = colors[8],
-               #          foreground=colors[2],
-               #          background=colors[1],
-               #          graph_color = colors[8],
-               #          border_color = colors[2],
-               #          padding = 0,
-               #          border_width = 1,
-               #          line_width = 1,
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # # do not activate in Virtualbox - will break qtile
-               # widget.ThermalSensor(
-               #          foreground = colors[5],
-               #          foreground_alert = colors[6],
-               #          background = colors[1],
-               #          metric = True,
-               #          padding = 3,
-               #          threshold = 80
-               #          ),
-               # # battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # arcobattery.BatteryIcon(
-               #          padding=0,
-               #          scale=0.7,
-               #          y_poss=2,
-               #          theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
-               #          update_interval = 5,
-               #          background = colors[1]
-               #          ),
-               # # battery option 2  from Qtile
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.Battery(
-               #          font="Noto Sans",
-               #          update_interval = 10,
-               #          fontsize = 12,
-               #          foreground = colors[5],
-               #          background = colors[1],
-	           #          ),
-               # widget.TextBox(
-               #          font="FontAwesome",
-               #          text="  ",
-               #          foreground=colors[6],
-               #          background=colors[1],
-               #          padding = 0,
-               #          fontsize=16
-               #          ),
-               # widget.CPUGraph(
-               #          border_color = colors[2],
-               #          fill_color = colors[8],
-               #          graph_color = colors[8],
-               #          background=colors[1],
-               #          border_width = 1,
-               #          line_width = 1,
-               #          core = "all",
-               #          type = "box"
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.TextBox(
-               #          font="FontAwesome",
-               #          text="  ",
-               #          foreground=colors[4],
-               #          background=colors[1],
-               #          padding = 0,
-               #          fontsize=16
-               #          ),
-               # widget.Memory(
-               #          font="Noto Sans",
-               #          format = '{MemUsed}M/{MemTotal}M',
-               #          update_interval = 1,
-               #          fontsize = 12,
-               #          foreground = colors[5],
-               #          background = colors[1],
-               #         ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               widget.TextBox(
-                        font="FontAwesome",
-                        text="  ",
-                        foreground=colors[3],
-                        background=colors[1],
-                        padding = 0,
-                        fontsize=16
-                        ),
-               widget.Volume(
-                        foreground = colors[5],
-                        background = colors[1],
-                        fontsize = 12,
-                        mute_format = "muted",
-                        volume_app = "pavucontrol",
-                        mute_command = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-                        volume_up_command = "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
-                        volume_down_command = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-                        get_volume_command = "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"%d%%\", $2*100+0.5}'",
-                        check_mute_command = "wpctl get-volume @DEFAULT_AUDIO_SINK@",
-                        check_mute_string = "[MUTED]",
-                        ),
-               widget.Sep(
-                        linewidth = 1,
-                        padding = 10,
-                        foreground = colors[2],
-                        background = colors[1]
-                        ),
-               widget.TextBox(
-                        font="FontAwesome",
-                        text="  ",
-                        foreground=colors[3],
-                        background=colors[1],
-                        padding = 0,
-                        fontsize=16
-                        ),
-               widget.Clock(
-                        foreground = colors[5],
-                        background = colors[1],
-                        fontsize = 12,
-                        format="%d-%m-%Y %I:%M %p"
-                        ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               widget.Systray(
-                        background=colors[1],
-                        icon_size=20,
-                        padding = 4
-                        ),
-              ]
-    return widgets_list
-
-widgets_list = init_widgets_list()
+TRANSPARENT = "#00000000"
+ISLAND = colors["base"]
 
 
-def init_widgets_screen1():
-    widgets_screen1 = init_widgets_list()
-    return widgets_screen1
+def pill(color=ISLAND):
+    # group=True merges adjacent decorated widgets into one rounded island;
+    # an undecorated widget (e.g. a stretch spacer) ends the island.
+    if HAS_EXTRAS:
+        return {"decorations": [RectDecoration(colour=color, radius=16, filled=True,
+                                               padding_y=0, group=True)]}
+    return {"background": color}
 
-def init_widgets_screen2():
-    widgets_screen2 = init_widgets_list()
-    return widgets_screen2
 
-widgets_screen1 = init_widgets_screen1()
-widgets_screen2 = init_widgets_screen2()
+def gap(width=8):
+    # Spacing *inside* an island (keeps the island background)
+    return xwidget.Spacer(length=width, **pill())
+
+
+def stretch():
+    # Transparent space *between* islands
+    return xwidget.Spacer(length=bar.STRETCH)
+
+
+def icon(glyph, color, **kw):
+    return xwidget.TextBox(text=glyph, font=ICON_FONT, foreground=color, fontsize=15,
+                           padding=4, **pill(), **kw)
+
+
+def sep():
+    return xwidget.TextBox(text="\u2502", foreground=colors["surface1"], padding=4,
+                           **pill())
+
+
+widget_defaults = dict(
+    font=FONT,
+    fontsize=13,
+    padding=6,
+    foreground=colors["text"],
+    background=TRANSPARENT,
+)
+extension_defaults = widget_defaults.copy()
+
+
+def init_widgets_list(systray=True):
+    # ── left island: launcher, workspaces, layout
+    left = [
+        gap(10),
+        xwidget.TextBox(
+            text="\uf303", font=ICON_FONT, fontsize=18, padding=8, foreground=colors["blue"],
+            mouse_callbacks={"Button1": lazy.spawn("rofi -show drun -show-icons")},
+            **pill(),
+        ),
+        xwidget.GroupBox(
+            font=ICON_FONT,
+            fontsize=15,
+            margin_y=3,
+            margin_x=2,
+            padding_x=8,
+            borderwidth=3,
+            disable_drag=True,
+            highlight_method="line",
+            highlight_color=[ISLAND, ISLAND],
+            active=colors["text"],
+            inactive=colors["overlay0"],
+            this_current_screen_border=colors["mauve"],
+            this_screen_border=colors["lavender"],
+            other_current_screen_border=colors["blue"],
+            other_screen_border=colors["surface1"],
+            urgent_border=colors["red"],
+            urgent_text=colors["red"],
+            rounded=True,
+            **pill(),
+        ),
+        sep(),
+        xwidget.CurrentLayout(mode="icon", scale=0.55, padding=6, **pill()),
+        gap(12),
+    ]
+    # ── centre island: clock (click → calendar)
+    cal = {"Button1": lazy.spawn(os.path.expanduser("~/.config/qtile/scripts/calendar.sh"))}
+    centre = [
+        gap(14),
+        icon("\uf017", colors["mauve"], mouse_callbacks=cal),
+        xwidget.Clock(format="%a %d %b", foreground=colors["subtext"],
+                      mouse_callbacks=cal, **pill()),
+        xwidget.Clock(format="%I:%M %p", font=FONT + " Bold", mouse_callbacks=cal,
+                      **pill()),
+        gap(14),
+    ]
+    # ── right island: stats, tray, power (click net → vnstat usage)
+    netstats = {"Button1": lazy.spawn(os.path.expanduser("~/.config/qtile/scripts/netstats.sh"))}
+    # fmt centres each value in a fixed character count (its longest possible
+    # text), so in the monospace FONT the width never changes and the bar
+    # (and centred clock) don't shift. Net speeds stay below 1000 per unit
+    # (B/kB/MB, factor 1000), so "999kB \u2193\u2191 999kB" is the longest net text.
+    right = [
+        gap(12),
+        icon("\uf4bc", colors["blue"]),
+        xwidget.CPU(format="{load_percent:.0f}%", fmt="{:^4}", update_interval=2,
+                    **pill()),
+        icon("\uefc5", colors["green"]),
+        xwidget.Memory(format="{MemUsed:.1f}G", fmt="{:^5}", measure_mem="G",
+                       update_interval=2, **pill()),
+        icon("\uf1eb", colors["sapphire"], mouse_callbacks=netstats),
+        Net(format="{down:.0f}{down_suffix} \uf063\uf062 {up:.0f}{up_suffix}",
+            fmt="{:^14}", update_interval=2, mouse_callbacks=netstats, **pill()),
+        icon("\uf028", colors["peach"]),
+        xwidget.Volume(
+            unmute_format="{volume}%",
+            mute_format="mute",
+            fmt="{:^4}",
+            volume_app="pavucontrol",
+            mute_command="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+            volume_up_command="wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+",
+            volume_down_command="wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+            get_volume_command="wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{printf \"%d%%\", $2*100+0.5}'",
+            check_mute_command="wpctl get-volume @DEFAULT_AUDIO_SINK@",
+            check_mute_string="[MUTED]",
+            **pill(),
+        ),
+    ]
+    # Only one systray may exist across all bars
+    if systray:
+        # StatusNotifier draws icons itself, so they blend into the island;
+        # XEmbed Systray shows the wallpaper through icons on a transparent bar.
+        # Apps like nm-applet and variety only send an icon *name*; qtile
+        # resolves it with pyxdg (python-pyxdg) in icon_theme, else it shows
+        # a fallback (nm-applet) or drops the item entirely (variety).
+        try:
+            import dbus_fast  # noqa: F401
+            tray = xwidget.StatusNotifier(icon_size=16, padding=6,
+                                          icon_theme="Sardi-Arc", **pill())
+            # Left-click calls the item's Activate, which AppIndicator apps
+            # (nm-applet --indicator, variety) ignore: they're menu-only. Open
+            # their menu on left-click; other apps still get Activate.
+            if hasattr(tray, "show_menu"):
+                def _tray_left_click(tray=tray):
+                    item = tray.selected_item
+                    if item and item.menu and (getattr(item, "is_context_menu", False)
+                                               or item.path.startswith("/org/ayatana/")):
+                        tray.show_menu()
+                    else:
+                        tray.activate()
+                tray.mouse_callbacks["Button1"] = _tray_left_click
+        except ImportError:
+            tray = xwidget.Systray(icon_size=16, padding=6, background=ISLAND, **pill())
+        right += [sep(), tray]
+    right += [
+        sep(),
+        xwidget.TextBox(
+            text="\uf011", font=ICON_FONT, fontsize=15, padding=8, foreground=colors["red"],
+            mouse_callbacks={"Button1": lazy.spawn(
+                os.path.expanduser("~/.config/qtile/scripts/powermenu.sh"))},
+            **pill(),
+        ),
+        gap(10),
+    ]
+    return left + [stretch()] + centre + [stretch()] + right
+
+
+def make_bar(systray):
+    return bar.Bar(
+        widgets=init_widgets_list(systray),
+        size=32,
+        margin=[8, 10, 0, 10],
+        background=TRANSPARENT,
+    )
 
 
 # On X11, variety (autostart.sh) owns the wallpaper. Its feh call kills the X
@@ -548,10 +514,8 @@ widgets_screen2 = init_widgets_screen2()
 def init_screens():
     wallpaper = {} if qtile.core.name == "x11" else dict(
         wallpaper='~/.config/qtile/wall.jpg', wallpaper_mode='fill')
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8),
-                   **wallpaper),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8),
-                   **wallpaper)]
+    return [Screen(top=make_bar(systray=True), **wallpaper),
+            Screen(top=make_bar(systray=False), **wallpaper)]
 screens = init_screens()
 
 
@@ -561,6 +525,76 @@ mouse = [
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size())
+]
+
+
+# ─── SWIPE WORKSPACES ──────────────────────────────────────────────────
+# Hold the second mouse side button (Button9) and move left/right to step
+# through workspaces; every SWIPE_STEP px of travel switches one workspace.
+SWIPE_BUTTON = "Button9"
+SWIPE_STEP = 150
+_swipe = {"base": 0}
+
+
+def _swipe_move(qtile, x, _y):
+    delta = x - _swipe["base"]
+    if abs(delta) < SWIPE_STEP:
+        return
+    if delta > 0:
+        qtile.current_screen.next_group(skip_empty=False)
+    else:
+        qtile.current_screen.prev_group(skip_empty=False)
+    _swipe["base"] = x
+
+
+def _swipe_start(qtile):
+    # Drag only starts when a window is focused, so begin the drag manually
+    # here to make swiping work on empty workspaces too.
+    _swipe["base"] = 0
+    if qtile._drag is None:
+        x, y = qtile.core.get_mouse_position()
+        qtile._drag = (x, y, 0, 0, [lazy.function(_swipe_move)])
+        qtile.core.grab_pointer()
+    return (0, 0)
+
+
+# Hold the first side button (Button8) and move left/right to carry the
+# focused window to the next/previous workspace, following it there.
+CARRY_BUTTON = "Button8"
+_carry = {"base": 0}
+
+
+def _carry_move(qtile, x, _y):
+    delta = x - _carry["base"]
+    win = qtile.current_window
+    if abs(delta) < SWIPE_STEP or win is None:
+        return
+    groups = qtile.groups
+    idx = groups.index(qtile.current_group)
+    target = groups[(idx + (1 if delta > 0 else -1)) % len(groups)]
+    win.togroup(target.name)
+    qtile.current_screen.set_group(target)
+    win.group.focus(win)
+    _carry["base"] = x
+
+
+def _carry_start(qtile):
+    _carry["base"] = 0
+    if qtile._drag is None and qtile.current_window is not None:
+        x, y = qtile.core.get_mouse_position()
+        qtile._drag = (x, y, 0, 0, [lazy.function(_carry_move)])
+        qtile.core.grab_pointer()
+    return (0, 0)
+
+
+mouse += [
+    Click([], CARRY_BUTTON, lazy.function(_carry_start)),
+    Drag([], CARRY_BUTTON, lazy.function(_carry_move),
+         start=lazy.function(_carry_start)),
+    Click([], SWIPE_BUTTON, lazy.function(_swipe_start)),
+    # Registered so qtile ends the drag when the button is released
+    Drag([], SWIPE_BUTTON, lazy.function(_swipe_move),
+         start=lazy.function(_swipe_start)),
 ]
 
 dgroups_key_binder = None
@@ -652,6 +686,7 @@ cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules, 
+    Match(wm_class='qtile-calendar'),
     Match(wm_class='confirmreset'),  # gitk
     Match(wm_class='makebranch'),  # gitk
     Match(wm_class='maketag'),  # gitk
@@ -675,7 +710,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='archlinux-logout'),
     Match(wm_class='xfce4-terminal'),
 
-],  fullscreen_border_width = 0, border_width = 0)
+],  fullscreen_border_width = 0, border_width = 2,
+    border_focus = colors["mauve"], border_normal = colors["surface0"])
 auto_fullscreen = True
 
 focus_on_window_activation = "focus" # or smart
