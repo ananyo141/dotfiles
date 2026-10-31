@@ -36,7 +36,7 @@ if [ $keybLayout = "be" ]; then
 fi
 
 #autostart ArcoLinux Welcome App
-run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop &
+#run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop &
 
 #Some ways to set your wallpaper besides variety or nitrogen
 #feh --bg-fill /usr/share/backgrounds/arcolinux/arco-wallpaper.jpg &
@@ -49,18 +49,23 @@ run dex $HOME/.config/autostart/arcolinux-welcome-app.desktop &
 
 #starting utility applications at boot time
 run variety &
-run nm-applet &
+run nm-applet --indicator &
 run pamac-tray &
 run xfce4-power-manager &
 numlockx on &
 blueberry-tray &
 run picom --config "$HOME/.config/qtile/scripts/picom.conf" &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
+# dunst is themed to match the bar; fall back to xfce4-notifyd if missing
+if command -v dunst >/dev/null; then
+  run dunst &
+else
+  /usr/lib/xfce4/notifyd/xfce4-notifyd &
+fi
 run emacs --daemon &
 
 #starting user applications at boot time
-run volumeicon &
+#run volumeicon &  # the qtile bar shows volume now
 #run discord &
 #nitrogen --restore &
 #run caffeine -a &
