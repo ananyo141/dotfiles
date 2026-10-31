@@ -364,6 +364,19 @@ class Net(xwidget.Net):
     def button_press(self, x, y, button):
         widget.base._TextBox.button_press(self, x, y, button)
 
+    # interface="all" sums every interface, so container-to-container traffic
+    # over Docker's veth links showed up as (doubled) up/down speed. Sum only
+    # physical NICs: those with a /sys/class/net/<if>/device link (Wi-Fi,
+    # Ethernet, USB adapters); lo, bridges and veths have none.
+    def get_stats(self):
+        import psutil
+        down = up = 0
+        for nic, c in psutil.net_io_counters(pernic=True).items():
+            if os.path.exists(f"/sys/class/net/{nic}/device"):
+                down += c.bytes_recv
+                up += c.bytes_sent
+        return {"all": {"down": down, "up": up, "total": down + up}}
+
 
 UPDATES_PENDING = "\U000f0162"  # md-cloud_download
 UPDATES_NONE = "\U000f0b7d"     # md-cloud_download_outline
