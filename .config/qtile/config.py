@@ -331,6 +331,32 @@ except ImportError:
     HAS_EXTRAS = False
 
 
+# _TextBox.draw centres the whole Pango line box (ascent + descent) and adds
+# 1px, so digits/caps and icon glyphs sit ~1.5px below the island's centre.
+# Nudge text-drawn widgets up; image widgets (GroupBox, layout icon, tray)
+# don't use _TextBox.draw and are already centred.
+TEXT_NUDGE = 1.5
+# config.py is re-executed on every reload: keep the original method so the
+# patch never wraps itself.
+_textbox_draw = widget.base._TextBox.__dict__.get("_unnudged_draw",
+                                                   widget.base._TextBox.draw)
+widget.base._TextBox._unnudged_draw = _textbox_draw
+
+
+def _draw_text_nudged(self):
+    if not self.bar.horizontal:
+        return _textbox_draw(self)
+    layout_draw = self.layout.draw
+    self.layout.draw = lambda x, y: layout_draw(x, y - TEXT_NUDGE)
+    try:
+        _textbox_draw(self)
+    finally:
+        del self.layout.draw
+
+
+widget.base._TextBox.draw = _draw_text_nudged
+
+
 class Net(xwidget.Net):
     # Polling widgets re-poll on every click, but Net divides the bytes since
     # the previous poll by update_interval, so an early poll shows a speed
