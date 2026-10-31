@@ -365,6 +365,22 @@ class Net(xwidget.Net):
         widget.base._TextBox.button_press(self, x, y, button)
 
 
+UPDATES_PENDING = "\U000f0162"  # md-cloud_download
+UPDATES_NONE = "\U000f0b7d"     # md-cloud_download_outline
+
+
+class CheckUpdates(xwidget.CheckUpdates):
+    # Swaps its paired icon widget: solid cloud while updates are pending,
+    # outline when there are none (text is no_update_string "0").
+    icon_widget = None
+
+    def update(self, text):
+        super().update(text)
+        if self.icon_widget is not None:
+            self.icon_widget.update(UPDATES_NONE if text == self.no_update_string
+                                    else UPDATES_PENDING)
+
+
 TRANSPARENT = "#00000000"
 ISLAND = colors["base"]
 
@@ -455,6 +471,24 @@ def init_widgets_list(systray=True):
     ]
     # ── right island: stats, tray, power (click net → vnstat usage)
     netstats = {"Button1": lazy.spawn(os.path.expanduser("~/.config/qtile/scripts/netstats.sh"))}
+    # Pending repo + AUR updates (counts output lines; checkupdates uses a
+    # temp db, so no partial sync). Click runs yay in a terminal; the count
+    # refreshes when that terminal closes.
+    updates = CheckUpdates(
+        custom_command="checkupdates 2>/dev/null; yay -Qua 2>/dev/null",
+        display_format="{updates}",
+        no_update_string="0",
+        initial_text="…",
+        fmt="{:^3}",
+        update_interval=1800,
+        colour_have_updates=colors["text"],
+        colour_no_updates=colors["overlay0"],
+        execute="alacritty --class qtile-updates -e sh -c "
+                "'yay; printf \"\\nDone. Press Enter to close.\"; read _'",
+        **pill(),
+    )
+    updates.icon_widget = icon(UPDATES_NONE, colors["yellow"],
+                               mouse_callbacks={"Button1": updates.do_execute})
     # fmt centres each value in a fixed character count (its longest possible
     # text), so in the monospace FONT the width never changes and the bar
     # (and centred clock) don't shift. Net speeds stay below 1000 per unit
@@ -484,6 +518,8 @@ def init_widgets_list(systray=True):
             check_mute_string="[MUTED]",
             **pill(),
         ),
+        updates.icon_widget,
+        updates,
     ]
     # Only one systray may exist across all bars
     if systray:
