@@ -302,7 +302,7 @@ FONT = "JetBrainsMono Nerd Font, Noto Sans, Symbols Nerd Font"
 ICON_FONT = "JetBrainsMono Nerd Font Propo"
 
 layout_theme = {
-    "margin": 10,
+    "margin": 8,  # matches the bar's side margin
     "border_width": 2,
     "border_focus": colors["mauve"],
     "border_normal": colors["surface0"],
@@ -347,7 +347,7 @@ def pill(color=ISLAND):
     # group=True merges adjacent decorated widgets into one rounded island;
     # an undecorated widget (e.g. a stretch spacer) ends the island.
     if HAS_EXTRAS:
-        return {"decorations": [RectDecoration(colour=color, radius=16, filled=True,
+        return {"decorations": [RectDecoration(colour=color, radius=14, filled=True,
                                                padding_y=0, group=True)]}
     return {"background": color}
 
@@ -501,8 +501,13 @@ def init_widgets_list(systray=True):
 def make_bar(systray):
     return bar.Bar(
         widgets=init_widgets_list(systray),
-        size=32,
-        margin=[8, 10, 0, 10],
+        # Floating bar. The -4 bottom margin makes it reserve 4px less, so the
+        # window gap below it is 4px instead of the layout's 8: windows start
+        # at 6 + 28 - 4 + 8 = 38px. calendar.sh (posy) and dunstrc (offset)
+        # sit at that line; update them together. Note: qtile raises if a
+        # dock app reserving screen space (strut) is used with a negative margin.
+        size=28,
+        margin=[6, 8, -4, 8],
         background=TRANSPARENT,
     )
 
