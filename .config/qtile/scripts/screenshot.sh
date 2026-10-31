@@ -6,7 +6,9 @@ mkdir -p "$dir"
 file="$dir/$(date +%Y-%m-%d_%H-%M-%S).png"
 
 case "${1:-full}" in
-    select) scrot --select --freeze --line mode=edge,width=2,color="#cba6f7" "$file" ;;
+    # No --freeze: it XGrabServer()s, which also stalls picom, so the edge
+    # rectangle never gets composited and the selection is invisible.
+    select) scrot --select --line mode=edge,width=2,color="#cba6f7" "$file" ;;
     window) scrot --focused --border "$file" ;;
     *)      scrot "$file" ;;
 esac || exit 1
