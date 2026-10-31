@@ -1,4 +1,3 @@
-import = ["/home/ananyo/.config/alacritty/colorschemes.toml"]
 
 [colors]
 draw_bold_text_with_bright_colors = true
@@ -23,5 +22,9 @@ family = "UbuntuMono Nerd Font"
 style = "Normal"
 
 [window]
-opacity = 0.8
+opacity = 0.9
+padding = { x = 0, y = 0 }
 decorations = "Buttonless"
+
+[general]
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
