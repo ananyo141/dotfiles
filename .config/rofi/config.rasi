@@ -1,1 +1,9 @@
-@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+configuration {
+    modi:             "drun,run,window";
+    show-icons:       true;
+    display-drun:     "  Apps";
+    display-run:      "  Run";
+    display-window:   "  Windows";
+    drun-display-format: "{name}";
+}
+@theme "~/.config/rofi/catppuccin-mocha.rasi"

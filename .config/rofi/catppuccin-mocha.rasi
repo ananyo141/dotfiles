@@ -1,0 +1,53 @@
+* {
+    bg:        #1e1e2ef2;
+    bg-alt:    #313244;
+    fg:        #cdd6f4;
+    fg-dim:    #6c7086;
+    accent:    #cba6f7;
+    urgent:    #f38ba8;
+
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "Noto Sans 12";
+}
+
+window {
+    width:            600px;
+    background-color: @bg;
+    border:           2px;
+    border-color:     @accent;
+    border-radius:    14px;
+    padding:          16px;
+}
+
+mainbox { spacing: 12px; children: [ inputbar, listview ]; }
+
+inputbar {
+    background-color: @bg-alt;
+    border-radius:    10px;
+    padding:          10px 14px;
+    spacing:          10px;
+    children:         [ prompt, entry ];
+}
+prompt { text-color: @accent; }
+entry  { placeholder: "Search…"; placeholder-color: @fg-dim; cursor: text; }
+
+listview {
+    lines:      8;
+    columns:    1;
+    spacing:    4px;
+    fixed-height: false;
+    scrollbar:  false;
+}
+
+element {
+    padding:       8px 12px;
+    border-radius: 10px;
+    spacing:       12px;
+}
+element normal.normal, element alternate.normal { background-color: transparent; }
+element selected.normal { background-color: @bg-alt; text-color: @accent; }
+element normal.urgent, element selected.urgent { text-color: @urgent; }
+element-icon { size: 24px; }
+element-text { text-color: inherit; vertical-align: 0.5; }
+message { background-color: @bg-alt; border-radius: 10px; padding: 8px; }
